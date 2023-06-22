@@ -24,7 +24,9 @@ const Navbar = () => {
 
 				<div className="flex items-center">
 					<ul className="hidden md:flex">
-						<li className="text-primary-light">Home</li>
+						<li className="text-primary-light">
+							<Link href="/">Home</Link>
+						</li>
 						<li className="text-primary-light">Events</li>
 						<li className="text-primary-light">Solutions</li>
 						<li className="text-primary-light">Contact Us</li>
@@ -58,7 +60,9 @@ const Navbar = () => {
 				className={
 					toggle ? "absolute bg-primary-light w-full px-8 md:hidden" : "hidden"
 				}>
-				<li>Home</li>
+				<li className="">
+					<Link href="/">Home</Link>
+				</li>
 				<li>Events</li>
 				<li>Solutions</li>
 				<li>Contact Us</li>

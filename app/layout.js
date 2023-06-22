@@ -34,10 +34,11 @@ export default function RootLayout({ children }) {
 					<Navbar />
 				</nav>
 				{children}
+
+				<footer>
+					<Footer />
+				</footer>
 			</body>
-			<footer>
-				<Footer />
-			</footer>
 		</html>
 	);
 }
