@@ -31,6 +31,9 @@ const Footer = () => {
 
 					{/* third row */}
 					<div className="col-md-4">
+						<h6 className="text-white">
+							Subscribe our newsletter to get update
+						</h6>
 						<Subscribe />
 					</div>
 				</div>

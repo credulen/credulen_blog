@@ -3,7 +3,7 @@ import React from "react";
 const Subscribe = () => {
 	return (
 		<div>
-			<h6 className="text-dark">Subscribe our newsletter to get update</h6>
+			{/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
 			<form className="mt-3">
 				<input
 					className="form-control"

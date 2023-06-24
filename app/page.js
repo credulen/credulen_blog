@@ -32,6 +32,9 @@ export default function Home() {
 					</div>
 
 					<div>
+						<h6 className="text-dark">
+							Subscribe our newsletter to get update
+						</h6>
 						<Subscribe />
 					</div>
 				</div>
