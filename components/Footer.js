@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Subscribe from "./Subscribe";
 
@@ -10,7 +10,32 @@ const Footer = () => {
 				<div className="row border_design border-bottom pb-4">
 					<div className="col-md-4">
 						<Link href="/">
-							<img className="w-25" src="./logo/5.png" alt="" />
+							{/* <img className="w-25" src="./logo/5.png" alt="" /> */}
+							{/* <Image
+								src="/logo/5.png"
+								className="card-img-top"
+								width={50}
+								height={100}
+								alt="Picture of the author"
+							/> */}
+
+							<picture>
+								{/* <source
+									srcSet="https://example.com/hero.avif"
+									type="image/avif"
+								/>
+								<source
+									srcSet="https://example.com/hero.webp"
+									type="image/webp"
+								/> */}
+								<img
+									className="w-25"
+									src="./logo/5.png"
+									alt=""
+									width={100}
+									height={100}
+								/>
+							</picture>
 						</Link>
 					</div>
 
@@ -41,7 +66,33 @@ const Footer = () => {
 				<div className="row mt-2 d-flex justify-content-between align-items-center">
 					<div className="col-md-6">
 						<Link href="/">
-							<img className="w-25" src="./logo/5.png" alt="" />
+							{/* <img className="w-25" src="./logo/5.png" alt="" /> */}
+
+							<picture>
+								{/* <source
+									srcSet="https://example.com/hero.avif"
+									type="image/avif"
+								/>
+								<source
+									srcSet="https://example.com/hero.webp"
+									type="image/webp"
+								/> */}
+								<img
+									className="w-25"
+									src="./logo/5.png"
+									alt=""
+									width={150}
+									height={100}
+								/>
+							</picture>
+
+							{/* <Image
+								src="/logo/5.png"
+								className="card-img-top"
+								width={25}
+								height={25}
+								alt="Picture of the author"
+							/> */}
 						</Link>
 					</div>
 					<div className="col-md-6">
