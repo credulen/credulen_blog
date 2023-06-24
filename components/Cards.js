@@ -1,7 +1,15 @@
+import Image from "next/image";
+
 export const HighlightCards = () => {
 	return (
 		<div className="card mb-3">
-			<img src="../assets/blockImg.jpg" className="card-img-top" alt="..." />
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={200}
+				height={350}
+				alt="Picture of the author"
+			/>
 			<div className="card-body">
 				<h5 className="card-title">Card title</h5>
 				<p className="card-text">
@@ -19,7 +27,13 @@ export const HighlightCards = () => {
 export const ArticleCards = () => {
 	return (
 		<div className="card mt-3">
-			<img src="../assets/blockImg.jpg" className="card-img-top" alt="..." />
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={200}
+				height={350}
+				alt="Picture of the author"
+			/>
 			<div className="card-body">
 				<h5 className="card-title">Card title</h5>
 				<p className="card-text">
