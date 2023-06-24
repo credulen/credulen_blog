@@ -1,82 +1,115 @@
-"use client";
 import Link from "next/link";
-// import React from "react";
-import { useState } from "react";
+import React from "react";
 
 const Navbar = () => {
-	const [toggle, setToggle] = useState(false);
-
-	const handleClick = () => setToggle(!toggle);
-
 	return (
-		<div className="w-full h-[80px] z-10 bg-primary fixed drop-shadow-lg relative">
-			<div className="flex justify-between items-center w-full h-full md:max-w-[1240px] m-auto">
-				<div className="flex items-center">
-					{/* <img
-						src="/icons/menu_icons.svg"
-						alt=""
-						className="sm:ml-10 ss:ml-10 md:ml-3 opacity-[55%] w-full h-[25px]"
-					/> */}
-					<h1 className="text-primary-light sm:ml-10 ss:ml-10 md:ml-3 w-full h-[25px]">
-						credulen
-					</h1>
-				</div>
+		<nav className="navbar navbar-expand-lg fixed nav_bg shadow py-3">
+			<div className="container-fluid container">
+				<Link className="navbar-brand text-white" href="/">
+					Navbar
+				</Link>
+				<button
+					className="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span className="navbar-toggler-icon"></span>
+				</button>
 
-				<div className="flex items-center">
-					<ul className="hidden md:flex">
-						<li className="text-primary-light">
-							<Link href="/">Home</Link>
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+						{/* <li className="nav-item"> */}
+						<Link
+							className="nav-link active text-white me-3"
+							aria-current="page"
+							href="/">
+							Home
+						</Link>
+						{/* </li> */}
+						{/* <li className="nav-item">
+							<a className="nav-link text-white" href="#">
+								Link
+							</a>
+						</li> */}
+						<li className="nav-item dropdown">
+							<a
+								className="nav-link dropdown-toggle text-white me-3"
+								href="#"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Events
+							</a>
+							<ul className="dropdown-menu">
+								<li>
+									<a className="dropdown-item" href="#">
+										Ondemand Webinars
+									</a>
+								</li>
+								<li>
+									<a className="dropdown-item" href="#">
+										Upcoming Webinars
+									</a>
+								</li>
+
+								<li>
+									<a className="dropdown-item" href="#">
+										Conferences
+									</a>
+								</li>
+							</ul>
 						</li>
-						<li className="text-primary-light">Events</li>
-						<li className="text-primary-light">Solutions</li>
-						<li className="text-primary-light">Contact Us</li>
+						<li className="nav-item">
+							<a className="nav-link text-white me-3">Solutions</a>
+						</li>
+						{/* <li className="nav-item"> */}
+						<Link href="/contact" className="nav-link text-white">
+							Contact Us
+						</Link>
+						{/* </li> */}
 					</ul>
-				</div>
+					<div className="d-flex" role="search">
+						{/* <button
+							className="btn text-white btn_outline_style me-3"
+							type="submit">
+							Login
+						</button> */}
+						<Link
+							href="/login"
+							className="btn text-white btn_outline_style me-3"
+							type="submit">
+							Login
+						</Link>
+						{/* <button
+							className="btn btn_bg_style fw-medium bg-light"
+							type="submit">
+							Sign Up
+						</button> */}
+						<Link
+							href="/signup"
+							className="btn btn_bg_style fw-medium bg-light"
+							type="submit">
+							Sign Up
+						</Link>
+					</div>
 
-				<div className="hidden md:flex sm:mr-10 md:mr-10">
-					<button className="border-none bg-transparent text-primary-light mr-4">
-						Login
-					</button>
-					{/* <button className="px-5 py-1 text-primary bg-primary-light hover:bg-primary hover:text-primary-light"> */}
-					<button className="px-5 py-2 text-primary bg-primary-light">
-						Sign Up
-					</button>
-				</div>
-
-				<div className="md:hidden" onClick={handleClick}>
-					<img
-						src={
-							!toggle
-								? "/icons/menu_open_icon.svg"
-								: "/icons/menu_close_icon.svg"
-						}
-						alt="menu"
-						className="w-[28px] h-[28px] object-contain mr-10"
-					/>
+					{/* <form className="d-flex" role="search">
+						<input
+							className="form-control me-2"
+							type="search"
+							placeholder="Search"
+							aria-label="Search"
+						/>
+						<button className="btn btn-outline-success" type="submit">
+							Search
+						</button>
+					</form> */}
 				</div>
 			</div>
-
-			<ul
-				className={
-					toggle ? "absolute bg-primary-light w-full px-8 md:hidden" : "hidden"
-				}>
-				<li className="">
-					<Link href="/">Home</Link>
-				</li>
-				<li>Events</li>
-				<li>Solutions</li>
-				<li>Contact Us</li>
-
-				<div className="flex flex-col my-4">
-					<button className="border-primary bg-transparent mb-4 py-3 px-8">
-						Login
-					</button>
-					<button className="px-5 py-2 text-primary-light bg-primary">
-						Sign Up
-					</button>
-				</div>
-			</ul>
-		</div>
+		</nav>
 	);
 };
 

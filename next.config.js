@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-	// reactStrictMode: false,
-	images: {
-		domains: [process.env.API_IMAGE_DOMAIN],
-	},
-};
+const nextConfig = {};
+const path = require("path");
 
 module.exports = nextConfig;
+
+module.exports = {
+	sassOptions: {
+		includePaths: [path.join(__dirname, "styles")],
+	},
+};
