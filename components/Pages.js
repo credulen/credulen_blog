@@ -101,7 +101,7 @@ export const WebinarInfoPage = () => {
 					<div className="mb-4 form-check">
 						<input
 							type="checkbox"
-							className="form-check-input"
+							className="form-check-input webevent"
 							id="exampleCheck1"
 						/>
 						<label className="form-check-label" for="exampleCheck1">
