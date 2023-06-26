@@ -31,15 +31,15 @@ const Conferences = () => {
 
 				<div className="container">
 					<div className="row g-4">
-						<div className="col-md-4">
+						<div className="col-md-6">
 							<PastEventsCard />
 						</div>
-						<div className="col-md-4">
+						<div className="col-md-6">
 							<PastEventsCard />
 						</div>
-						<div className="col-md-4">
+						{/* <div className="col-md-4">
 							<PastEventsCard />
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
