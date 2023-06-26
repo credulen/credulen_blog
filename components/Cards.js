@@ -13,13 +13,17 @@ export const HighlightCard = () => {
 			/>
 			<div className="card-body">
 				<h5 className="card-title">Card title</h5>
-				<p className="card-text">
+				<p className="card-text mb-2">
 					This is a wider card with supporting text below as a natural lead-in
 					to additional content. This content is a little bit longer.
 				</p>
 				<p className="card-text">
 					<small className="text-body-secondary">Last updated 3 mins ago</small>
 				</p>
+
+				<Link href="/article" className="btn btn-success mt-3">
+					Read More
+				</Link>
 			</div>
 		</div>
 	);
@@ -41,9 +45,9 @@ export const ArticleCard = () => {
 					Some quick example text to build on the card title and make up the
 					bulk of the cards content.
 				</p>
-				<a href="#" className="btn btn-success">
+				<Link href="/article" className="btn btn-success">
 					Read More
-				</a>
+				</Link>
 			</div>
 		</div>
 	);
@@ -54,12 +58,32 @@ export const RecentPostCard = () => {
 		<div className="card mb-5">
 			<div className="card-header text-center">Recent Posts</div>
 			<ul className="list-group list-group-flush">
-				<li className="list-group-item text-center">An item</li>
-				<li className="list-group-item text-center">A second item</li>
-				<li className="list-group-item text-center">A third item</li>
-				<li className="list-group-item text-center">A third item</li>
-				<li className="list-group-item text-center">A third item</li>
-				<li className="list-group-item text-center">A third item</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Understanding Blockchain
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Doing More with AI and Blockchain
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						How to Hold a Blockchain Seminar
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Tips for Success in Business
+					</Link>
+				</li>
+				<li className="list-group-item text-center text-success">
+					Journey through Wealth Creation
+				</li>
+				<li className="list-group-item text-center text-success">
+					Changing the Course of History
+				</li>
 			</ul>
 		</div>
 	);
@@ -82,7 +106,7 @@ export const UpcomingWebinarCard = () => {
 			</div>
 			<ul className="list-group list-group-flush webevent p-2">
 				<li className="list-group-item speakerwebevent">
-					<a
+					<Link
 						className="text-success"
 						data-bs-toggle="collapse"
 						href="#collapseExample"
@@ -90,7 +114,7 @@ export const UpcomingWebinarCard = () => {
 						aria-expanded="false"
 						aria-controls="collapseExample">
 						Click Here to See Our Speakers
-					</a>
+					</Link>
 
 					<div className="collapse mt-3" id="collapseExample">
 						<UpcomingWebinarSpeakers />

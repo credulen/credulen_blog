@@ -116,3 +116,7 @@ export const WebinarInfoPage = () => {
 		</div>
 	);
 };
+
+export const ReadArticlePage = () => {
+	return <div>ReadArticlePage</div>;
+};
