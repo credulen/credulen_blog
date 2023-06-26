@@ -8,11 +8,11 @@ const Subscribe = () => {
 				<input
 					className="form-control"
 					type="search"
-					placeholder="Search"
+					placeholder="Subscribe"
 					aria-label="Search"
 				/>
 				<button className="btn bg-success text-white mt-2 w-100" type="submit">
-					Search
+					Subscribe
 				</button>
 			</form>
 		</div>

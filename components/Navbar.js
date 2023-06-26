@@ -3,7 +3,7 @@ import React from "react";
 
 const Navbar = () => {
 	return (
-		<nav className="navbar navbar-expand-lg fixed nav_bg shadow py-3">
+		<nav className="navbar navbar-expand-lg sticky-top nav_bg shadow-lg py-3">
 			<div className="container-fluid container">
 				<Link className="navbar-brand text-white" href="/">
 					Navbar
@@ -45,18 +45,13 @@ const Navbar = () => {
 							</a>
 							<ul className="dropdown-menu">
 								<li>
-									<a className="dropdown-item" href="#">
-										Ondemand Webinars
-									</a>
-								</li>
-								<li>
-									<a className="dropdown-item" href="#">
-										Upcoming Webinars
+									<a className="dropdown-item" href="/webinars">
+										Webinars
 									</a>
 								</li>
 
 								<li>
-									<a className="dropdown-item" href="#">
+									<a className="dropdown-item" href="/conferences">
 										Conferences
 									</a>
 								</li>

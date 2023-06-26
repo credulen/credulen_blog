@@ -129,3 +129,18 @@ a {
 /* .border_design {
 	border-bottom: 1px 
 } */
+
+/* webinar and event cards */
+.webevent {
+	background-color: var(--pry_color_light);
+	border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.speakerwebevent {
+	background-color: var(--pry_color_light);
+	border: none;
+}
+
+/* .pastevents{
+	border-top: 
+} */

@@ -1,34 +1,31 @@
 import ArticleList from "@/components/ArticleList";
-import {
-	ArticleCards,
-	HighlightCards,
-	RecentPostCards,
-} from "@/components/Cards";
+import { ArticleCard, HighlightCard, RecentPostCard } from "@/components/Cards";
 import Subscribe from "@/components/Subscribe";
 
 export default function Home() {
 	return (
 		<main className="container">
-			<div className="row">
+			<div></div>
+			<div className="row g-5">
 				<div className="col-md-8">
 					{/* <div className="container"> */}
 					<div className="">
-						<HighlightCards />
+						<HighlightCard />
 					</div>
 
 					<div className="row">
 						<div className="col-md-6">
-							<ArticleCards />
+							<ArticleCard />
 						</div>
 						<div className="col-md-6">
-							<ArticleCards />
+							<ArticleCard />
 						</div>
 					</div>
 					{/* </div> */}
 				</div>
 				<div className="col-md-4">
 					<div>
-						<RecentPostCards />
+						<RecentPostCard />
 					</div>
 
 					<div>

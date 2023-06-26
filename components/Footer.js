@@ -48,28 +48,30 @@ const Footer = () => {
 				</div>
 
 				{/* bottom row */}
-				<div className="row mt-2 d-flex justify-content-between align-items-center">
-					<div className="col-md-6">
-						<Link href="/">
-							<Image
-								className="w-25"
-								src={logo}
-								width={100}
-								height={100}
-								alt="credulen logo image"
-							/>
-						</Link>
-					</div>
-					<div className="col-md-6">
-						<Link href="#" className="mx-2 text-white" aria-label="Facebook">
-							<FaFacebook />
-						</Link>
-						<Link href="#" className="mx-2 text-white" aria-label="Instagram">
-							<FaInstagram />
-						</Link>
-						<Link href="#" className="mx-2 text-white" aria-label="Twitter">
-							<FaTwitter />
-						</Link>
+				<div className="container">
+					<div className="row mt-2 align-items-center">
+						<div className="col-md-6">
+							<Link href="/">
+								<Image
+									className="w-25"
+									src={logo}
+									width={80}
+									height={80}
+									alt="credulen logo image"
+								/>
+							</Link>
+						</div>
+						<div className="col-md-6">
+							<Link href="#" className="mx-2 text-white" aria-label="Facebook">
+								<FaFacebook />
+							</Link>
+							<Link href="#" className="mx-2 text-white" aria-label="Instagram">
+								<FaInstagram />
+							</Link>
+							<Link href="#" className="mx-2 text-white" aria-label="Twitter">
+								<FaTwitter />
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>
