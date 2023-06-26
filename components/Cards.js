@@ -206,7 +206,9 @@ export const ConferenceCard = () => {
 						dolores laudantium officiis.
 					</p>
 
-					<Link href="#" className="btn btn-success mt-2">
+					<Link
+						href="conferences/conferenceinfo"
+						className="btn btn-success mt-2">
 						Learn More
 					</Link>
 				</div>
@@ -234,7 +236,7 @@ export const PastEventsCard = () => {
 					Some quick example text to build on the card title and make up the
 					bulk of the card's content.
 				</p>
-				<Link href="#" className="btn btn-success">
+				<Link href="conferences/conferenceinfo" className="btn btn-success">
 					Learn More
 				</Link>
 			</div>
