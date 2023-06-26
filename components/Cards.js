@@ -100,7 +100,9 @@ export const UpcomingWebinarCard = () => {
 				</li>
 			</ul>
 			<div className="card-body webevent p-3">
-				<Link href="#" className="card-link text-success ps-2">
+				<Link
+					href="/webinars/regwebinar"
+					className="card-link text-success ps-2">
 					Register
 				</Link>
 			</div>
@@ -108,7 +110,7 @@ export const UpcomingWebinarCard = () => {
 	);
 };
 
-const UpcomingWebinarSpeakers = () => {
+export const UpcomingWebinarSpeakers = () => {
 	return (
 		<div className="d-flex align-items-center mb-4">
 			<Image
@@ -146,7 +148,9 @@ export const OndemandWebinarCard = () => {
 					accusamus at voluptatem sit a, totam id nulla! Maiores reiciendis
 					itaque sed commodi?
 				</p>
-				<Link href="#" className="btn btn-success card-link mt-4">
+				<Link
+					href="/webinars/regwebinar"
+					className="btn btn-success card-link mt-4">
 					CHECK WEBINAR
 				</Link>
 			</div>
