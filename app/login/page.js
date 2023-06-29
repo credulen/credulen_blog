@@ -1,49 +1,70 @@
-import React from "react";
-
 const Login = () => {
 	return (
-		<div className="mx-auto w-25 border border-secondary-subtle p-4">
-			<h3 className="text-center mb-3">Login</h3>
-			<form>
+		<>
+			{/* desktop view */}
+			<form className="form mx-auto bg-white border-5 shadow p-4 w-25 d-none d-md-block d-sm-none">
+				<h5 className="text-center mt-1 mb-4">Login</h5>
 				<div className="mb-3">
-					<label for="exampleInputEmail1" className="form-label">
+					<label htmlFor="exampleFormControlInput1" className="form-label">
 						Email address
 					</label>
 					<input
 						type="email"
-						className="form-control"
-						id="exampleInputEmail1"
-						aria-describedby="emailHelp"
+						className="form-control webevent"
+						id="exampleFormControlInput1"
+						placeholder="name@example.com"
 					/>
-					{/* <div id="emailHelp" className="form-text">
-						We'll never share your email with anyone else.
-					</div> */}
 				</div>
-				<div className="mb-3">
-					<label for="exampleInputPassword1" className="form-label">
+
+				<div className="mb-4">
+					<label htmlFor="exampleInputPassword1" className="form-label">
 						Password
 					</label>
+
 					<input
 						type="password"
-						className="form-control"
+						className="form-control webevent"
 						id="exampleInputPassword1"
 					/>
 				</div>
-				<div className="mb-3 form-check">
-					<input
-						type="checkbox"
-						className="form-check-input"
-						id="exampleCheck1"
-					/>
-					<label className="form-check-label" for="exampleCheck1">
-						Check me out
-					</label>
-				</div>
-				<button type="submit" className="btn btn-primary">
-					Submit
-				</button>
+
+				{/* <div className="mb-3"> */}
+				<button className="btn btn-success mt-3">Submit</button>
+				{/* </div> */}
 			</form>
-		</div>
+
+			{/* mobile view */}
+			<form className="form mx-auto bg-white border-5 shadow p-4 w-75 d-md-none d-sm-block">
+				<h5 className="text-center mt-1 mb-4">Login</h5>
+				<div className="mb-3">
+					<label htmlFor="exampleFormControlInput1" className="form-label">
+						Email address
+					</label>
+					<input
+						type="email"
+						className="form-control webevent"
+						id="exampleFormControlInput1"
+						placeholder="name@example.com"
+					/>
+				</div>
+
+				<div className="mb-4">
+					<label htmlFor="exampleInputPassword1" className="form-label">
+						Password
+					</label>
+
+					<input
+						type="password"
+						className="form-control webevent"
+						id="exampleInputPassword1"
+					/>
+				</div>
+
+				{/* <div className="mb-3"> */}
+				<button className="btn btn-success mt-3">Submit</button>
+				{/* </div> */}
+			</form>
+		</>
 	);
 };
 

@@ -2,29 +2,67 @@ import React from "react";
 
 const Contact = () => {
 	return (
-		<div className="mx-auto w-50 border border-secondary-subtle p-4">
-			<div className="mb-3">
-				<label for="exampleFormControlInput1" className="form-label">
-					Email address
-				</label>
-				<input
-					type="email"
-					className="form-control bg-light"
-					id="exampleFormControlInput1"
-					placeholder="name@example.com"
-				/>
-			</div>
+		<>
+			{/* desktop */}
+			<form className="mx-auto w-50 p-4 bg-white border-5 shadow d-none d-md-block d-sm-none">
+				<h5 className="text-center mt-1 mb-4">Have any Question? Contact Us</h5>
+				<div className="mb-3">
+					<label for="exampleFormControlInput1" className="form-label">
+						Email address
+					</label>
+					<input
+						type="email"
+						className="form-control border__color"
+						id="exampleFormControlInput1"
+						placeholder="please enter your mail"
+					/>
+				</div>
 
-			<div className="mb-3">
-				<label for="exampleFormControlTextarea1" className="form-label">
-					Message
-				</label>
-				<textarea
-					className="form-control"
-					id="exampleFormControlTextarea1"
-					rows="3"></textarea>
-			</div>
-		</div>
+				<div className="mb-3">
+					<label for="exampleFormControlTextarea1" className="form-label">
+						Message
+					</label>
+					<textarea
+						className="form-control border__color"
+						id="exampleFormControlTextarea1"
+						rows="3"></textarea>
+				</div>
+
+				<div className="mb-3">
+					<button className="btn btn-success">Submit</button>
+				</div>
+			</form>
+
+			{/* mobile */}
+			<form className="mx-auto w-75 p-4 bg-white border-5 shadow d-md-none d-sm-block">
+				<h5 className="text-center mt-1 mb-4">Have any Question? Contact Us</h5>
+				<div className="mb-3">
+					<label for="exampleFormControlInput1" className="form-label">
+						Email address
+					</label>
+					<input
+						type="email"
+						className="form-control border__color"
+						id="exampleFormControlInput1"
+						placeholder="please enter your mail"
+					/>
+				</div>
+
+				<div className="mb-3">
+					<label for="exampleFormControlTextarea1" className="form-label">
+						Message
+					</label>
+					<textarea
+						className="form-control border__color"
+						id="exampleFormControlTextarea1"
+						rows="3"></textarea>
+				</div>
+
+				<div className="mb-3">
+					<button className="btn btn-success">Submit</button>
+				</div>
+			</form>
+		</>
 	);
 };
 

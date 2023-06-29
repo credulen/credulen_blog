@@ -136,6 +136,10 @@ a {
 	border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
+.border__color {
+	border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
 .speakerwebevent {
 	background-color: var(--pry_color_light);
 	border: none;
@@ -143,4 +147,20 @@ a {
 
 /* .pastevents{
 	border-top: 
+} */
+
+/* .form__width {
+	width: 75vw !important;
+} */
+
+.conference_hero_bg {
+	background-image: url("/assets/blockImg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 70vh;
+}
+
+/* .hero_text_div {
+	dislay: flex;
+	justify-content: center;
 } */

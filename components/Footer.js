@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import Subscribe from "./Subscribe";
+import { Subscribe } from "./Connections";
 import logo from "../public/logo/5.png";
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
 					<div className="col-md-4">
 						<Link href="/">
 							<Image
-								className="w-25"
+								className=""
 								src={logo}
 								width={100}
 								height={100}
@@ -49,7 +49,7 @@ const Footer = () => {
 
 				{/* bottom row */}
 				<div className="container">
-					<div className="row mt-2 align-items-center">
+					{/* <div className="row mt-2 align-items-center">
 						<div className="col-md-6">
 							<Link href="/">
 								<Image
@@ -62,6 +62,32 @@ const Footer = () => {
 							</Link>
 						</div>
 						<div className="col-md-6">
+							<Link href="#" className="mx-2 text-white" aria-label="Facebook">
+								<FaFacebook />
+							</Link>
+							<Link href="#" className="mx-2 text-white" aria-label="Instagram">
+								<FaInstagram />
+							</Link>
+							<Link href="#" className="mx-2 text-white" aria-label="Twitter">
+								<FaTwitter />
+							</Link>
+						</div>
+					</div> */}
+
+					<div className="d-flex justify-content-between align-items-center">
+						<div>
+							<Link href="/">
+								<Image
+									className=""
+									src={logo}
+									width={100}
+									height={100}
+									alt="credulen logo image"
+								/>
+							</Link>
+						</div>
+
+						<div>
 							<Link href="#" className="mx-2 text-white" aria-label="Facebook">
 								<FaFacebook />
 							</Link>

@@ -1,8 +1,8 @@
 "use client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 // export const metadata = {

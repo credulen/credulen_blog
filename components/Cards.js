@@ -55,7 +55,7 @@ export const ArticleCard = () => {
 
 export const RecentPostCard = () => {
 	return (
-		<div className="card mb-5">
+		<div className="card">
 			<div className="card-header text-center">Recent Posts</div>
 			<ul className="list-group list-group-flush">
 				<li className="list-group-item text-center">
@@ -240,6 +240,42 @@ export const PastEventsCard = () => {
 					Learn More
 				</Link>
 			</div>
+		</div>
+	);
+};
+
+export const RelatedArticleCard = () => {
+	return (
+		<div className="card mb-5">
+			<div className="card-header text-center">Related Articles</div>
+			<ul className="list-group list-group-flush">
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Understanding Blockchain
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Doing More with AI and Blockchain
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						How to Hold a Blockchain Seminar
+					</Link>
+				</li>
+				<li className="list-group-item text-center">
+					<Link href="/article" className="text-success">
+						Tips for Success in Business
+					</Link>
+				</li>
+				<li className="list-group-item text-center text-success">
+					Journey through Wealth Creation
+				</li>
+				<li className="list-group-item text-center text-success">
+					Changing the Course of History
+				</li>
+			</ul>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import ArticleList from "@/components/ArticleList";
 import { ArticleCard, HighlightCard, RecentPostCard } from "@/components/Cards";
-import Subscribe from "@/components/Subscribe";
+import { JoinTelegram, Subscribe } from "@/components/Connections";
 
 export default function Home() {
 	return (
@@ -23,12 +23,17 @@ export default function Home() {
 					</div>
 					{/* </div> */}
 				</div>
+
 				<div className="col-md-4">
-					<div>
+					<div className="mb-5">
 						<RecentPostCard />
 					</div>
 
 					<div>
+						<JoinTelegram />
+					</div>
+
+					<div className="mt-5">
 						<h6 className="text-dark">
 							Subscribe our newsletter to get update
 						</h6>

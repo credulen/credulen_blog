@@ -1,10 +1,11 @@
-import React from "react";
+import Link from "next/link";
+import { FaTelegram } from "react-icons/fa";
 
-const Subscribe = () => {
+export const Subscribe = () => {
 	return (
 		<div>
 			{/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
-			<form className="mt-3">
+			<form className="">
 				<input
 					className="form-control"
 					type="search"
@@ -19,4 +20,13 @@ const Subscribe = () => {
 	);
 };
 
-export default Subscribe;
+export const JoinTelegram = () => {
+	return (
+		<Link
+			href="#"
+			className="btn bg-success text-white w-100"
+			aria-label="Facebook">
+			Join Our Telegram Group <FaTelegram />
+		</Link>
+	);
+};
