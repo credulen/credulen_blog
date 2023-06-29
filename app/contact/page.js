@@ -12,7 +12,7 @@ const Contact = () => {
 					</label>
 					<input
 						type="email"
-						className="form-control border__color"
+						className="form-control webevent"
 						id="exampleFormControlInput1"
 						placeholder="please enter your mail"
 					/>
@@ -23,7 +23,7 @@ const Contact = () => {
 						Message
 					</label>
 					<textarea
-						className="form-control border__color"
+						className="form-control webevent"
 						id="exampleFormControlTextarea1"
 						rows="3"></textarea>
 				</div>
@@ -42,7 +42,7 @@ const Contact = () => {
 					</label>
 					<input
 						type="email"
-						className="form-control border__color"
+						className="form-control webevent"
 						id="exampleFormControlInput1"
 						placeholder="please enter your mail"
 					/>
@@ -53,7 +53,7 @@ const Contact = () => {
 						Message
 					</label>
 					<textarea
-						className="form-control border__color"
+						className="form-control webevent"
 						id="exampleFormControlTextarea1"
 						rows="3"></textarea>
 				</div>
