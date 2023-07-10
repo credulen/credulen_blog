@@ -58,7 +58,9 @@ const Navbar = () => {
 							</ul>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link text-white me-3">Solutions</a>
+							<Link href="/solutions" className="nav-link text-white me-3">
+								Solutions
+							</Link>
 						</li>
 						{/* <li className="nav-item"> */}
 						<Link href="/contact" className="nav-link text-white">

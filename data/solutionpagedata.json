@@ -1,0 +1,68 @@
+{
+	"individualSolutions": [
+		{
+			"id": 1,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Fundamentals",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 2,
+			"img": "/assets/blockImg.jpg",
+			"title": "Web3/Blockchain Dev Program",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 3,
+			"img": "/assets/blockImg.jpg",
+			"title": "Data Analytics Program",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		}
+	],
+
+	"businessSolutions": [
+		{
+			"id": 1,
+			"img": "/assets/blockImg.jpg",
+			"title": "Data Engineer Program",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 2,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Business Model",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 3,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Fundamentals",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 4,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Fundamentals",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 5,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Fundamentals",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		},
+
+		{
+			"id": 6,
+			"img": "/assets/blockImg.jpg",
+			"title": "Blockchain Fundamentals",
+			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis numquam minus, rem perspiciatis laboriosam possimus inventore architecto iusto enim sapiente, eaque aliquam nisi? Molestiae rerum et quisquam deleniti quo iusto."
+		}
+	]
+}

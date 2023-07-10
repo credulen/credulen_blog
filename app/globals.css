@@ -149,9 +149,9 @@ a {
 	border-top: 
 } */
 
-/* .form__width {
-	width: 75vw !important;
-} */
+.form__width {
+	width: 95vw !important;
+}
 
 .conference_hero_bg {
 	background-image: url("/assets/blockImg.jpg");

@@ -44,7 +44,7 @@ const Contact = () => {
 						type="email"
 						className="form-control webevent"
 						id="exampleFormControlInput1"
-						placeholder="please enter your mail"
+						placeholder="name@example.com"
 					/>
 				</div>
 

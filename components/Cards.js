@@ -279,3 +279,30 @@ export const RelatedArticleCard = () => {
 		</div>
 	);
 };
+
+export const SolutionsCard = () => {
+	return (
+		<div className="card">
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={200}
+				height={250}
+				alt="Picture of the author"
+			/>
+			<div className="card-body webevent">
+				<h5 className="card-title text-center">Blockchain Fundamental</h5>
+				{/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
+				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
+
+				<p className="card-text pb-3">
+					Blockchain Fundamentals Course: Dive into the world of blockchain with
+					our beginner-friendly course
+				</p>
+				<Link href="#" className="btn btn-warning text-white">
+					Learn More
+				</Link>
+			</div>
+		</div>
+	);
+};

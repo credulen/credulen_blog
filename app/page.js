@@ -24,7 +24,7 @@ export default function Home() {
 					{/* </div> */}
 				</div>
 
-				<div className="col-md-4">
+				<div className="col-md-4 fixed-right">
 					<div className="mb-5">
 						<RecentPostCard />
 					</div>
