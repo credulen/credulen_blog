@@ -1,0 +1,22 @@
+{
+	"ticketInfo": [
+		{
+			"id": 1,
+			"ticketTitle": "General Admission Pass",
+			"ticketPrice": "$100",
+			"ticketDescription": "Prices are subject to increase. Register today and save!"
+		},
+		{
+			"id": 2,
+			"ticketTitle": "Bankless Citizens",
+			"ticketPrice": "$100",
+			"ticketDescription": "Prices are subject to increase. Register today and save!"
+		},
+		{
+			"id": 3,
+			"ticketTitle": "Student Ticket",
+			"ticketPrice": "$100",
+			"ticketDescription": "Prices are subject to increase. Register today and save!"
+		}
+	]
+}

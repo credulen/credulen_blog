@@ -306,3 +306,18 @@ export const SolutionsCard = () => {
 		</div>
 	);
 };
+
+export const ConferenceTicketCard = () => {
+	return (
+		<div className="border border-success">
+			<div className="p-3">
+				<h5>General Admission Pass</h5>
+				<p>$100</p>
+
+				<p>Register now to save</p>
+
+				<button className="btn btn-outline-success">Buy Ticket</button>
+			</div>
+		</div>
+	);
+};

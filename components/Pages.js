@@ -1,7 +1,13 @@
 import React from "react";
-import { RelatedArticleCard, UpcomingWebinarSpeakers } from "./Cards";
+import {
+	ConferenceTicketCard,
+	RelatedArticleCard,
+	UpcomingWebinarSpeakers,
+} from "./Cards";
 import Image from "next/image";
 import { JoinTelegram, Subscribe } from "./Connections";
+import ticketinfo from "../data/conferenceticketdata.json";
+import Link from "next/link";
 
 export const ReadArticlePage = () => {
 	return (
@@ -293,10 +299,10 @@ export const WebinarInfoPage = () => {
 	);
 };
 
-export const ConferenceInfoPage = () => {
+export const ConferenceInfoPages = () => {
 	return (
-		<div>
-			<div className="container">
+		<div className="container">
+			<div>
 				{/* <div className="row">
 					<div className="col-md-6 me-5">
 						<h4>Blockchain Conference</h4>
@@ -313,8 +319,8 @@ export const ConferenceInfoPage = () => {
 				</div>
 			</div>
 
-			<div className="conference_hero_bg mt-5">
-				{/* <Image
+			{/* <div className="conference_hero_bg mt-5"> */}
+			{/* <Image
 					src="/assets/blockImg.jpg"
 					className="w-100"
 					width={500}
@@ -322,9 +328,216 @@ export const ConferenceInfoPage = () => {
 					alt="Picture of the first speaker"
 				/> */}
 
-				<div className="hero_text_div d-flex justify-content-center">
-					<h1 className="text-white h1_text">Holla</h1>
-					{/* <h2>Hi</h2> */}
+			{/* <div className="hero_text_div">
+					<h1
+						className="text-white d-flex 
+					align-self-center">
+						Holla
+					</h1> */}
+			{/* <h2>Hi</h2> */}
+			{/* </div>
+			</div> */}
+
+			<div className="pt-4">
+				<div className="container__border p-4">
+					<div className="row">
+						<div className="col-md-8">
+							<h3 className="pb-3">It's Time to Reboot</h3>
+							<p className="">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
+								enim?
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas.
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas.
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas. totam quam officiis? Natus nihil ipsum quam
+								at vitae quas.
+							</p>
+						</div>
+
+						<div className="col-md-4">
+							<Image
+								src="/assets/blockImg.jpg"
+								className="card-img-top"
+								width={200}
+								height={100}
+								alt="Picture of the author"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export const ConferenceInfoPage = () => {
+	return (
+		<div className="container">
+			{/* title */}
+			<div className="d-flex justify-content-between align-items-center mb-5">
+				<h4>Blockchain Conference</h4>
+				<button className="btn btn-success">Register</button>
+			</div>
+
+			{/* nav items */}
+			<div className="d-md-flex mt-3">
+				<Link class="nav-link me-3" href="#">
+					<p>About Conference</p>
+				</Link>
+
+				<Link class="nav-link me-3" href="#">
+					<p>Tickets</p>
+				</Link>
+
+				<Link class="nav-link me-3" href="#">
+					<p>Speakers</p>
+				</Link>
+
+				<Link class="nav-link me-3" href="#">
+					<p>Sponsors</p>
+				</Link>
+
+				<Link class="nav-link me-3" href="#">
+					<p>FAQ</p>
+				</Link>
+
+				<Link class="nav-link" href="#">
+					<p>Book Your Hotel</p>
+				</Link>
+			</div>
+			{/* 
+			<div className="row mt-md-5">
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>About Conference</p>
+					</Link>
+				</div>
+
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>Tickets</p>
+					</Link>
+				</div>
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>Speakers</p>
+					</Link>
+				</div>
+
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>Sponsors</p>
+					</Link>
+				</div>
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>FAQ</p>
+					</Link>
+				</div>
+				<div className="col-md-2">
+					<Link class="nav-link" href="#">
+						<p>Book Your Hotel</p>
+					</Link>
+				</div>
+			</div> */}
+
+			{/* content */}
+
+			<div className="mt-5">
+				<div className="container__border p-4">
+					<div className="row">
+						<div className="col-md-8">
+							<h3 className="pb-3">It's Time to Reboot</h3>
+							<p className="">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
+								enim?
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas.
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas.
+							</p>
+
+							<p className="">
+								possimus modi distinctio rerum veritatis nulla tempore maxime
+								quis molestias, numquam, totam quam officiis? Natus nihil ipsum
+								quam at vitae quas. totam quam officiis? Natus nihil ipsum quam
+								at vitae quas.
+							</p>
+						</div>
+
+						<div className="col-md-4">
+							<Image
+								src="/assets/blockImg.jpg"
+								className="card-img-top"
+								width={200}
+								height={300}
+								alt="Picture of the author"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* tickets */}
+			<div className="mt-5 pt-3">
+				<h3>Tickets</h3>
+
+				<p>Prices are subject to increase. Register today and save!</p>
+
+				<div className="row">
+					{/* <div className="col-md-4">
+						<ConferenceTicketCard />
+					</div>
+					<div className="col-md-4">
+						<ConferenceTicketCard />
+					</div>
+					<div className="col-md-4">
+						<ConferenceTicketCard />
+					</div> */}
+
+					{ticketinfo.ticketInfo.map((tinfo) => {
+						return (
+							<div className="col-md-4" key={tinfo.id}>
+								<ConferenceTicketCard />
+							</div>
+						);
+					})}
+				</div>
+			</div>
+
+			{/* speakers */}
+			<div className="row">
+				<div className="col-md-3"></div>
+
+				<div className="col-md-9">
+					<div className="row">
+						<div className="col-md-3"></div>
+						<div className="col-md-3"></div>
+						<div className="col-md-3"></div>
+						<div className="col-md-3"></div>
+					</div>
 				</div>
 			</div>
 		</div>
