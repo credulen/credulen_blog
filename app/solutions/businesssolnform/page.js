@@ -2,7 +2,7 @@ const BusinessSolutionForm = () => {
 	return (
 		<div className="">
 			<h6 className="text-center pb-4">
-				Please Fill the Form to Use our Solutions
+				Please Fill the Form to Use our Business Solutions
 			</h6>
 
 			{/* desktop view */}
