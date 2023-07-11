@@ -1,6 +1,8 @@
 import React from "react";
 import {
+	ConferenceSpeakerCard,
 	ConferenceTicketCard,
+	KeyNoteConferenceSpeakerCard,
 	RelatedArticleCard,
 	UpcomingWebinarSpeakers,
 } from "./Cards";
@@ -395,61 +397,61 @@ export const ConferenceInfoPage = () => {
 
 			{/* nav items */}
 			<div className="d-md-flex mt-3">
-				<Link class="nav-link me-3" href="#">
+				{/* <Link className="nav-link me-3" href="#">
 					<p>About Conference</p>
-				</Link>
+				</Link> */}
 
-				<Link class="nav-link me-3" href="#">
+				<Link className="nav-link me-3" href="#tickets">
 					<p>Tickets</p>
 				</Link>
 
-				<Link class="nav-link me-3" href="#">
+				<Link className="nav-link me-3" href="#speakers">
 					<p>Speakers</p>
 				</Link>
 
-				<Link class="nav-link me-3" href="#">
+				<Link className="nav-link me-3" href="#">
 					<p>Sponsors</p>
 				</Link>
 
-				<Link class="nav-link me-3" href="#">
+				<Link className="nav-link me-3" href="#">
 					<p>FAQ</p>
 				</Link>
 
-				<Link class="nav-link" href="#">
+				<Link className="nav-link" href="#">
 					<p>Book Your Hotel</p>
 				</Link>
 			</div>
 			{/* 
 			<div className="row mt-md-5">
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>About Conference</p>
 					</Link>
 				</div>
 
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>Tickets</p>
 					</Link>
 				</div>
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>Speakers</p>
 					</Link>
 				</div>
 
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>Sponsors</p>
 					</Link>
 				</div>
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>FAQ</p>
 					</Link>
 				</div>
 				<div className="col-md-2">
-					<Link class="nav-link" href="#">
+					<Link className="nav-link" href="#">
 						<p>Book Your Hotel</p>
 					</Link>
 				</div>
@@ -501,7 +503,7 @@ export const ConferenceInfoPage = () => {
 			</div>
 
 			{/* tickets */}
-			<div className="mt-5 pt-3">
+			<div className="mt-5 pt-3" id="tickets">
 				<h3>Tickets</h3>
 
 				<p>Prices are subject to increase. Register today and save!</p>
@@ -528,15 +530,44 @@ export const ConferenceInfoPage = () => {
 			</div>
 
 			{/* speakers */}
-			<div className="row">
-				<div className="col-md-3"></div>
+			<div className="row mt-5 pt-5 g-3" id="speakers">
+				<h3 className="text-dark">Speakers</h3>
+
+				<div className="col-md-3">
+					<KeyNoteConferenceSpeakerCard />
+				</div>
 
 				<div className="col-md-9">
-					<div className="row">
-						<div className="col-md-3"></div>
-						<div className="col-md-3"></div>
-						<div className="col-md-3"></div>
-						<div className="col-md-3"></div>
+					{/* row 1 */}
+					<div className="row g-3">
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+					</div>
+
+					{/* row 2 */}
+					<div className="row mt-1 g-3">
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
+						<div className="col-md-3">
+							<ConferenceSpeakerCard />
+						</div>
 					</div>
 				</div>
 			</div>

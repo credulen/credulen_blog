@@ -280,7 +280,7 @@ export const RelatedArticleCard = () => {
 	);
 };
 
-export const SolutionsCard = () => {
+export const IndividualSolutionsCard = () => {
 	return (
 		<div className="card">
 			<Image
@@ -299,7 +299,38 @@ export const SolutionsCard = () => {
 					Blockchain Fundamentals Course: Dive into the world of blockchain with
 					our beginner-friendly course
 				</p>
-				<Link href="#" className="btn btn-warning text-white">
+				<Link
+					href="/solutions/individualsolnform"
+					className="btn btn-warning text-white">
+					Learn More
+				</Link>
+			</div>
+		</div>
+	);
+};
+
+export const BusinessSolutionsCard = () => {
+	return (
+		<div className="card">
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={200}
+				height={250}
+				alt="Picture of the author"
+			/>
+			<div className="card-body webevent">
+				<h5 className="card-title text-center">Blockchain Fundamental</h5>
+				{/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
+				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
+
+				<p className="card-text pb-3">
+					Blockchain Fundamentals Course: Dive into the world of blockchain with
+					our beginner-friendly course
+				</p>
+				<Link
+					href="/solutions/businesssolnform"
+					className="btn btn-warning text-white">
 					Learn More
 				</Link>
 			</div>
@@ -316,7 +347,91 @@ export const ConferenceTicketCard = () => {
 
 				<p>Register now to save</p>
 
-				<button className="btn btn-outline-success">Buy Ticket</button>
+				<button className="btn btn-outline-success w-100">Buy Ticket</button>
+
+				<div>
+					<TicketCardBenefit1 />
+					<TicketCardBenefit1 />
+					<TicketCardBenefit2 />
+				</div>
+			</div>
+		</div>
+	);
+};
+
+const TicketCardBenefit1 = () => {
+	return (
+		<div className="border__bottom__color d-flex align-items-stretch mt-4">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				fill="currentColor"
+				className="bi bi-check-circle-fill me-3 icon__color"
+				viewBox="0 0 16 16">
+				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+			</svg>
+
+			<p>three-day full event pass</p>
+		</div>
+	);
+};
+
+const TicketCardBenefit2 = () => {
+	return (
+		<div className="d-flex align-items-stretch mt-4">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				fill="currentColor"
+				className="bi bi-check-circle-fill me-3 icon__color"
+				viewBox="0 0 16 16">
+				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+			</svg>
+
+			<p>three-day full event pass</p>
+		</div>
+	);
+};
+
+export const KeyNoteConferenceSpeakerCard = () => {
+	return (
+		<div className="card">
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={200}
+				height={385}
+				alt="Picture of the author"
+			/>
+			<div className="card-body text-center background__border">
+				<h5 className="card-text text-white">KEYNOTE</h5>
+
+				<h3 className="text-white">Dipo Lekan</h3>
+
+				<p className="text-white">Blockchain Expert</p>
+			</div>
+		</div>
+	);
+};
+
+export const ConferenceSpeakerCard = () => {
+	return (
+		<div className="card">
+			<Image
+				src="/assets/blockImg.jpg"
+				className="card-img-top"
+				width={100}
+				height={100}
+				alt="Picture of the author"
+			/>
+			<div className="card-body text-center speakerwebevent">
+				<h3 className="">Dipo Lekan</h3>
+
+				<p className="">AvaTech</p>
+
+				<p className="text-muted">Co-Founder</p>
 			</div>
 		</div>
 	);

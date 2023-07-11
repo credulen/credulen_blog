@@ -107,6 +107,15 @@ a {
 	}
 }
 
+/* color */
+.background__border {
+	background-color: var(--pry_color);
+}
+
+.icon__color {
+	color: var(--sec_color_green);
+}
+
 /* navigation */
 .nav_bg {
 	background-color: var(--pry_color);
@@ -138,6 +147,10 @@ a {
 
 .border__color {
 	border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.border__bottom__color {
+	border-bottom: 0.1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .speakerwebevent {

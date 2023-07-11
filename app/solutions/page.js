@@ -1,4 +1,8 @@
-import { SolutionsCard } from "@/components/Cards";
+import {
+	BusinessSolutionsCard,
+	IndividualSolutionsCard,
+	SolutionsCard,
+} from "@/components/Cards";
 import solutionsData from "../../data/solutionpagedata.json";
 import Link from "next/link";
 
@@ -34,7 +38,7 @@ const Solutions = () => {
 					{solutionsData.individualSolutions.map((data) => {
 						return (
 							<div className="col-md-4" key={data.id}>
-								<SolutionsCard />
+								<IndividualSolutionsCard />
 							</div>
 						);
 					})}
@@ -55,7 +59,7 @@ const Solutions = () => {
 					{solutionsData.individualSolutions.map((data) => {
 						return (
 							<div className="col-md-4" key={data.id}>
-								<SolutionsCard />
+								<BusinessSolutionsCard />
 							</div>
 						);
 					})}
