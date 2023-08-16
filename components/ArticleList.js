@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllArticles } from "@/datalayer/article";
+// import { getAllArticles } from "@/strapiFetchFunctions/articlesFuncs";
 
 export const metadata = {
 	title: "Credulen Home",

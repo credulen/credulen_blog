@@ -1,27 +1,38 @@
+"use client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { getAllWebinarData } from "@/data/webinarData/webinarListData";
+import { useEffect, useState } from "react";
+import { getAllWebinarSpeakersData } from "@/data/webinarData/webinarSpeakerData";
 
-export const HighlightCard = () => {
+// an article becomes highlighted with true or false
+export const HighlightCard = (props) => {
+	// slug: http://localhost:1337/api/articles?fields[1]=slug
+
+	// console.log(props.attributes.image.data.attributes.url); // coming up as null
 	return (
 		<div className="card mb-3">
-			<Image
-				src="/assets/blockImg.jpg"
+			<img
+				// src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
+				src={`https://strapi-gtbk.onrender.com${props?.attributes?.image?.data?.attributes?.url}`}
 				className="card-img-top"
 				width={200}
 				height={400}
 				alt="Picture of the author"
 			/>
 			<div className="card-body">
-				<h5 className="card-title">Card title</h5>
-				<p className="card-text mb-2">
-					This is a wider card with supporting text below as a natural lead-in
-					to additional content. This content is a little bit longer.
-				</p>
+				<h5 className="card-title">{props?.attributes?.title}</h5>
 				<p className="card-text">
-					<small className="text-body-secondary">Last updated 3 mins ago</small>
+					{" "}
+					{props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
+						"..."}
 				</p>
+				{/* <p className="card-text">
+					<small className="text-body-secondary">Last updated 3 mins ago</small>
+				</p> */}
 
-				<Link href="/article" className="btn btn-success mt-3">
+				<Link href={`/article/${props?.id}`} className="btn btn-success mt-3">
 					Read More
 				</Link>
 			</div>
@@ -29,23 +40,29 @@ export const HighlightCard = () => {
 	);
 };
 
-export const ArticleCard = () => {
+export const ArticleCard = (props) => {
+	// console.log(props);
 	return (
 		<div className="card mt-3">
-			<Image
-				src="/assets/blockImg.jpg"
+			<img
+				src={`https://strapi-gtbk.onrender.com${props?.attributes?.image?.data?.attributes?.url}`}
 				className="card-img-top"
 				width={200}
 				height={250}
 				alt="Picture of the author"
 			/>
 			<div className="card-body">
-				<h5 className="card-title">Card title</h5>
+				<h5 className="card-title">{props?.attributes?.title}</h5>
 				<p className="card-text">
-					Some quick example text to build on the card title and make up the
-					bulk of the cards content.
+					{" "}
+					{props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
+						"..."}
 				</p>
-				<Link href="/article" className="btn btn-success">
+				<Link
+					// href={`/article/${props.articleId}`}
+					href={`/article/${props?.id}`}
+					className="btn btn-success"
+					passHref>
 					Read More
 				</Link>
 			</div>
@@ -89,19 +106,17 @@ export const RecentPostCard = () => {
 	);
 };
 
-export const UpcomingWebinarCard = () => {
+export const UpcomingWebinarCard = (props) => {
 	return (
 		<div className="card mt-4  border-0 p-1">
 			<div className="card-body webevent p-4">
-				<h5 className="card-title">
-					Joining the Train of Learners in the Age of Technology: Choosing the
-					Right Kind of Materials to Digest
-				</h5>
+				<h5 className="card-title">{props?.attributes?.webinar_name}</h5>
+				{/* <p className="card-text">{props.attributes.webinar_description}</p> */}
 				<p className="card-text">
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit ducimus
-					ab iste ipsam quaerat totam enim dolores harum culpa a? Natus possimus
-					incidunt numquam quos ullam dolorum recusandae aperiam labore at
-					veniam. Ea dolorum dignissimos ex architecto? Laborum, illo omnis!
+					{props?.attributes?.webinar_description
+						.split(" ")
+						.splice(0, 30)
+						.join(" ")}
 				</p>
 			</div>
 			<ul className="list-group list-group-flush webevent p-2">
@@ -118,14 +133,12 @@ export const UpcomingWebinarCard = () => {
 
 					<div className="collapse mt-3" id="collapseExample">
 						<UpcomingWebinarSpeakers />
-						<UpcomingWebinarSpeakers />
-						<UpcomingWebinarSpeakers />
 					</div>
 				</li>
 			</ul>
 			<div className="card-body webevent p-3">
 				<Link
-					href="/webinars/regwebinar"
+					href={`/webinars/regwebinar/${props?.id}`}
 					className="card-link text-success ps-2">
 					Register
 				</Link>
@@ -135,45 +148,109 @@ export const UpcomingWebinarCard = () => {
 };
 
 export const UpcomingWebinarSpeakers = () => {
-	return (
-		<div className="d-flex align-items-center mb-4">
-			<Image
-				src="/assets/blockImg.jpg"
-				className="rounded-circle me-3"
-				width={50}
-				height={50}
-				alt="Picture of the first speaker"
-			/>
+	const [webinarSpeakerData, setwebinarSpeakerData] = useState([]);
 
-			<div>
-				<p className="mb-0">Name</p>
-				<small className="text-body-secondary">Founder, Credulen</small>
-			</div>
+	useEffect(() => {
+		const fetchData = async () => {
+			const webinarSpeakers = await getAllWebinarSpeakersData();
+			// console.log(webinars);
+			setwebinarSpeakerData(webinarSpeakers);
+		};
+
+		fetchData();
+	}, []);
+
+	// console.log(webinarSpeakerData);
+
+	return (
+		<div className="">
+			{webinarSpeakerData?.map((speaker) => {
+				// {
+				// 	console.log(
+				// 		speaker.attributes.speaker_img.data.attributes.alternativeText
+				// 	);
+				// }
+				return (
+					<div className="d-flex mb-4" key={speaker?.id}>
+						<img
+							src={`https://strapi-gtbk.onrender.com${speaker?.attributes?.speaker_img?.data?.attributes?.url}`}
+							className="rounded-circle me-3"
+							width={50}
+							height={50}
+							alt={
+								speaker?.attributes?.speaker_img?.data?.attributes
+									?.alternativeText
+							}
+						/>
+
+						<div>
+							<p className="mb-0 text-dark">
+								{speaker?.attributes?.speaker_name}
+							</p>
+
+							<small className="text-body-dark">
+								{speaker?.attributes?.speaker_job_description},
+								<span>{speaker?.attributes?.speaker_company}</span>
+							</small>
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 };
 
-export const OndemandWebinarCard = () => {
+export const OndemandWebinarCard = (props) => {
+	let year = new Date(props?.attributes?.createdAt).getFullYear();
+	// let month = new Date(props.attributes.createdAt).getFullYear();
+	var arr = `${props?.attributes?.createdAt}`.split("-");
+	var months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+	var month_index = parseInt(arr[1], 10) - 1;
+	let month = months[month_index];
+	// console.log(month);
+
+	let day = new Date(props?.attributes?.createdAt).getDate();
+	let hour = new Date(props?.attributes?.createdAt).getHours();
+	let mins = new Date(props?.attributes?.createdAt).getMinutes();
+
+	let webinarDate = `${month.toUpperCase()} ${day}, ${year} | ${hour}:${mins}`;
+
+	// var arr = "2012-07-01 00:00:00.0".split("-");
+
 	return (
 		<div className="card border-0 p-1 mt-3">
 			<div className="card-body webevent p-4">
 				<p className="card-text">
-					<small className="text-body-secondary">JULY 15, 2023 | 5:00pm</small>
+					{/* <small className="text-body-secondary">JULY 15, 2023 | 5:00pm</small> */}
+					{/* <small className="text-body-secondary">
+						{props.attributes.createdAt}
+					</small> */}
+					<small className="text-body-secondary">{webinarDate}</small>
 				</p>
-				<h5 className="card-title">
-					Joining the Train of Learners in the Age of Technology: Choosing the
-					Right Kind of Materials to Digest
-				</h5>
+				<h5 className="card-title">{props?.attributes?.webinar_name}</h5>
 
 				<p className="card-text mt-3">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis
-					veniam, quaerat dolores saepe ipsum reprehenderit sint mollitia beatae
-					facilis natus cumque aliquam explicabo earum magni, ipsam laboriosam
-					accusamus at voluptatem sit a, totam id nulla! Maiores reiciendis
-					itaque sed commodi?
+					{props?.attributes?.webinar_description
+						.split(" ")
+						.splice(0, 10)
+						.join(" ")}
 				</p>
 				<Link
-					href="/webinars/regwebinar"
+					href={`/webinars/regwebinar/${props?.id}`}
+					// href="/webinars/regwebinar"
 					className="btn btn-success card-link mt-4">
 					CHECK WEBINAR
 				</Link>
@@ -182,7 +259,7 @@ export const OndemandWebinarCard = () => {
 	);
 };
 
-export const ConferenceCard = () => {
+export const ConferenceCard = (props) => {
 	return (
 		<div className="">
 			<div className="row align-items-center g-4">
@@ -196,18 +273,17 @@ export const ConferenceCard = () => {
 					/>
 				</div>
 				<div className="col-md-6">
-					<h2>Blockchain Hackathon</h2>
+					<h2>{props?.attributes?.conference_name}</h2>
 
 					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque,
-						tenetur! Dolores, iste suscipit. Ab, soluta voluptatibus. Aliquam,
-						porro neque ut ullam libero aperiam iure dignissimos laudantium
-						quos, magnam enim placeat est, numquam aut ipsam. Unde nemo dicta
-						dolores laudantium officiis.
+						{props?.attributes?.conference_description
+							.split(" ")
+							.splice(0, 25)
+							.join(" ")}
 					</p>
 
 					<Link
-						href="conferences/conferenceinfo"
+						href={`/conferences/regconference/${props?.id}`}
 						className="btn btn-success mt-2">
 						Learn More
 					</Link>
@@ -217,7 +293,32 @@ export const ConferenceCard = () => {
 	);
 };
 
-export const PastEventsCard = () => {
+export const PastEventsCard = (props) => {
+	let year = new Date(props?.attributes?.createdAt).getFullYear();
+	var arr = `${props?.attributes?.createdAt}`.split("-");
+	var months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+	var month_index = parseInt(arr[1], 10) - 1;
+	let month = months[month_index];
+
+	let day = new Date(props?.attributes?.createdAt).getDate();
+	let hour = new Date(props?.attributes?.createdAt).getHours();
+	let mins = new Date(props?.attributes?.createdAt).getMinutes();
+
+	let conferenceDate = `${month.toUpperCase()} ${day}, ${year} | ${hour}:${mins}`;
+
 	return (
 		<div className="card">
 			<Image
@@ -228,13 +329,17 @@ export const PastEventsCard = () => {
 				alt="Picture of the author"
 			/>
 			<div className="card-body webevent">
-				<h5 className="card-title">Card title</h5>
-				<small className="d-block pb-1 pt-1">Oregun, Lagos</small>
-				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small>
+				<h5 className="card-title">{props?.attributes?.conference_name}</h5>
+				<small className="d-block pb-1 pt-1">
+					{props?.attributes?.conference_location}
+				</small>
+				<small className="d-block pb-3">{conferenceDate}</small>
 
 				<p className="card-text pb-3">
-					Some quick example text to build on the card title and make up the
-					bulk of the card's content.
+					{props?.attributes?.conference_description
+						.split(" ")
+						.splice(0, 10)
+						.join(" ")}
 				</p>
 				<Link href="conferences/conferenceinfo" className="btn btn-success">
 					Learn More
@@ -280,24 +385,29 @@ export const RelatedArticleCard = () => {
 	);
 };
 
-export const IndividualSolutionsCard = () => {
+export const IndividualSolutionsCard = (props) => {
 	return (
 		<div className="card">
-			<Image
-				src="/assets/blockImg.jpg"
+			<img
+				src={`http://localhost:1337${props?.attributes?.individual_solution_image?.data?.attributes?.url}`}
 				className="card-img-top"
 				width={200}
 				height={250}
 				alt="Picture of the author"
 			/>
 			<div className="card-body webevent">
-				<h5 className="card-title text-center">Blockchain Fundamental</h5>
+				<h5 className="card-title text-center">
+					{props?.attributes?.individual_solution_name}
+				</h5>
 				{/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
 				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
 
 				<p className="card-text pb-3">
-					Blockchain Fundamentals Course: Dive into the world of blockchain with
-					our beginner-friendly course
+					{" "}
+					{props?.attributes?.individual_solution_description
+						.split(" ")
+						.splice(0, 15)
+						.join(" ")}
 				</p>
 				<Link
 					href="/solutions/individualsolnform"
@@ -309,25 +419,38 @@ export const IndividualSolutionsCard = () => {
 	);
 };
 
-export const BusinessSolutionsCard = () => {
+export const BusinessSolutionsCard = (props) => {
+	// console.log(props);
 	return (
 		<div className="card">
-			<Image
-				src="/assets/blockImg.jpg"
+			<img
+				src={`http://localhost:1337${props?.attributes?.business_solution_image?.data?.attributes?.url}`}
 				className="card-img-top"
 				width={200}
 				height={250}
 				alt="Picture of the author"
 			/>
 			<div className="card-body webevent">
-				<h5 className="card-title text-center">Blockchain Fundamental</h5>
-				{/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
-				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
-
+				<h5 className="card-title text-center mb-4">
+					{props?.attributes?.business_solution_name}
+				</h5>
+				{/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small> */}
 				<p className="card-text pb-3">
-					Blockchain Fundamentals Course: Dive into the world of blockchain with
-					our beginner-friendly course
+					{" "}
+					{props?.attributes?.business_solution_description
+						.split(" ")
+						.splice(0, 15)
+						.join(" ")}
 				</p>
+				{/* <small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
+
+				{/* <p className="card-text pb-3">
+					{" "}
+					{props.attributes.business_solution_description
+						.split(" ")
+						.splice(0, 15)
+						.join(" ")}
+				</p> */}
 				<Link
 					href="/solutions/businesssolnform"
 					className="btn btn-warning text-white">

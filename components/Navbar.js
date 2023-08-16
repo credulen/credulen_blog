@@ -1,13 +1,25 @@
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+// import logo from "../..//logo/5.png";
+import logo from "../public/logo/5.png";
+import { SubscribeNavbar } from "./Connections";
 
 const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg sticky-top nav_bg shadow-lg py-3">
 			<div className="container-fluid container">
 				<Link className="navbar-brand text-white" href="/">
-					Navbar
+					Credulen
 				</Link>
+				{/* <Link className="navbar-brand text-white" href="/">
+					<Image
+						className=""
+						src={logo}
+						width={50}
+						height={50}
+						alt="credulen logo"
+					/>
+				</Link> */}
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -68,42 +80,32 @@ const Navbar = () => {
 						</Link>
 						{/* </li> */}
 					</ul>
-					<div className="d-flex" role="search">
+					<div className="" role="search">
 						{/* <button
 							className="btn text-white btn_outline_style me-3"
 							type="submit">
 							Login
 						</button> */}
-						<Link
+						{/* <Link
 							href="/login"
 							className="btn text-white btn_outline_style me-3"
 							type="submit">
 							Login
-						</Link>
+						</Link> */}
 						{/* <button
 							className="btn btn_bg_style fw-medium bg-light"
 							type="submit">
 							Sign Up
 						</button> */}
-						<Link
+						{/* <Link
 							href="/signup"
 							className="btn btn_bg_style fw-medium bg-light"
 							type="submit">
 							Sign Up
-						</Link>
-					</div>
+						</Link> */}
 
-					{/* <form className="d-flex" role="search">
-						<input
-							className="form-control me-2"
-							type="search"
-							placeholder="Search"
-							aria-label="Search"
-						/>
-						<button className="btn btn-outline-success" type="submit">
-							Search
-						</button>
-					</form> */}
+						<SubscribeNavbar />
+					</div>
 				</div>
 			</div>
 		</nav>

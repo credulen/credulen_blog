@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+	FaFacebook,
+	FaFacebookF,
+	FaInstagram,
+	FaLinkedin,
+	FaLinkedinIn,
+	FaTwitter,
+} from "react-icons/fa";
 import { Subscribe } from "./Connections";
 import logo from "../public/logo/5.png";
 
@@ -82,19 +89,25 @@ const Footer = () => {
 									src={logo}
 									width={100}
 									height={100}
-									alt="credulen logo image"
+									alt="credulen logo"
 								/>
 							</Link>
 						</div>
 
 						<div>
 							<Link href="#" className="mx-2 text-white" aria-label="Facebook">
-								<FaFacebook />
+								<FaFacebookF />
 							</Link>
-							<Link href="#" className="mx-2 text-white" aria-label="Instagram">
-								<FaInstagram />
+							<Link
+								href="https://www.linkedin.com/company/credulen/"
+								className="mx-2 text-white"
+								aria-label="Instagram">
+								<FaLinkedinIn />
 							</Link>
-							<Link href="#" className="mx-2 text-white" aria-label="Twitter">
+							<Link
+								href="https://twitter.com/credulen?s=11&t=BvpTiTCpr38iMZSWNz1gGg"
+								className="mx-2 text-white"
+								aria-label="Twitter">
 								<FaTwitter />
 							</Link>
 						</div>

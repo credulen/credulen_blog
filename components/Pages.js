@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	ConferenceSpeakerCard,
 	ConferenceTicketCard,
@@ -11,110 +10,110 @@ import { JoinTelegram, Subscribe } from "./Connections";
 import ticketinfo from "../data/conferenceticketdata.json";
 import Link from "next/link";
 
-export const ReadArticlePage = () => {
-	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-8">
-					<div>
-						<Image
-							src="/assets/blockImg.jpg"
-							className="card-img-top"
-							width={500}
-							height={300}
-							alt="Picture of the author"
-						/>
-					</div>
+// export const ReadArticlePage = () => {
+// 	return (
+// 		<div className="container">
+// 			<div className="row">
+// 				<div className="col-md-8">
+// 					<div>
+// 						<Image
+// 							src="/assets/blockImg.jpg"
+// 							className="card-img-top"
+// 							width={500}
+// 							height={300}
+// 							alt="Picture of the author"
+// 						/>
+// 					</div>
 
-					<div className="d-flex align-items-center mt-3 mb-4">
-						<div>
-							<Image
-								src="/assets/blockImg.jpg"
-								className="rounded-circle me-3"
-								width={40}
-								height={40}
-								alt="Picture of the first speaker"
-							/>
-						</div>
+// 					<div className="d-flex align-items-center mt-3 mb-4">
+// 						<div>
+// 							<Image
+// 								src="/assets/blockImg.jpg"
+// 								className="rounded-circle me-3"
+// 								width={40}
+// 								height={40}
+// 								alt="Picture of the first speaker"
+// 							/>
+// 						</div>
 
-						<div>
-							<p className="card-text">
-								<small className="text-body-secondary">
-									John Doe | JULY 15, 2023
-								</small>
-							</p>
-						</div>
-					</div>
+// 						<div>
+// 							<p className="card-text">
+// 								<small className="text-body-secondary">
+// 									John Doe | JULY 15, 2023
+// 								</small>
+// 							</p>
+// 						</div>
+// 					</div>
 
-					<p className="text-justify mt-4">
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas
-						eligendi deserunt maxime magnam commodi facere rem fugit distinctio
-						sed? Ex aspernatur reprehenderit eaque rem harum vel odit velit,
-						facere quos ab labore nobis rerum neque laborum ipsa hic tenetur
-						voluptatum. Maxime ea autem quod qui iure, sed tenetur vitae
-						officiis. Dolorem cupiditate, corrupti sint laudantium ad obcaecati
-						quam, dolores voluptatum laboriosam commodi consectetur itaque dolor
-						quo minima non quod dignissimos repudiandae eligendi iste unde
-						dolorum? Exercitationem temporibus facere ea repellendus veritatis
-						vero ex quisquam minus recusandae quibusdam natus eveniet assumenda
-						neque labore consequuntur, aut sequi perspiciatis officia deserunt,
-						ipsum eum voluptate esse. Officia nesciunt aut minus. Possimus
-						<br />
-						<br />
-						deserunt, rerum sunt nostrum cumque sed? Laborum qui veritatis,
-						reprehenderit tenetur tempore quasi saepe excepturi blanditiis
-						dolorem numquam sunt, quae animi necessitatibus neque recusandae
-						laudantium adipisci facilis velit ut magnam fugit ipsam! Atque
-						aspernatur temporibus, quaerat omnis perspiciatis sint numquam porro
-						iste accusantium nulla provident velit hic architecto quam aut, id
-						nihil praesentium illo. Iure veritatis quam quos excepturi optio!
-						Reprehenderit, nulla ducimus sed vitae totam doloremque velit
-						minima! Autem molestias quasi omnis culpa consectetur aut explicabo
-						maiores corporis nemo harum? In aut sapiente perspiciatis, neque
-						magni id saepe, officia fuga eos deserunt beatae sequi dicta
-						laboriosam ullam minus explicabo dolores animi non ab quos aliquam
-						doloribus assumenda magnam! Dolorum officiis sit laborum maiores eos
-						consequatur, exercitationem
-						<br />
-						<br />
-						perferendis tenetur, quia corporis quasi ipsum voluptates. Natus
-						aspernatur soluta pariatur ipsa inventore delectus assumenda
-						officiis nihil fuga reprehenderit. Quia dolorem illo sapiente
-						numquam optio, mollitia, vero ipsum consequuntur reprehenderit iusto
-						maxime minima assumenda quam suscipit repudiandae quidem doloremque,
-						earum quaerat eius? Error adipisci, nobis dolore ipsa assumenda
-						maxime provident distinctio eaque, amet pariatur placeat possimus
-						dicta. Odio earum tenetur, ipsum quasi, itaque natus enim rem quos
-						quam nisi corrupti cupiditate eos laborum distinctio atque facere
-						cum sed totam. tempore porro rerum! Itaque assumenda nobis doloribus
-						explicabo voluptate, officia sed ut adipisci. Eligendi, impedit
-						molestias. Animi sequi assumenda nesciunt libero veritatis a optio
-						consequatur. Similique sed ab, consequuntur, suscipit dignissimos
-						quam placeat at ipsa minus cumque facere sunt fugiat dicta quasi
-						harum, quaerat aspernatur sequi mollitia odio. Illo, laborum
-						architecto doloribus veritatis soluta, neque beatae quo, ullam animi
-						exercitationem odio deserunt reprehenderit assumenda explicabo.
-						Temporibus, iste saepe. Ullam
-					</p>
-				</div>
-				<div className="col-md-4">
-					<RelatedArticleCard />
+// 					<p className="text-justify mt-4">
+// 						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas
+// 						eligendi deserunt maxime magnam commodi facere rem fugit distinctio
+// 						sed? Ex aspernatur reprehenderit eaque rem harum vel odit velit,
+// 						facere quos ab labore nobis rerum neque laborum ipsa hic tenetur
+// 						voluptatum. Maxime ea autem quod qui iure, sed tenetur vitae
+// 						officiis. Dolorem cupiditate, corrupti sint laudantium ad obcaecati
+// 						quam, dolores voluptatum laboriosam commodi consectetur itaque dolor
+// 						quo minima non quod dignissimos repudiandae eligendi iste unde
+// 						dolorum? Exercitationem temporibus facere ea repellendus veritatis
+// 						vero ex quisquam minus recusandae quibusdam natus eveniet assumenda
+// 						neque labore consequuntur, aut sequi perspiciatis officia deserunt,
+// 						ipsum eum voluptate esse. Officia nesciunt aut minus. Possimus
+// 						<br />
+// 						<br />
+// 						deserunt, rerum sunt nostrum cumque sed? Laborum qui veritatis,
+// 						reprehenderit tenetur tempore quasi saepe excepturi blanditiis
+// 						dolorem numquam sunt, quae animi necessitatibus neque recusandae
+// 						laudantium adipisci facilis velit ut magnam fugit ipsam! Atque
+// 						aspernatur temporibus, quaerat omnis perspiciatis sint numquam porro
+// 						iste accusantium nulla provident velit hic architecto quam aut, id
+// 						nihil praesentium illo. Iure veritatis quam quos excepturi optio!
+// 						Reprehenderit, nulla ducimus sed vitae totam doloremque velit
+// 						minima! Autem molestias quasi omnis culpa consectetur aut explicabo
+// 						maiores corporis nemo harum? In aut sapiente perspiciatis, neque
+// 						magni id saepe, officia fuga eos deserunt beatae sequi dicta
+// 						laboriosam ullam minus explicabo dolores animi non ab quos aliquam
+// 						doloribus assumenda magnam! Dolorum officiis sit laborum maiores eos
+// 						consequatur, exercitationem
+// 						<br />
+// 						<br />
+// 						perferendis tenetur, quia corporis quasi ipsum voluptates. Natus
+// 						aspernatur soluta pariatur ipsa inventore delectus assumenda
+// 						officiis nihil fuga reprehenderit. Quia dolorem illo sapiente
+// 						numquam optio, mollitia, vero ipsum consequuntur reprehenderit iusto
+// 						maxime minima assumenda quam suscipit repudiandae quidem doloremque,
+// 						earum quaerat eius? Error adipisci, nobis dolore ipsa assumenda
+// 						maxime provident distinctio eaque, amet pariatur placeat possimus
+// 						dicta. Odio earum tenetur, ipsum quasi, itaque natus enim rem quos
+// 						quam nisi corrupti cupiditate eos laborum distinctio atque facere
+// 						cum sed totam. tempore porro rerum! Itaque assumenda nobis doloribus
+// 						explicabo voluptate, officia sed ut adipisci. Eligendi, impedit
+// 						molestias. Animi sequi assumenda nesciunt libero veritatis a optio
+// 						consequatur. Similique sed ab, consequuntur, suscipit dignissimos
+// 						quam placeat at ipsa minus cumque facere sunt fugiat dicta quasi
+// 						harum, quaerat aspernatur sequi mollitia odio. Illo, laborum
+// 						architecto doloribus veritatis soluta, neque beatae quo, ullam animi
+// 						exercitationem odio deserunt reprehenderit assumenda explicabo.
+// 						Temporibus, iste saepe. Ullam
+// 					</p>
+// 				</div>
+// 				<div className="col-md-4">
+// 					<RelatedArticleCard />
 
-					<div>
-						<JoinTelegram />
-					</div>
+// 					<div>
+// 						<JoinTelegram />
+// 					</div>
 
-					<div className="mt-5">
-						<h6 className="text-dark">
-							Subscribe our newsletter to get update
-						</h6>
-						<Subscribe />
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
+// 					<div className="mt-5">
+// 						<h6 className="text-dark">
+// 							Subscribe our newsletter to get update
+// 						</h6>
+// 						<Subscribe />
+// 					</div>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	);
+// };
 
 export const WebinarInfoPage = () => {
 	return (
@@ -521,7 +520,7 @@ export const ConferenceInfoPage = () => {
 
 					{ticketinfo.ticketInfo.map((tinfo) => {
 						return (
-							<div className="col-md-4" key={tinfo.id}>
+							<div className="col-md-4 g-3" key={tinfo.id}>
 								<ConferenceTicketCard />
 							</div>
 						);

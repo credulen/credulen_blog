@@ -1,12 +1,57 @@
+"use client";
 import {
 	BusinessSolutionsCard,
 	IndividualSolutionsCard,
 	SolutionsCard,
 } from "@/components/Cards";
-import solutionsData from "../../data/solutionpagedata.json";
+// import solutionsData from "../../data/solutionpagedata.json";
 import Link from "next/link";
+import {
+	getAllBusinessSolutionData,
+	getAllIndividualSolutionData,
+} from "@/data/solutionData/solutionListData";
+import { useEffect, useState } from "react";
+import IsLoading from "@/components/IsLoading";
 
 const Solutions = () => {
+	const [individualSolutionData, setIndividualSolutionData] = useState([]);
+	const [businessSolutionData, setBusinessSolutionData] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	// const [limit, setLimit] = useState(3);
+
+	// individual solution
+	const fetchIndividualData = async () => {
+		const solutions = await getAllIndividualSolutionData();
+		// console.log(solutions);
+		setIndividualSolutionData(solutions);
+	};
+	useEffect(() => {
+		setIsLoading(false);
+		fetchIndividualData();
+	}, []);
+
+	// console.log(
+	// 	individualSolutionData.map((data) => {
+	// 		console.log(data.attributes);
+	// 	})
+	// );
+
+	// business solution
+	const fetchBusinessData = async () => {
+		const solutions = await getAllBusinessSolutionData();
+		// console.log(webinars);
+		setBusinessSolutionData(solutions);
+	};
+
+	useEffect(() => {
+		setIsLoading(false);
+		fetchBusinessData();
+	}, []);
+
+	if (isLoading) {
+		return <IsLoading />;
+	}
 	return (
 		<div className="container">
 			<h1>Solutions</h1>
@@ -34,11 +79,11 @@ const Solutions = () => {
 			<div id=""></div>
 			<div className="mt-5">
 				<h2 className="mb-4">Individuals</h2>
-				<div className="row">
-					{solutionsData.individualSolutions.map((data) => {
+				<div className="row gy-3">
+					{individualSolutionData?.map((indsolution) => {
 						return (
-							<div className="col-md-4" key={data.id}>
-								<IndividualSolutionsCard />
+							<div className="col-md-4" key={indsolution.id}>
+								<IndividualSolutionsCard {...indsolution} />
 							</div>
 						);
 					})}
@@ -55,11 +100,11 @@ const Solutions = () => {
 			<div className="mt-5 pt-5">
 				<h2 className="pb-2">Business/Institution</h2>
 
-				<div className="row">
-					{solutionsData.individualSolutions.map((data) => {
+				<div className="row gy-3">
+					{businessSolutionData?.map((bussolution) => {
 						return (
-							<div className="col-md-4" key={data.id}>
-								<BusinessSolutionsCard />
+							<div className="col-md-4" key={bussolution.id}>
+								<BusinessSolutionsCard {...bussolution} />
 							</div>
 						);
 					})}
