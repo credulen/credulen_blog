@@ -32,7 +32,7 @@ export const HighlightCard = (props) => {
 					<small className="text-body-secondary">Last updated 3 mins ago</small>
 				</p> */}
 
-        <Link href={`/article/${props?.id}`} className="btn btnc mt-3">
+        <Link href={`/articles/article/${props?.id}`} className="btn btnc mt-3">
           Read More
         </Link>
       </div>
@@ -60,7 +60,7 @@ export const ArticleCard = (props) => {
         </p>
         <Link
           // href={`/article/${props.articleId}`}
-          href={`/article/${props?.id}`}
+          href={`/articles/article/${props?.id}`}
           className="btn btn-success"
           passHref
         >
