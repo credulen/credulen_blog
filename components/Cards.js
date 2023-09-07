@@ -74,7 +74,9 @@ export const ArticleCard = (props) => {
 export const RecentPostCard = () => {
   return (
     <div className="card nav_bg">
-      <div className="card-header text-center text-white">Recent Posts</div>
+      <div className="card-header text-center text-white border-bottom border-white">
+        Recent Posts
+      </div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item text-center nav_bg">
           <Link href="#" className="text-white">
