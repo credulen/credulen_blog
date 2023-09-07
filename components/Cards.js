@@ -77,34 +77,34 @@ export const RecentPostCard = () => {
       <div className="card-header text-center text-white">Recent Posts</div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item text-center nav_bg">
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             Understanding Blockchain
           </Link>
         </li>
         <li className="list-group-item text-center nav_bg">
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             Doing More with AI and Blockchain
           </Link>
         </li>
         <li className="list-group-item text-center nav_bg">
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             How to Hold a Blockchain Seminar
           </Link>
         </li>
         <li className="list-group-item text-center nav_bg">
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             Tips for Success in Business
           </Link>
         </li>
         <li className="list-group-item text-center text-white nav_bg">
           {/* Journey through Wealth Creation */}
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             Journey through Wealth Creation
           </Link>
         </li>
         <li className="list-group-item text-center text-white nav_bg">
           {/* Changing the Course of History */}
-          <Link href="/article" className="text-white">
+          <Link href="#" className="text-white">
             Changing the Course of History
           </Link>
         </li>
@@ -352,7 +352,7 @@ export const PastEventsCard = (props) => {
             .splice(0, 10)
             .join(" ")}
         </p>
-        <Link href="conferences/conferenceinfo" className="btn btn-success">
+        <Link href="/conferences/conferenceinfo" className="btn btn-success">
           Learn More
         </Link>
       </div>
@@ -366,22 +366,22 @@ export const RelatedArticleCard = () => {
       <div className="card-header text-center">Related Articles</div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item text-center">
-          <Link href="/article" className="text-success">
+          <Link href="#" className="text-success">
             Understanding Blockchain
           </Link>
         </li>
         <li className="list-group-item text-center">
-          <Link href="/article" className="text-success">
+          <Link href="#" className="text-success">
             Doing More with AI and Blockchain
           </Link>
         </li>
         <li className="list-group-item text-center">
-          <Link href="/article" className="text-success">
+          <Link href="#" className="text-success">
             How to Hold a Blockchain Seminar
           </Link>
         </li>
         <li className="list-group-item text-center">
-          <Link href="/article" className="text-success">
+          <Link href="#" className="text-success">
             Tips for Success in Business
           </Link>
         </li>
