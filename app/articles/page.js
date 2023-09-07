@@ -68,11 +68,13 @@ export default function ArticlePage() {
           <div className="row mt-5 gy-4">
             {articleData?.map((post) => {
               // console.log(post.attributes);
-              return (
-                <div className="col-md-6" key={post.id}>
-                  <ArticleCard {...post} />
-                </div>
-              );
+              if (post.attributes.highlighted_article === false) {
+                return (
+                  <div className="col-md-6" key={post.id}>
+                    <ArticleCard {...post} />
+                  </div>
+                );
+              }
             })}
           </div>
         </div>
