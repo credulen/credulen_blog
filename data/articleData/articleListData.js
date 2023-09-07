@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export const getAllArticleData = async () => {
-	const data = await axios.get(
-		"https://strapi-gtbk.onrender.com/api/articles?populate=*"
-	);
+  const data = await axios.get(
+    "https://strapi-blcj.onrender.com/api/articles?populate=*"
+  );
 
-	let response = data.data.data;
+  let response = data.data.data;
 
-	// console.log(response);
+  // console.log(response);
 
-	return response;
+  return response;
 };

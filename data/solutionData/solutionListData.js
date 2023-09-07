@@ -1,25 +1,25 @@
 import axios from "axios";
 
 export const getAllIndividualSolutionData = async () => {
-	const data = await axios.get(
-		"http://localhost:1337/api/individual-solutions?populate=*"
-	);
+  const data = await axios.get(
+    "https://strapi-blcj.onrender.com/api/individual-solutions?populate=*"
+  );
 
-	let response = data.data.data;
+  let response = data.data.data;
 
-	// console.log(response);
+  // console.log(response);
 
-	return response;
+  return response;
 };
 
 export const getAllBusinessSolutionData = async () => {
-	const data = await axios.get(
-		"http://localhost:1337/api/business-institution-solutions?populate=*"
-	);
+  const data = await axios.get(
+    "https://strapi-blcj.onrender.com/api/bus-solns?populate=*"
+  );
 
-	let response = data.data.data;
+  let response = data.data.data;
 
-	// console.log(response);
+  // console.log(response);
 
-	return response;
+  return response;
 };

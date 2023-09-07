@@ -11,89 +11,89 @@ import { getAllArticleData } from "@/data/articleData/articleListData";
 import IsLoading from "@/components/IsLoading";
 
 export default function ArticlePage() {
-	const [articleData, setArticleData] = useState([]);
-	// const [limit, setLimit] = useState(3);
-	const [isLoading, setIsLoading] = useState(true);
+  const [articleData, setArticleData] = useState([]);
+  // const [limit, setLimit] = useState(3);
+  const [isLoading, setIsLoading] = useState(true);
 
-	const fetchData = async () => {
-		const articles = await getAllArticleData();
-		// console.log(articles);
-		setArticleData(articles);
-	};
-	useEffect(() => {
-		setIsLoading(true);
-		// setIsLoading(false);
-		fetchData();
-		setIsLoading(false);
-	}, []);
+  const fetchData = async () => {
+    const articles = await getAllArticleData();
+    console.log(articles);
+    setArticleData(articles);
+  };
+  useEffect(() => {
+    setIsLoading(true);
+    // setIsLoading(false);
+    fetchData();
+    setIsLoading(false);
+  }, []);
 
-	// console.log(data);
+  // console.log(data);
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const data = await axios.get(
-	// 			`http://localhost:1337/api/articles?populate=*&pagination[start]=0&pagination[limit]=${limit}`
-	// 		);
-	// 		let response = data.data.data;
-	// 		setLimit(response);
-	// 		console.log(response);
-	// 	};
+  // useEffect(() => {
+  // 	const fetchData = async () => {
+  // 		const data = await axios.get(
+  // 			`http://localhost:1337/api/articles?populate=*&pagination[start]=0&pagination[limit]=${limit}`
+  // 		);
+  // 		let response = data.data.data;
+  // 		setLimit(response);
+  // 		console.log(response);
+  // 	};
 
-	// 	fetchData();
-	// }, [limit]);
+  // 	fetchData();
+  // }, [limit]);
 
-	// console.log(limit);
+  // console.log(limit);
 
-	if (isLoading) {
-		return <IsLoading />;
-	}
+  if (isLoading) {
+    return <IsLoading />;
+  }
 
-	return (
-		<main className="container">
-			<div></div>
-			<div className="row g-5">
-				<div className="col-md-8">
-					<div className="row">
-						{articleData?.map((post) => {
-							if (post.attributes.highlighted_article === true) {
-								return (
-									<div className="" key={post.id}>
-										<HighlightCard {...post} />
-									</div>
-								);
-							}
-						})}
-					</div>
+  return (
+    <main className="container">
+      <div></div>
+      <div className="row gx-5">
+        <div className="col-md-8">
+          <div className="row">
+            {articleData?.map((post) => {
+              if (post.attributes.highlighted_article === true) {
+                return (
+                  <div className="" key={post.id}>
+                    <HighlightCard {...post} />
+                  </div>
+                );
+              }
+            })}
+          </div>
 
-					<div className="row">
-						{articleData?.map((post) => {
-							// console.log(post.attributes);
-							return (
-								<div className="col-md-6" key={post.id}>
-									<ArticleCard {...post} />
-								</div>
-							);
-						})}
-					</div>
-				</div>
+          <div className="row mt-5 gy-4">
+            {articleData?.map((post) => {
+              // console.log(post.attributes);
+              return (
+                <div className="col-md-6" key={post.id}>
+                  <ArticleCard {...post} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
-				<div className="col-md-4 fixed-right">
-					<div className="mb-5">
-						<RecentPostCard />
-					</div>
+        <div className="col-md-4 fixed-right">
+          <div className="mb-5">
+            <RecentPostCard />
+          </div>
 
-					<div>
-						<JoinTelegram />
-					</div>
+          <div>
+            <JoinTelegram />
+          </div>
 
-					<div className="mt-5">
-						<h6 className="text-dark">
-							Subscribe our newsletter to get update
-						</h6>
-						<Subscribe />
-					</div>
-				</div>
-			</div>
-		</main>
-	);
+          <div className="mt-5">
+            <h6 className="text-dark">
+              Subscribe our newsletter to get update
+            </h6>
+            <Subscribe />
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 }

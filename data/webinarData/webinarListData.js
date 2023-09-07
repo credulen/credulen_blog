@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export const getAllWebinarData = async () => {
-	const data = await axios.get(
-		"https://strapi-gtbk.onrender.com/api/webinars?populate=*"
-	);
+  const data = await axios.get(
+    "https://strapi-blcj.onrender.com/api/webinars?populate=*"
+  );
 
-	let response = data.data.data;
+  let response = data.data.data;
 
-	// console.log(response);
+  // console.log(response);
 
-	return response;
+  return response;
 };
