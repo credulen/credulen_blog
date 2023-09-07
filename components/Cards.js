@@ -117,21 +117,28 @@ export const RecentPostCard = () => {
 
 export const UpcomingWebinarCard = (props) => {
   return (
-    <div className="card mt-4  border-0 p-1">
-      <div className="card-body webevent p-4">
-        <h5 className="card-title">{props?.attributes?.webinar_name}</h5>
+    // <div className="card mt-4 border-0 p-1">
+    // <div className="card mt-4 border-0 p-1 nav_bg">
+    <div className="card mt-4 border-0 nav_bg">
+      {/* <div className="card-body webevent p-4"> */}
+      <div className="card-body p-4">
+        <h5 className="card-title text-white">
+          {props?.attributes?.webinar_name}
+        </h5>
         {/* <p className="card-text">{props.attributes.webinar_description}</p> */}
-        <p className="card-text">
+        <p className="card-text text-white mt-4">
           {props?.attributes?.webinar_description
             .split(" ")
             .splice(0, 30)
             .join(" ")}
         </p>
       </div>
-      <ul className="list-group list-group-flush webevent p-2">
+      {/* <ul className="list-group list-group-flush webevent p-2"> */}
+      <ul className="list-group list-group-flush webevent1 p-2">
         <li className="list-group-item speakerwebevent">
           <Link
-            className="text-success"
+            // className="text-success"
+            className="text-white"
             data-bs-toggle="collapse"
             href="#collapseExample"
             role="button"
@@ -146,10 +153,11 @@ export const UpcomingWebinarCard = (props) => {
           </div>
         </li>
       </ul>
-      <div className="card-body webevent p-3">
+      <div className="card-body webevent1 p-3">
         <Link
           href={`/webinars/regwebinar/${props?.id}`}
-          className="card-link text-success ps-2"
+          // className="card-link text-success ps-2"
+          className="card-link text-white ps-2"
         >
           Register
         </Link>
@@ -195,11 +203,13 @@ export const UpcomingWebinarSpeakers = () => {
             />
 
             <div>
-              <p className="mb-0 text-dark">
+              {/* <p className="mb-0 text-dark"> */}
+              <p className="mb-0 text-white">
                 {speaker?.attributes?.speaker_name}
               </p>
 
-              <small className="text-body-dark">
+              {/* <small className="text-body-dark"> */}
+              <small className="text-white">
                 {speaker?.attributes?.speaker_job_description},
                 <span>{speaker?.attributes?.speaker_company}</span>
               </small>
@@ -242,18 +252,21 @@ export const OndemandWebinarCard = (props) => {
   // var arr = "2012-07-01 00:00:00.0".split("-");
 
   return (
-    <div className="card border-0 p-1 mt-3">
-      <div className="card-body webevent p-4">
+    <div className="card border-0 p-1 mt-3 nav_bg">
+      <div className="card-body p-4">
         <p className="card-text">
           {/* <small className="text-body-secondary">JULY 15, 2023 | 5:00pm</small> */}
           {/* <small className="text-body-secondary">
 						{props.attributes.createdAt}
 					</small> */}
-          <small className="text-body-secondary">{webinarDate}</small>
+          {/* <small className="text-body-secondary">{webinarDate}</small> */}
+          <small className="text-white">{webinarDate}</small>
         </p>
-        <h5 className="card-title">{props?.attributes?.webinar_name}</h5>
+        <h5 className="card-title text-white">
+          {props?.attributes?.webinar_name}
+        </h5>
 
-        <p className="card-text mt-3">
+        <p className="card-text mt-3 text-white">
           {props?.attributes?.webinar_description
             .split(" ")
             .splice(0, 10)
@@ -262,7 +275,8 @@ export const OndemandWebinarCard = (props) => {
         <Link
           href={`/webinars/regwebinar/${props?.id}`}
           // href="/webinars/regwebinar"
-          className="btn btn-success card-link mt-4"
+          // className="btn btn-success card-link mt-4"
+          className="btn btnc card-link mt-4"
         >
           CHECK WEBINAR
         </Link>
@@ -357,6 +371,89 @@ export const PastEventsCard = (props) => {
         <Link href="/conferences/conferenceinfo" className="btn btn-success">
           Learn More
         </Link>
+      </div>
+    </div>
+  );
+};
+
+export const ComingSoonCard1 = () => {
+  return (
+    // <div className="card comingsoon mx-auto" style={{ width: "20rem" }}>
+    <div className="card mx-auto nav_bg w-100">
+      <div className="row g-0">
+        {/* <h5 className="card-title text-white mx-auto my-auto text-center">
+          Coming Soon
+        </h5>
+        <p className="card-title text-white mx-auto my-auto text-center">
+          Stay Tuned...
+        </p> */}
+        {/* <Image
+          src="/assets/comingsoon1.jpg"
+          class="img-fluid rounded-start"
+          width={500}
+          height={50}
+          alt="..."
+        /> */}
+
+        <div className="col-md-8 m-auto">
+          {/* <h1 className="text-white text-center">Coming Soon</h1>
+          <p className="text-white text-center">Stay Tuned...</p> */}
+          <Image
+            src="/assets/comingsoon1.jpg"
+            class="img-fluid rounded-start"
+            width={500}
+            height={50}
+            alt="..."
+          />
+        </div>
+        <div className="col-md-4">
+          {/* <img src="/assets/comingsoon1.jpg" alt="" /> */}
+          <h5 className="card-title text-white mx-auto my-auto text-center">
+            Coming Soon
+          </h5>
+          <p className="card-title text-white mx-auto my-auto text-center">
+            Stay Tuned...
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ComingSoonCard3 = () => {
+  return (
+    // <div class=" mb-3">
+    <div class="row g-0">
+      <div class="col-md-7">
+        <Image
+          src="/assets/comingsoon1.jpg"
+          class="img-fluid rounded-start"
+          width={900}
+          height={50}
+          alt="..."
+        />
+      </div>
+      <div class="col-md-5 nav_bg">
+        <div class="card-body p-auto">
+          <h1 className="card-title text-white text-center">Coming Soon</h1>
+          <p className="text-white text-center">Stay Tuned...</p>
+        </div>
+      </div>
+    </div>
+    // </div>
+  );
+};
+
+export const ComingSoonCard = () => {
+  return (
+    <div className="card nav_bg mx-auto" style={{ width: "18rem" }}>
+      <div className="card-body">
+        <h5 className="card-title text-white mx-auto my-auto text-center">
+          Coming Soon
+        </h5>
+        <p className="card-title text-white mx-auto my-auto text-center">
+          Stay Tuned...
+        </p>
       </div>
     </div>
   );

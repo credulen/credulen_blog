@@ -146,6 +146,11 @@ a {
   border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
+.webevent1 {
+  border: 0.1px solid var(--pry_color_light) !important;
+  background-color: var(--pry_color);
+}
+
 .border__color {
   border: 0.1px solid rgba(0, 0, 0, 0.1) !important;
 }
@@ -154,8 +159,12 @@ a {
   border-bottom: 0.1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-.speakerwebevent {
+/* .speakerwebevent {
   background-color: var(--pry_color_light);
+  border: none;
+} */
+.speakerwebevent {
+  background-color: var(--pry_color);
   border: none;
 }
 
@@ -186,4 +195,21 @@ a {
 /* btn color */
 .btnc {
   background-color: var(--pry_color_light);
+}
+
+.comingsoon {
+  background-image: url("../public/assets/blockImg.jpg");
+  background-repeat: no-repeat;
+
+  height: 100%;
+
+  background-position: center;
+  background-size: cover;
+  /* position: relative; */
+  /* opacity: 0.5; */
+  /* color: white; */
+  /* Add a font */
+  /* font-family: "Courier New", Courier, monospace; */
+  /* Set the font-size to 25 pixels */
+  /* font-size: 25px; */
 }
