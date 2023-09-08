@@ -496,6 +496,7 @@ export const RelatedArticleCard = () => {
 };
 
 export const IndividualSolutionsCard = (props) => {
+  // console.log(props);
   return (
     <div className="card">
       <img
@@ -535,7 +536,8 @@ export const BusinessSolutionsCard = (props) => {
   return (
     <div className="card">
       <img
-        src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
+        // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
+        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.thumbnail?.url}`}
         className="card-img-top"
         width={200}
         height={250}
@@ -543,15 +545,16 @@ export const BusinessSolutionsCard = (props) => {
       />
       <div className="card-body webevent">
         <h5 className="card-title text-center mb-4">
-          {props?.attributes?.business_solution_name}
+          {props?.attributes?.bus_soln_name}
         </h5>
         {/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small> */}
         <p className="card-text pb-3">
-          {" "}
-          {props?.attributes?.business_solution_description
+          {props?.attributes?.bus_soln_description
             .split(" ")
             .splice(0, 15)
             .join(" ")}
+
+          {/* {console.log(props?.attributes?.business_solution_description)} */}
         </p>
         {/* <small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
 
