@@ -51,7 +51,7 @@ export default function ArticlePage() {
   return (
     <main className="container">
       <div></div>
-      <div className="row gx-5">
+      <div className="row g-5">
         <div className="col-md-8">
           <div className="row">
             {articleData?.map((post) => {
