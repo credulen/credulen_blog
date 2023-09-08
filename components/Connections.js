@@ -4,12 +4,12 @@ import axios from "axios";
 import Link from "next/link";
 import { FaTelegram } from "react-icons/fa";
 
-const subscribeUser = async () => {
-	let url;
-	let postUser = await axios.post("http://localhost:1337/api/subscriptions", {
-		data: { user_email: email },
-	});
-};
+// const subscribeUser = async () => {
+//   let url = "https://strapi-blcj.onrender.com/api/subscriptions";
+//   let postUser = await axios.post(url, {
+//     data: { user_email: email },
+//   });
+// };
 
 // const url = "http://localhost:1337/api/strapi-forums";
 //     const sendData = () => {
@@ -62,55 +62,83 @@ const subscribeUser = async () => {
 // 		};
 
 {
-	/* <AddTodo addTodo={addTodo} />; */
+  /* <AddTodo addTodo={addTodo} />; */
 }
 
 export const Subscribe = () => {
-	const [userEmail, setUserEmail] = useState();
-	return (
-		<div>
-			{/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
-			<form className="">
-				<input
-					className="form-control"
-					type="search"
-					placeholder="Subscribe"
-					aria-label="Search"
-				/>
-				<button className="btn bg-success text-white mt-2 w-100" type="submit">
-					Subscribe
-				</button>
-			</form>
-		</div>
-	);
+  const [userEmail, setUserEmail] = useState();
+
+  //   const submitForm = async (e) => {
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    let url = "https://strapi-blcj.onrender.com/api/subscriptions";
+
+    // await axios.post(url, {
+    axios.post(url, {
+      data: { user_email: email },
+    });
+
+    console.log(submitForm);
+
+    // axios.post("https://strapi-blcj.onrender.com/api/subscriptions", {
+    //   data: {
+    //     user_email: email,
+    //   },
+    // });
+  };
+
+  return (
+    <div>
+      {/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
+      <form className="">
+        <input
+          className="form-control"
+          type="search"
+          placeholder="Subscribe"
+          id="email"
+          onChange={(e) => setUserEmail(e.target.value)}
+          aria-label="Search"
+        />
+        <button
+          className="btn bg-success text-white mt-2 w-100"
+          type="submit"
+          onClick={submitForm}
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export const SubscribeNavbar = () => {
-	return (
-		<div>
-			{/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
-			<form className="d-flex">
-				<input
-					className="form-control me-2"
-					type="search"
-					placeholder="Please Enter Your Email"
-				/>
-				<button className="btn bg-success text-white" type="submit">
-					Subscribe
-				</button>
-			</form>
-		</div>
-	);
+  return (
+    <div>
+      {/* <h6 className="text-dark">Subscribe our newsletter to get update</h6> */}
+      <form className="d-flex">
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Please Enter Your Email"
+        />
+        <button className="btn bg-success text-white" type="submit">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export const JoinTelegram = () => {
-	return (
-		<Link
-			href="https://t.me/credulensubscribers"
-			target="_blank"
-			className="btn bg-success text-white w-100"
-			aria-label="Facebook">
-			Join Our Telegram Community <FaTelegram />
-		</Link>
-	);
+  return (
+    <Link
+      href="https://t.me/credulensubscribers"
+      target="_blank"
+      className="btn bg-success text-white w-100"
+      aria-label="Facebook"
+    >
+      Join Our Telegram Community <FaTelegram />
+    </Link>
+  );
 };

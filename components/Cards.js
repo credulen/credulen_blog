@@ -8,6 +8,7 @@ import { getAllWebinarSpeakersData } from "@/data/webinarData/webinarSpeakerData
 
 // an article becomes highlighted with true or false
 export const HighlightCard = (props) => {
+  // console.log(props.attributes.slug);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
@@ -32,7 +33,11 @@ export const HighlightCard = (props) => {
 					<small className="text-body-secondary">Last updated 3 mins ago</small>
 				</p> */}
 
-        <Link href={`/articles/article/${props?.id}`} className="btn btnc mt-3">
+        <Link
+          // href={`/articles/article/${props?.attributes?.slug}`}
+          href={`/articles/article/${props?.id}`}
+          className="btn btnc mt-3"
+        >
           Read More
         </Link>
       </div>

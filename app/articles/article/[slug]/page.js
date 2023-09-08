@@ -7,6 +7,7 @@ import { getAllArticleData } from "@/data/articleData/articleListData";
 import { getSingleArticleData } from "@/data/articleData/getSingleArticle";
 import axios from "axios";
 import { format } from "date-fns";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -22,119 +23,149 @@ import ReactMarkdown from "react-markdown";
 // fetchData();
 // const SingleArticlePage = ({ params: { articleId } }) => {
 // const SingleArticlePage = ({ articleId }) => {
-const SingleArticlePage = ({ params }) => {
-	const [singleArticleData, setSingleArticleData] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [authorData, setAuthorData] = useState([]);
+// const SingleArticlePage = ({ params }) => {
+const SingleArticlePage = () => {
+  const { slug } = useParams();
 
-	// const newData = fetchData(params.articleId);
+  const [singleArticleData, setSingleArticleData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [authorData, setAuthorData] = useState([]);
 
-	// console.log(newData);
+  // const newData = fetchData(params.articleId);
 
-	// useEffect(() => {
-	// 	const getSingleArticleData = async () => {
-	// 		let singleArticle = await axios.get(
-	// 			`http://localhost:1337/api/articles/${params.slug}/?populate=*`
-	// 		);
+  // console.log(newData);
 
-	// 		let response = singleArticle.data.data;
+  // useEffect(() => {
+  // 	const getSingleArticleData = async () => {
+  // 		let singleArticle = await axios.get(
+  // 			`http://localhost:1337/api/articles/${params.slug}/?populate=*`
+  // 		);
 
-	// 		// return response;
-	// 		// console.log(response);
-	// 		setSingleArticleData(response);
-	// 		setIsLoading(false);
-	// 	};
+  // 		let response = singleArticle.data.data;
 
-	// 	getSingleArticleData();
-	// }, []);
+  // 		// return response;
+  // 		// console.log(response);
+  // 		setSingleArticleData(response);
+  // 		setIsLoading(false);
+  // 	};
 
-	const getSingleArticleData = async () => {
-		const data = await axios
-			.get(`http://localhost:1337/api/articles/${params.slug}/?populate=*`)
-			.then((res) => res.data)
-			.then((article) => article.data)
-			.catch((err) => console.log(err));
+  // 	getSingleArticleData();
+  // }, []);
 
-		setSingleArticleData(data);
-	};
+  const getSingleArticleData = async () => {
+    const data = await axios.get(
+      `https://strapi-blcj.onrender.com/api/articles/${slug}/?populate=*`
+    );
+    // .then((res) => res.data)
+    // .then((article) => article.data)
+    // .catch((err) => console.log(err));
 
-	useEffect(() => {
-		setIsLoading(false);
-		getSingleArticleData();
-	}, []);
+    setSingleArticleData(data?.data?.data);
+  };
 
-	// console.log(singleArticleData.attributes.title);
-	// console.log(singleArticleData);
-	// console.log(authorData);
+  useEffect(() => {
+    getSingleArticleData();
+    setIsLoading(false);
+  }, [slug]);
 
-	// const oneArticle = singleArticleData.map((article) => {
-	// 	console.log(article);
-	// });
+  // useEffect(async () => {
+  //   const data = await axios.get(
+  //     `http://localhost:1337/api/articles/${slug}/?populate=*`
+  //   );
+  //   // .then((res) => res.data)
+  //   // .then((article) => article.data)
+  //   // .catch((err) => console.log(err));
+  //   setSingleArticleData(data?.data?.data);
+  //   setIsLoading(false);
+  // }, [slug]);
 
-	// console.log(oneArticle);
+  // console.log(singleArticleData.attributes.title);
+  // console.log(singleArticleData);
+  // console.log(authorData);
 
-	// useEffect(() => {
-	// 	console.log(singleArticleData);
-	// });
+  // const oneArticle = singleArticleData.map((article) => {
+  // 	console.log(article);
+  // });
 
-	// let title = singleArticleData.attributes.title;
-	// console.log(title);
-	console.log(singleArticleData);
+  // console.log(oneArticle);
 
-	if (isLoading) {
-		return <IsLoading />;
-	}
+  // useEffect(() => {
+  // 	console.log(singleArticleData);
+  // });
 
-	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-8">
-					<div>
-						<img
-							// src="/assets/blockImg.jpg"
-							src={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
-							className="card-img-top"
-							width={500}
-							height={300}
-							alt="Picture of the author"
-							// alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
-						/>
-					</div>
+  // let title = singleArticleData.attributes.title;
+  // console.log(title);
+  console.log(singleArticleData);
 
-					<div className="d-flex align-items-center mt-3 mb-4">
-						<div>
-							<img
-								src="/assets/blockImg.jpg"
-								className="rounded-circle me-3"
-								width={40}
-								height={40}
-								alt="Picture of the first speaker"
-							/>
-						</div>
+  if (isLoading) {
+    return <IsLoading />;
+  }
 
-						<div>
-							<p className="card-text">
-								<small className="text-body-secondary">
-									John Doe | JULY 15, 2023
-								</small>
-								<small className="text-body-secondary">
-									{singleArticleData?.attributes?.users_permission_user |
-										singleArticleData?.attributes?.createdAt}
-								</small>
-							</p>
-						</div>
-					</div>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-8">
+          <div>
+            <img
+              // src="https://res.cloudinary.com/dge5x9t8i/image/upload/v1693866578/credulen/Maya03_small_c13f592fdc.png"
+              src={`${
+                isLoading ? (
+                  <IsLoading />
+                ) : (
+                  singleArticleData?.attributes?.image?.data?.attributes
+                    ?.formats?.thumbnail?.url
+                )
+              }`}
+              className="card-img-top"
+              width={500}
+              height={300}
+              alt="Picture of the author"
+              // alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
+            />
+          </div>
 
-					{/* <p className="text-justify mt-4">{data.attributes.body}</p> */}
+          <div className="d-flex align-items-center mt-3 mb-4">
+            <div>
+              <img
+                src="/assets/blockImg.jpg"
+                className="rounded-circle me-3"
+                width={40}
+                height={40}
+                alt="Picture of the first speaker"
+              />
+            </div>
 
-					<div className="text-center">
-						<h3>{singleArticleData?.attributes?.title}</h3>
-						{/* <h3>Title</h3> */}
-					</div>
-					<div className="text-justify mt-4">
-						{/* <ReactMarkdown>{articleData.attributes.body}</ReactMarkdown> */}
-						<p>
-							{/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+            <div>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  John Doe | JULY 15, 2023
+                </small>
+
+                <small className="text-body-secondary">
+                  {isLoading ? (
+                    <IsLoading />
+                  ) : (
+                    singleArticleData?.attributes?.users_permission_user |
+                    singleArticleData?.attributes?.createdAt
+                  )}
+                </small>
+              </p>
+            </div>
+          </div>
+
+          {/* <p className="text-justify mt-4">{data.attributes.body}</p> */}
+
+          <div className="text-center">
+            <h3>
+              {isLoading ? <IsLoading /> : singleArticleData?.attributes?.title}
+            </h3>
+
+            {/* <h3>Title</h3> */}
+          </div>
+          <div className="text-justify mt-4">
+            {/* <ReactMarkdown>{articleData.attributes.body}</ReactMarkdown> */}
+            <p>
+              {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
 								adipisci ducimus quas earum nostrum necessitatibus, at iusto,
 								tempore, nisi explicabo temporibus amet animi labore repudiandae
 								asperiores magnam cum maiores perferendis sunt a! Quam saepe
@@ -147,29 +178,30 @@ const SingleArticlePage = ({ params }) => {
 								quasi qui nesciunt, voluptatum necessitatibus temporibus vitae
 								modi quia odio, nihil facere in non corrupti. Tenetur quam
 								laborum esse! Provident qui dolore ipsum tempora! */}
-							{/* {isLoading ? singleArticleData?.body : <h1>Load</h1>} */}
-							{singleArticleData?.body}
-						</p>
-					</div>
-					{/* end */}
-				</div>
-				<div className="col-md-4">
-					<RelatedArticleCard />
+              {/* {isLoading ? singleArticleData?.body : <h1>Load</h1>} */}
 
-					<div>
-						<JoinTelegram />
-					</div>
+              {isLoading ? <IsLoading /> : singleArticleData?.attributes?.body}
+            </p>
+          </div>
+          {/* end */}
+        </div>
+        <div className="col-md-4">
+          <RelatedArticleCard />
 
-					<div className="mt-5">
-						<h6 className="text-dark">
-							Subscribe our newsletter to get update
-						</h6>
-						<Subscribe />
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+          <div>
+            <JoinTelegram />
+          </div>
+
+          <div className="mt-5">
+            <h6 className="text-dark">
+              Subscribe our newsletter to get update
+            </h6>
+            <Subscribe />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SingleArticlePage;
