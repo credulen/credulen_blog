@@ -16,7 +16,7 @@ export const HighlightCard = (props) => {
     <div className="card mb-3">
       <img
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+        src={`${props?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
         // attributes.formats.thumbnail.url
         className="card-img-top"
         width={200}
@@ -50,7 +50,7 @@ export const ArticleCard = (props) => {
   return (
     <div className="card mt-3">
       <img
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+        src={`${props?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
         className="card-img-top"
         width={200}
         height={250}
@@ -197,7 +197,7 @@ export const UpcomingWebinarSpeakers = () => {
         return (
           <div className="d-flex mb-4" key={speaker?.id}>
             <img
-              src={`${speaker?.attributes?.speaker_img?.data?.attributes?.formats?.thumbnail?.url}`}
+              src={`${speaker?.attributes?.speaker_img?.data?.attributes?.formats?.medium?.url}`}
               className="rounded-circle me-3"
               width={50}
               height={50}
@@ -505,7 +505,7 @@ export const IndividualSolutionsCard = (props) => {
   return (
     <div className="card">
       <img
-        src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
+        src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.medium?.url}`}
         className="card-img-top"
         width={200}
         height={250}
@@ -542,7 +542,7 @@ export const BusinessSolutionsCard = (props) => {
     <div className="card">
       <img
         // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
-        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.thumbnail?.url}`}
+        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.medium?.url}`}
         className="card-img-top"
         width={200}
         height={250}

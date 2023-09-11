@@ -113,7 +113,7 @@ const SingleArticlePage = () => {
                   <IsLoading />
                 ) : (
                   singleArticleData?.attributes?.image?.data?.attributes
-                    ?.formats?.thumbnail?.url
+                    ?.formats?.medium?.url
                 )
               }`}
               className="card-img-top"

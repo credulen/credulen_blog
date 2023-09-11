@@ -17,7 +17,7 @@ export default function ArticlePage() {
 
   const fetchData = async () => {
     const articles = await getAllArticleData();
-    // console.log(articles);
+    console.log(articles);
     setArticleData(articles);
   };
   useEffect(() => {
