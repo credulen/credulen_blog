@@ -24,10 +24,10 @@ import ReactMarkdown from "react-markdown";
 // const SingleArticlePage = ({ params: { articleId } }) => {
 // const SingleArticlePage = ({ articleId }) => {
 // const SingleArticlePage = ({ params }) => {
-const SingleArticlePage = () => {
-  const { slug } = useParams();
+const SingleArticlePage = ({ params }) => {
+  const { slug } = params;
 
-  const [singleArticleData, setSingleArticleData] = useState([]);
+  const [singleArticleData, setSingleArticleData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [authorData, setAuthorData] = useState([]);
 
@@ -163,24 +163,20 @@ const SingleArticlePage = () => {
             {/* <h3>Title</h3> */}
           </div>
           <div className="text-justify mt-4">
-            {/* <ReactMarkdown>{articleData.attributes.body}</ReactMarkdown> */}
             <p>
-              {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
-								adipisci ducimus quas earum nostrum necessitatibus, at iusto,
-								tempore, nisi explicabo temporibus amet animi labore repudiandae
-								asperiores magnam cum maiores perferendis sunt a! Quam saepe
-								ratione, laudantium magni modi, quod asperiores voluptate
-								eveniet alias accusamus facere? Doloremque pariatur vitae
-								quisquam libero! Saepe iste cumque, illum eaque voluptatum,
-								molestias labore officia voluptatem necessitatibus voluptates
-								temporibus consequuntur. Perspiciatis doloremque aliquid
-								necessitatibus a ullam officia, explicabo enim rem. Sequi, velit
-								quasi qui nesciunt, voluptatum necessitatibus temporibus vitae
-								modi quia odio, nihil facere in non corrupti. Tenetur quam
-								laborum esse! Provident qui dolore ipsum tempora! */}
-              {/* {isLoading ? singleArticleData?.body : <h1>Load</h1>} */}
-
-              {isLoading ? <IsLoading /> : singleArticleData?.attributes?.body}
+              {isLoading ? (
+                <IsLoading />
+              ) : (
+                <ReactMarkdown>
+                  {singleArticleData?.attributes?.body}
+                </ReactMarkdown>
+              )}
+              {/* {isLoading ? (
+                <IsLoading />
+                <ReactMarkdown source={singleArticleData?.attributes?.body} escapeHtml={false} />
+              ) : (
+                <p>dangerouslySetInnerHtml={blogPost}</p>
+              )} */}
             </p>
           </div>
           {/* end */}

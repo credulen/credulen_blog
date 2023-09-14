@@ -16,7 +16,7 @@ export const HighlightCard = (props) => {
     <div className="card mb-3">
       <img
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+        src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
         // attributes.formats.thumbnail.url
         className="card-img-top"
         width={200}
@@ -48,9 +48,9 @@ export const HighlightCard = (props) => {
 export const ArticleCard = (props) => {
   // console.log(props);
   return (
-    <div className="card mt-3">
+    <div className="card mt-3 h-100">
       <img
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+        src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
         className="card-img-top"
         width={200}
         height={250}
@@ -121,10 +121,11 @@ export const RecentPostCard = () => {
 };
 
 export const UpcomingWebinarCard = (props) => {
+  console.log(props.id);
   return (
     // <div className="card mt-4 border-0 p-1">
     // <div className="card mt-4 border-0 p-1 nav_bg">
-    <div className="card mt-4 border-0 nav_bg">
+    <div className="card mt-4 border-0 nav_bg h-100">
       {/* <div className="card-body webevent p-4"> */}
       <div className="card-body p-4">
         <h5 className="card-title text-white">
@@ -146,6 +147,7 @@ export const UpcomingWebinarCard = (props) => {
             className="text-white"
             data-bs-toggle="collapse"
             href="#collapseExample"
+            // key={props?.id}
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
@@ -153,6 +155,7 @@ export const UpcomingWebinarCard = (props) => {
             Click Here to See Our Speakers
           </Link>
 
+          {/* <div className="collapse mt-3" id="collapseExample"> */}
           <div className="collapse mt-3" id="collapseExample">
             <UpcomingWebinarSpeakers />
           </div>
@@ -197,7 +200,7 @@ export const UpcomingWebinarSpeakers = () => {
         return (
           <div className="d-flex mb-4" key={speaker?.id}>
             <img
-              src={`${speaker?.attributes?.speaker_img?.data?.attributes?.formats?.medium?.url}`}
+              src={`${speaker?.attributes?.speaker_img?.data?.attributes?.formats?.small?.url}`}
               className="rounded-circle me-3"
               width={50}
               height={50}
@@ -257,7 +260,7 @@ export const OndemandWebinarCard = (props) => {
   // var arr = "2012-07-01 00:00:00.0".split("-");
 
   return (
-    <div className="card border-0 p-1 mt-3 nav_bg">
+    <div className="card border-0 p-1 mt-3 nav_bg h-100">
       <div className="card-body p-4">
         <p className="card-text">
           {/* <small className="text-body-secondary">JULY 15, 2023 | 5:00pm</small> */}
@@ -352,7 +355,7 @@ export const PastEventsCard = (props) => {
   let conferenceDate = `${month.toUpperCase()} ${day}, ${year} | ${hour}:${mins}`;
 
   return (
-    <div className="card">
+    <div className="card h-100">
       <Image
         src="/assets/blockImg.jpg"
         className="card-img-top"
@@ -503,9 +506,9 @@ export const RelatedArticleCard = () => {
 export const IndividualSolutionsCard = (props) => {
   // console.log(props);
   return (
-    <div className="card">
+    <div className="card h-100">
       <img
-        src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.medium?.url}`}
+        src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.small?.url}`}
         className="card-img-top"
         width={200}
         height={250}
@@ -539,10 +542,10 @@ export const IndividualSolutionsCard = (props) => {
 export const BusinessSolutionsCard = (props) => {
   // console.log(props);
   return (
-    <div className="card">
+    <div className="card h-100">
       <img
         // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
-        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.medium?.url}`}
+        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.small?.url}`}
         className="card-img-top"
         width={200}
         height={250}
