@@ -121,7 +121,7 @@ export const RecentPostCard = () => {
 };
 
 export const UpcomingWebinarCard = (props) => {
-  console.log(props.id);
+  // console.log(props.id);
   return (
     // <div className="card mt-4 border-0 p-1">
     // <div className="card mt-4 border-0 p-1 nav_bg">

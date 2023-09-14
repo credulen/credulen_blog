@@ -37,7 +37,7 @@ const Conferences = () => {
         ) : (
           conferenceData?.map((conference) => {
             //   console.log(conference.attributes.is_upcoming_conference.length);
-            console.log(conference);
+            // console.log(conference);
             if (conference.attributes.is_upcoming_conference === true) {
               return (
                 <div className="mb-5 pb-3" key={conference.id}>

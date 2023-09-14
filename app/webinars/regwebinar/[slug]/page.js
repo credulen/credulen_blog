@@ -32,7 +32,7 @@ const WebinarInfoPage = ({ params }) => {
       .then((webinar) => webinar.data)
       .catch((err) => console.log(err));
 
-    console.log(singleWebinar);
+    // console.log(singleWebinar);
 
     setSingleWebinarData(singleWebinar);
 

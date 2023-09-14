@@ -95,7 +95,7 @@ const SingleArticlePage = ({ params }) => {
 
   // let title = singleArticleData.attributes.title;
   // console.log(title);
-  console.log(singleArticleData);
+  // console.log(singleArticleData);
 
   if (isLoading) {
     return <IsLoading />;

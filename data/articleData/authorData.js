@@ -7,7 +7,7 @@ export const getAuthorData = async (userId) => {
 
   let response = data.data.data;
 
-  console.log(response);
+  // console.log(response);
 
   return response;
 };
