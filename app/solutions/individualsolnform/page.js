@@ -1,213 +1,223 @@
 const IndividualSolutionForm = () => {
-	return (
-		<div className="">
-			<h6 className="text-center pb-4">
-				Please Fill the Form to Use our Solutions
-			</h6>
+  return (
+    <div className="">
+      <h6 className="text-center pb-4">
+        Please Fill the Form to Register Your Interest in our Solutions for
+        Individuals
+      </h6>
 
-			{/* desktop view */}
-			<form className="w-50 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
-				<div className="mb-4">
-					<label htmlFor="fullname" className="form-label">
-						Full Name
-					</label>
-					<input type="text" className="form-control webevent" id="fullname" />
-				</div>
+      {/* desktop view */}
+      <form className="w-50 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
+        <div className="mb-4">
+          <label htmlFor="fullname" className="form-label">
+            Full Name
+          </label>
+          <input type="text" className="form-control webevent" id="fullname" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="exampleInputPhone1" className="form-label">
-						Phone Number
-					</label>
-					<input
-						type="email"
-						className="form-control webevent"
-						id="exampleInputPhone1"
-						aria-describedby="phoneHelp"
-					/>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="exampleInputPhone1" className="form-label">
+            Phone Number
+          </label>
+          <input
+            type="email"
+            className="form-control webevent"
+            id="exampleInputPhone1"
+            aria-describedby="phoneHelp"
+          />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="exampleInputEmail1" className="form-label">
-						Email address
-					</label>
-					<input
-						type="email"
-						className="form-control webevent"
-						id="exampleInputEmail1"
-						aria-describedby="emailHelp"
-					/>
-					<div id="emailHelp" className="form-text">
-						We'll never share your email with anyone else.
-					</div>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control webevent"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" className="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="company" className="form-label">
-						Country
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>Nigeria</option>
-						<option value="1">America</option>
-						<option value="2">UK</option>
-						<option value="3">Three</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="company" className="form-label">
+            Country
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            <option defaultValue={"selected"}>Nigeria</option>
+            <option value="1">America</option>
+            <option value="2">UK</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="employment_status" className="form-label">
-						Employment Status
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>
-							Please Select your Employment Status
-						</option>
-						<option value="1">Employed</option>
-						<option value="2">Self Employed</option>
-						<option value="3">Unemployed</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="employment_status" className="form-label">
+            Employment Status
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            <option defaultValue={"selected"}>
+              Please Select your Employment Status
+            </option>
+            <option value="1">Employed</option>
+            <option value="2">Self Employed</option>
+            <option value="3">Unemployed</option>
+          </select>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="jobtitle" className="form-label">
-						Job Title
-					</label>
-					<input type="text" className="form-control webevent" id="jobtitle" />
-				</div>
+        <div className="mb-4">
+          <label htmlFor="jobtitle" className="form-label">
+            Job Title
+          </label>
+          <input type="text" className="form-control webevent" id="jobtitle" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="company" className="form-label">
-						Select Solution
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>
-							Please Select your Preferred Solution
-						</option>
-						<option value="1">AI</option>
-						<option value="2">Blockchain</option>
-						<option value="3">AI Education</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="company" className="form-label">
+            Select Solution
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            {/* <option defaultValue={"selected"}>
+              Please Select your Preferred Solution
+            </option> */}
+            <option value="1">
+              Blockchain Fundamentals Masterclass Series
+            </option>
+            <option value="2">Web3/Blockchain Engineer Program</option>
+            <option value="3">Data Science (Web3) Program</option>
+            <option value="4">Data Engineering Program</option>
+          </select>
+        </div>
 
-				<button type="submit" className="btn btn-success">
-					Submit
-				</button>
-			</form>
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
+      </form>
 
-			{/* mobile view */}
-			<form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block form__width">
-				<div className="mb-4">
-					<label htmlFor="fullname" className="form-label">
-						Full Name
-					</label>
-					<input type="text" className="form-control webevent" id="fullname" />
-				</div>
+      {/* mobile view */}
+      <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block form__width">
+        <div className="mb-4">
+          <label htmlFor="fullname" className="form-label">
+            Full Name
+          </label>
+          <input type="text" className="form-control webevent" id="fullname" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="exampleInputPhone1" className="form-label">
-						Phone Number
-					</label>
-					<input
-						type="email"
-						className="form-control webevent"
-						id="exampleInputPhone1"
-						aria-describedby="phoneHelp"
-					/>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="exampleInputPhone1" className="form-label">
+            Phone Number
+          </label>
+          <input
+            type="email"
+            className="form-control webevent"
+            id="exampleInputPhone1"
+            aria-describedby="phoneHelp"
+          />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="exampleInputEmail1" className="form-label">
-						Email address
-					</label>
-					<input
-						type="email"
-						className="form-control webevent"
-						id="exampleInputEmail1"
-						aria-describedby="emailHelp"
-					/>
-					<div id="emailHelp" className="form-text">
-						We'll never share your email with anyone else.
-					</div>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control webevent"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" className="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="company" className="form-label">
-						Country
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>Nigeria</option>
-						<option value="1">America</option>
-						<option value="2">UK</option>
-						<option value="3">Three</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="company" className="form-label">
+            Country
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            <option defaultValue={"selected"}>Nigeria</option>
+            <option value="1">America</option>
+            <option value="2">UK</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="jobtitle" className="form-label">
-						Job Title
-					</label>
-					<input type="text" className="form-control webevent" id="jobtitle" />
-				</div>
+        <div className="mb-4">
+          <label htmlFor="jobtitle" className="form-label">
+            Job Title
+          </label>
+          <input type="text" className="form-control webevent" id="jobtitle" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="country" className="form-label">
-						Country
-					</label>
-					<input type="text" className="form-control webevent" id="country" />
-				</div>
+        <div className="mb-4">
+          <label htmlFor="country" className="form-label">
+            Country
+          </label>
+          <input type="text" className="form-control webevent" id="country" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="employment_status" className="form-label">
-						Employment Status
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>
-							Please Select your Employment Status
-						</option>
-						<option value="1">Employed</option>
-						<option value="2">Self Employed</option>
-						<option value="3">Unemployed</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="employment_status" className="form-label">
+            Employment Status
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            <option defaultValue={"selected"}>
+              Please Select your Employment Status
+            </option>
+            <option value="1">Employed</option>
+            <option value="2">Self Employed</option>
+            <option value="3">Unemployed</option>
+          </select>
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="jobtitle" className="form-label">
-						Job Title
-					</label>
-					<input type="text" className="form-control webevent" id="jobtitle" />
-				</div>
+        <div className="mb-4">
+          <label htmlFor="jobtitle" className="form-label">
+            Job Title
+          </label>
+          <input type="text" className="form-control webevent" id="jobtitle" />
+        </div>
 
-				<div className="mb-4">
-					<label htmlFor="company" className="form-label">
-						Select Solution
-					</label>
-					<select
-						className="form-select webevent"
-						aria-label="Default select example">
-						<option defaultValue={"selected"}>
-							Please Select your Preferred Solution
-						</option>
-						<option value="1">AI</option>
-						<option value="2">Blockchain</option>
-						<option value="3">AI Education</option>
-					</select>
-				</div>
+        <div className="mb-4">
+          <label htmlFor="company" className="form-label">
+            Select Solution
+          </label>
+          <select
+            className="form-select webevent"
+            aria-label="Default select example"
+          >
+            <option defaultValue={"selected"}>
+              Please Select your Preferred Solution
+            </option>
+            <option value="1">AI</option>
+            <option value="2">Blockchain</option>
+            <option value="3">AI Education</option>
+          </select>
+        </div>
 
-				<button type="submit" className="btn btn-success">
-					Submit
-				</button>
-			</form>
-		</div>
-	);
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default IndividualSolutionForm;

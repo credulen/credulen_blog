@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { UpcomingWebinarSpeakers } from "@/components/Cards";
 import IsLoading from "@/components/IsLoading";
+import Swal from "sweetalert2";
 
 // import {
 // 	ConferenceSpeakerCard,
@@ -72,6 +73,42 @@ const WebinarInfoPage = ({ params }) => {
   let webinarDate = `${month} ${day}, ${year} | ${hour}:${mins}`;
   // let webinarDate = ` ${day}, ${year} | ${hour}:${mins}`;
 
+  const submitWebinarForm = async (e) => {
+    e.preventDefault();
+
+    let url =
+      "https://strapi-blcj.onrender.com/api/webinar-registration-details";
+
+    try {
+      if (userEmail === "" && userMsg === "") {
+        Swal.fire("all fields are required");
+      } else if (userEmail === "") {
+        Swal.fire("please enter your email");
+      } else if (userMsg === "") {
+        Swal.fire("please enter a message");
+      } else {
+        await axios
+          .post(url, {
+            data: { sender_mail: userEmail, sender_message: userMsg },
+          })
+          .then((res) => {
+            Swal.fire(`we have successfully received your message`);
+          });
+      }
+    } catch (error) {
+      if (error?.response?.data?.error?.message === "2 errors occurred") {
+        Swal.fire("all fields are required");
+      } else if (
+        error?.response?.data?.error?.message ===
+        "sender_mail must be a valid email"
+      ) {
+        Swal.fire("please enter a valid email address");
+      } else {
+        Swal.fire(error?.response?.data?.error?.message);
+      }
+    }
+  };
+
   if (isLoading) {
     return <IsLoading />;
   }
@@ -119,7 +156,7 @@ const WebinarInfoPage = ({ params }) => {
 
       <div className="pt-5 mt-5">
         <h6 className="text-center pb-4">
-          Please Fill the Form Below to Register for the Webinar
+          Please Fill the Form Below to Register for this Webinar
         </h6>
 
         {/* desktop view */}
@@ -151,6 +188,19 @@ const WebinarInfoPage = ({ params }) => {
           </div>
 
           <div className="mb-4">
+            <label htmlFor="exampleInputNum1" className="form-label">
+              Phone Number
+            </label>
+            <input
+              type="number"
+              className="form-control webevent"
+              placeholder="WhatsApp Number"
+              id="exampleInputNum1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+
+          <div className="mb-4">
             <label htmlFor="company" className="form-label">
               Company
             </label>
@@ -175,7 +225,7 @@ const WebinarInfoPage = ({ params }) => {
             <input type="text" className="form-control webevent" id="country" />
           </div>
 
-          <div className="mb-4 form-check">
+          {/* <div className="mb-4 form-check">
             <input
               type="checkbox"
               className="form-check-input webevent"
@@ -184,7 +234,7 @@ const WebinarInfoPage = ({ params }) => {
             <label className="form-check-label" htmlFor="exampleCheck1">
               Check me out
             </label>
-          </div>
+          </div> */}
           <button type="submit" className="btn btn-success">
             Submit
           </button>
@@ -219,6 +269,19 @@ const WebinarInfoPage = ({ params }) => {
           </div>
 
           <div className="mb-4">
+            <label htmlFor="exampleInputNum1" className="form-label">
+              Phone Number
+            </label>
+            <input
+              type="number"
+              className="form-control webevent"
+              id="exampleInputNum1"
+              placeholder="WhatsApp Number"
+              aria-describedby="emailHelp"
+            />
+          </div>
+
+          <div className="mb-4">
             <label htmlFor="company" className="form-label">
               Company
             </label>
@@ -243,7 +306,7 @@ const WebinarInfoPage = ({ params }) => {
             <input type="text" className="form-control webevent" id="country" />
           </div>
 
-          <div className="mb-4 form-check">
+          {/* <div className="mb-4 form-check">
             <input
               type="checkbox"
               className="form-check-input webevent"
@@ -252,7 +315,7 @@ const WebinarInfoPage = ({ params }) => {
             <label className="form-check-label" htmlFor="exampleCheck1">
               Check me out
             </label>
-          </div>
+          </div> */}
           <button type="submit" className="btn btn-success">
             Submit
           </button>
