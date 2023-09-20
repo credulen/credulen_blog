@@ -10,7 +10,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { UpcomingWebinarSpeakers } from "@/components/Cards";
 import IsLoading from "@/components/IsLoading";
+
 import Swal from "sweetalert2";
+import webinarFormValidation from "./webinarFormValidation";
+import { useRouter } from "next/navigation";
+import SuccessfulFormSubmitMsg from "@/components/SuccessFormMsg";
 
 // import {
 // 	ConferenceSpeakerCard,
@@ -20,9 +24,21 @@ import Swal from "sweetalert2";
 // 	UpcomingWebinarSpeakers,
 // } from "../../../components/Cards";
 
+const intialValues = {
+  fullname: "",
+  email: "",
+  phonenum: "",
+  company: "",
+  jobtitle: "",
+};
+
 const WebinarInfoPage = ({ params }) => {
   const [singleWebinarData, setSingleWebinarData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [values, setValues] = useState(intialValues);
+  const [errors, setErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [show, setShow] = useState(false);
 
   const getSingleWebinarData = async () => {
     const singleWebinar = await axios
@@ -73,40 +89,84 @@ const WebinarInfoPage = ({ params }) => {
   let webinarDate = `${month} ${day}, ${year} | ${hour}:${mins}`;
   // let webinarDate = ` ${day}, ${year} | ${hour}:${mins}`;
 
-  const submitWebinarForm = async (e) => {
+  // const handleChange = (e) => {
+  //   setValues((prev) => ({ ...prev, [e.target.name]: [e.target.value] }));
+  // };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors(validate(values));
+    setIsSubmit(true);
+    // setShow(!show);
+  };
 
-    let url =
-      "https://strapi-blcj.onrender.com/api/webinar-registration-details";
+  useEffect(() => {
+    const checkForm = async () => {
+      try {
+        if (Object.keys(errors).length === 0 && isSubmit) {
+          // console.log(values);
+          await axios
+            .post(
+              "https://strapi-blcj.onrender.com/api/webinar-registration-details",
+              {
+                data: {
+                  registerer_full_name: JSON.stringify(values.fullname),
+                  registerer_email: values.email.toString(),
+                  registerer_company: JSON.stringify(values.company),
+                  registerer_job_title: JSON.stringify(values.jobtitle),
+                  registerer_phonenum: values.phonenum,
+                },
+              }
+            )
+            .then((res) => {
+              if (res.status === 200) {
+                setShow(!show);
+              }
+            })
+            .catch((err) => console.log(err));
 
-    try {
-      if (userEmail === "" && userMsg === "") {
-        Swal.fire("all fields are required");
-      } else if (userEmail === "") {
-        Swal.fire("please enter your email");
-      } else if (userMsg === "") {
-        Swal.fire("please enter a message");
-      } else {
-        await axios
-          .post(url, {
-            data: { sender_mail: userEmail, sender_message: userMsg },
-          })
-          .then((res) => {
-            Swal.fire(`we have successfully received your message`);
-          });
+          setValues(intialValues);
+        }
+      } catch (err) {
+        throw new Error(err);
       }
-    } catch (error) {
-      if (error?.response?.data?.error?.message === "2 errors occurred") {
-        Swal.fire("all fields are required");
-      } else if (
-        error?.response?.data?.error?.message ===
-        "sender_mail must be a valid email"
-      ) {
-        Swal.fire("please enter a valid email address");
-      } else {
-        Swal.fire(error?.response?.data?.error?.message);
-      }
+
+      // console.log(JSON.stringify(values.email));
+    };
+
+    checkForm();
+  }, [errors]);
+
+  const validate = (values) => {
+    const errors = {};
+    const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    if (!values.fullname) {
+      errors.fullname = "Your fullname is required";
     }
+    if (!values.email) {
+      errors.email = "Your email is required";
+    } else if (!email_pattern.test(values.email)) {
+      errors.email = "Please enter a valid email";
+    }
+    if (!values.phonenum) {
+      errors.phonenum = "Your phone number is required";
+    }
+    if (!values.company) {
+      errors.company = "Your company is required";
+    }
+    if (!values.jobtitle) {
+      errors.jobtitle = "Your job title is required";
+    }
+
+    return errors;
   };
 
   if (isLoading) {
@@ -126,13 +186,6 @@ const WebinarInfoPage = ({ params }) => {
         <small className="">{webinarDate}</small>
       </div>
 
-      {/* <p>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sed
-				excepturi aperiam explicabo odio officia debitis harum ad quae modi quos
-				est ipsum ratione, perspiciatis voluptas! Eum natus, enim amet aut cum
-				esse. Nostrum beatae quae officiis amet laudantium quidem aperiam, nihil
-				placeat molestiae autem doloribus dolore? At, hic officia.
-			</p> */}
       <p>{singleWebinarData?.attributes?.webinar_description}</p>
 
       {/* speakers */}
@@ -142,15 +195,6 @@ const WebinarInfoPage = ({ params }) => {
           <div className="col-md-3">
             <UpcomingWebinarSpeakers />
           </div>
-          {/* <div className="col-md-3">
-						<UpcomingWebinarSpeakers />
-					</div>
-					<div className="col-md-3">
-						<UpcomingWebinarSpeakers />
-					</div>
-					<div className="col-md-3">
-						<UpcomingWebinarSpeakers />
-					</div> */}
         </div>
       </div>
 
@@ -160,72 +204,140 @@ const WebinarInfoPage = ({ params }) => {
         </h6>
 
         {/* desktop view */}
-        <form className="w-75 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
-          <div className="mb-4">
-            <label htmlFor="fullname" className="form-label">
-              Full Name
-            </label>
-            <input
-              type="text"
-              className="form-control webevent"
-              id="fullname"
-            />
-          </div>
+        {/* {Object.keys(errors).length === 0 && isSubmit ? (
+          <div>success</div>
+        ) : (
+          <p>Check again</p>
+        )} */}
+        <div>
+          {!show && (
+            <form className="w-75 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
+              <div className="mb-4">
+                <label htmlFor="fullname" className="form-label">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="fullname"
+                  name="fullname"
+                  value={values.fullname}
+                  onChange={handleChange}
+                  // onChange={(e) => setFullname(e.target.value)}
+                />
+                <div>
+                  {errors.fullname && (
+                    <p className="text-danger">{errors.fullname}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control webevent"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
+              <div className="mb-4">
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control webevent"
+                  id="exampleInputEmail1"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setEmail(e.target.value);
+                  // }}
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" className="form-text">
+                  We'll never share your email with anyone else.
+                </div>
 
-          <div className="mb-4">
-            <label htmlFor="exampleInputNum1" className="form-label">
-              Phone Number
-            </label>
-            <input
-              type="number"
-              className="form-control webevent"
-              placeholder="WhatsApp Number"
-              id="exampleInputNum1"
-              aria-describedby="emailHelp"
-            />
-          </div>
+                <div>
+                  {errors.email && (
+                    <p className="text-danger">{errors.email}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
-            <label htmlFor="company" className="form-label">
-              Company
-            </label>
-            <input type="text" className="form-control webevent" id="company" />
-          </div>
+              <div className="mb-4">
+                <label htmlFor="exampleInputNum1" className="form-label">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  className="form-control webevent"
+                  placeholder="WhatsApp Number"
+                  id="exampleInputNum1"
+                  name="phonenum"
+                  value={values.phonenum}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   e.target.value;
+                  // }}
+                  aria-describedby="emailHelp"
+                />
 
-          <div className="mb-4">
-            <label htmlFor="jobtitle" className="form-label">
-              Job Title
-            </label>
-            <input
-              type="text"
-              className="form-control webevent"
-              id="jobtitle"
-            />
-          </div>
+                <div>
+                  {errors.phonenum && (
+                    <p className="text-danger">{errors.phonenum}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
+              <div className="mb-4">
+                <label htmlFor="company" className="form-label">
+                  Company
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="company"
+                  name="company"
+                  value={values.company}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setCompany(e.target.value);
+                  // }}
+                />
+
+                <div>
+                  {errors.company && (
+                    <p className="text-danger">{errors.company}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="jobtitle" className="form-label">
+                  Job Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="jobtitle"
+                  name="jobtitle"
+                  value={values.jobtitle}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   e.target.value;
+                  // }}
+                />
+
+                <div>
+                  {errors.jobtitle && (
+                    <p className="text-danger">{errors.jobtitle}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* <div className="mb-4">
             <label htmlFor="country" className="form-label">
               Country
             </label>
             <input type="text" className="form-control webevent" id="country" />
-          </div>
+          </div> */}
 
-          {/* <div className="mb-4 form-check">
+              {/* <div className="mb-4 form-check">
             <input
               type="checkbox"
               className="form-check-input webevent"
@@ -235,78 +347,152 @@ const WebinarInfoPage = ({ params }) => {
               Check me out
             </label>
           </div> */}
-          <button type="submit" className="btn btn-success">
-            Submit
-          </button>
-        </form>
+              <button
+                type="submit"
+                className="btn btn-success"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </form>
+          )}
+        </div>
+
+        {/* {show && <div className="text-center">success</div>} */}
+        {show && <SuccessfulFormSubmitMsg />}
 
         {/* mobile view */}
-        <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block">
-          <div className="mb-4">
-            <label htmlFor="fullname" className="form-label">
-              Full Name
-            </label>
-            <input
-              type="text"
-              className="form-control webevent"
-              id="fullname"
-            />
-          </div>
+        <div>
+          {!show && (
+            <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block">
+              <div className="mb-4">
+                <label htmlFor="fullname" className="form-label">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="fullname"
+                  name="fullname"
+                  value={values.fullname}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setFullname(e.target.value);
+                  // }}
+                />
+                <div>
+                  {errors.fullname && (
+                    <p className="text-danger">{errors.fullname}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control webevent"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
+              <div className="mb-4">
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control webevent"
+                  id="exampleInputEmail1"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setEmail(e.target.value);
+                  // }}
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" className="form-text">
+                  We'll never share your email with anyone else.
+                </div>
 
-          <div className="mb-4">
-            <label htmlFor="exampleInputNum1" className="form-label">
-              Phone Number
-            </label>
-            <input
-              type="number"
-              className="form-control webevent"
-              id="exampleInputNum1"
-              placeholder="WhatsApp Number"
-              aria-describedby="emailHelp"
-            />
-          </div>
+                <div>
+                  {errors.email && (
+                    <p className="text-danger">{errors.email}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
-            <label htmlFor="company" className="form-label">
-              Company
-            </label>
-            <input type="text" className="form-control webevent" id="company" />
-          </div>
+              <div className="mb-4">
+                <label htmlFor="exampleInputNum1" className="form-label">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  className="form-control webevent"
+                  id="exampleInputNum1"
+                  name="phonenum"
+                  value={values.phonenum}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setPhonenum(e.target.value);
+                  // }}
+                  placeholder="WhatsApp Number"
+                  aria-describedby="emailHelp"
+                />
 
-          <div className="mb-4">
-            <label htmlFor="jobtitle" className="form-label">
-              Job Title
-            </label>
-            <input
-              type="text"
-              className="form-control webevent"
-              id="jobtitle"
-            />
-          </div>
+                <div>
+                  {errors.phonenum && (
+                    <p className="text-danger">{errors.phonenum}</p>
+                  )}
+                </div>
+              </div>
 
-          <div className="mb-4">
+              <div className="mb-4">
+                <label htmlFor="company" className="form-label">
+                  Company
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="company"
+                  name="company"
+                  value={values.company}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setCompany(e.target.value);
+                  // }}
+                />
+
+                <div>
+                  {errors.company && (
+                    <p className="text-danger">{errors.company}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="jobtitle" className="form-label">
+                  Job Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control webevent"
+                  id="jobtitle"
+                  name="jobtitle"
+                  value={values.jobtitle}
+                  onChange={handleChange}
+                  // onChange={(e) => {
+                  //   setJobtitle(e.target.value);
+                  // }}
+                />
+
+                <div>
+                  {errors.jobtitle && (
+                    <p className="text-danger">{errors.jobtitle}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* <div className="mb-4">
             <label htmlFor="country" className="form-label">
               Country
             </label>
             <input type="text" className="form-control webevent" id="country" />
-          </div>
+          </div> */}
 
-          {/* <div className="mb-4 form-check">
+              {/* <div className="mb-4 form-check">
             <input
               type="checkbox"
               className="form-check-input webevent"
@@ -316,10 +502,16 @@ const WebinarInfoPage = ({ params }) => {
               Check me out
             </label>
           </div> */}
-          <button type="submit" className="btn btn-success">
-            Submit
-          </button>
-        </form>
+              <button
+                type="submit"
+                className="btn btn-success"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
