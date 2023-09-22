@@ -14,7 +14,7 @@ export const HighlightCard = (props) => {
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
   // console.log(props.attributes.image.data.attributes); // coming up as null
   return (
-    <div className="card mb-3">
+    <div className="card mb-3 image-container">
       <Image
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
         src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}

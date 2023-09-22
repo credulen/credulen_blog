@@ -116,9 +116,11 @@ const SingleArticlePage = ({ params }) => {
                     ?.formats?.medium?.url
                 )
               }`}
-              className="card-img-top"
-              width={500}
-              height={300}
+              // className="card-img-top image-container"
+              className="image-container"
+              // width={500}
+              // height={300}
+              fill={true}
               alt="Picture of the author"
               // alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
             />
