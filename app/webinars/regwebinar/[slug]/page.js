@@ -113,19 +113,17 @@ const WebinarInfoPage = ({ params }) => {
         if (Object.keys(errors).length === 0 && isSubmit) {
           // console.log(values);
           await axios
-            .post(
-              "https://strapi-blcj.onrender.com/api/webinar-registration-details",
-              {
-                data: {
-                  registerer_full_name: JSON.stringify(values.fullname),
-                  registerer_email: values.email.toString(),
-                  registerer_company: JSON.stringify(values.company),
-                  registerer_job_title: JSON.stringify(values.jobtitle),
-                  registerer_phonenum: values.phonenum,
-                },
-              }
-            )
+            .post("https://strapi-blcj.onrender.com/api/web-reg-form-details", {
+              data: {
+                registerer_full_name: JSON.stringify(values.fullname),
+                registerer_email: values.email.toString(),
+                registerer_company: JSON.stringify(values.company),
+                registerer_job_title: JSON.stringify(values.jobtitle),
+                registerer_phonenum: values.phonenum,
+              },
+            })
             .then((res) => {
+              console.log("data", res.data);
               if (res.status === 200) {
                 setShow(!show);
               }
@@ -364,7 +362,7 @@ const WebinarInfoPage = ({ params }) => {
         {/* mobile view */}
         <div>
           {!show && (
-            <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block">
+            <form className="mx-auto border p-5 bg-white shadow d-md-none d-sm-block">
               <div className="mb-4">
                 <label htmlFor="fullname" className="form-label">
                   Full Name

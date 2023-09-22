@@ -1,16 +1,25 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 // import logo from "../..//logo/5.png";
 import logo from "../public/logo/5.png";
 import { SubscribeNavbar } from "./Connections";
+import { useState } from "react";
 
 const Navbars = () => {
+  // const [isHidden, setIsHidden] = useState(true);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // const toggle = () => setIsOpen(!isOpen);
+  // const hide = () => setIsOpen(false);
+  // const show = () => setIsOpen(true);
+
   return (
     <nav className="navbar navbar-expand-lg sticky-top nav_bg shadow-lg py-3">
       <div className="container-fluid container">
-        <Link className="navbar-brand text-white" href="/">
+        <a className="navbar-brand text-white" href="/">
           Credulen
-        </Link>
+        </a>
         {/* <Link className="navbar-brand text-white" href="/">
 					<Image
 						className=""
@@ -28,20 +37,29 @@ const Navbars = () => {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          // onClick={() => setIsHidden((c) => !c)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* <div
+          className={`collapse navbar-collapse ${isHidden ? "hidden" : ""}`}
+          id="navbarSupportedContent"
+        > */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             {/* <li className="nav-item"> */}
-            <Link
+            <a
               className="nav-link active text-white me-3"
               aria-current="page"
               href="/"
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   setIsHidden(false);
+              // }}
             >
               Home
-            </Link>
+            </a>
             {/* </li> */}
             {/* <li className="nav-item">
 							<a className="nav-link text-white" href="#">
@@ -73,14 +91,14 @@ const Navbars = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <Link href="/solutions" className="nav-link text-white me-3">
+              <a href="/solutions" className="nav-link text-white me-3">
                 Solutions
-              </Link>
+              </a>
             </li>
             {/* <li className="nav-item"> */}
-            <Link href="/contact" className="nav-link text-white">
+            <a href="/contact" className="nav-link text-white">
               Contact Us
-            </Link>
+            </a>
             {/* </li> */}
           </ul>
           <div className="" role="search">

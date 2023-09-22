@@ -7,10 +7,12 @@ const intialValues = {
   fullname: "",
   phonenum: "",
   email: "",
-  employmentstatus: "",
-  // country: "",
+  companyname: "",
+  companysize: "",
   jobtitle: "",
+  industry: "",
   solution: "",
+  // country: "",
 };
 
 const BusinessSolutionForm = () => {
@@ -37,20 +39,18 @@ const BusinessSolutionForm = () => {
         if (Object.keys(errors).length === 0 && isSubmit) {
           // console.log(values);
           await axios
-            .post(
-              "https://strapi-blcj.onrender.com/api/individual-solution-forms",
-              {
-                data: {
-                  full_name: JSON.stringify(values.fullname),
-                  email: values.email.toString(),
-                  // phone_num: JSON.stringify(values.phonenum),
-                  phone_num: values.phonenum,
-                  employment_status: JSON.stringify(values.employmentstatus),
-                  job_title: JSON.stringify(values.jobtitle),
-                  solution_type: JSON.stringify(values.solution),
-                },
-              }
-            )
+            .post("https://strapi-blcj.onrender.com/api/bus-soln-forms", {
+              data: {
+                full_name: JSON.stringify(values.fullname),
+                phone_num: values.phonenum,
+                email: values.email.toString(),
+                company_name: JSON.stringify(values.companyname),
+                company_industry: JSON.stringify(values.industry),
+                company_size: JSON.stringify(values.companysize),
+                job_title: JSON.stringify(values.jobtitle),
+                solution_type: JSON.stringify(values.solution),
+              },
+            })
             .then((res) => {
               if (res.status === 200) {
                 setShow(!show);
@@ -85,11 +85,17 @@ const BusinessSolutionForm = () => {
     } else if (!email_pattern.test(values.email)) {
       errors.email = "Please enter a valid email";
     }
-    if (!values.employmentstatus) {
-      errors.employmentstatus = "Please select an employment status";
+    if (!values.companyname) {
+      errors.companyname = "Your company name is required";
+    }
+    if (!values.companysize) {
+      errors.companysize = "Your company size is required";
     }
     if (!values.jobtitle) {
       errors.jobtitle = "Your job title is required";
+    }
+    if (!values.industry) {
+      errors.industry = "Your industry is required";
     }
     if (!values.solution) {
       errors.solution = "Please select a solution";
@@ -104,7 +110,6 @@ const BusinessSolutionForm = () => {
         {/* Please Fill the Form to Use our Business Solutions  */}
         Please Fill the Form to Register Your Interest in our Business Solutions
       </h6>
-
       {/* desktop view */}
       <div>
         {!show && (
@@ -134,7 +139,7 @@ const BusinessSolutionForm = () => {
                 Phone Number
               </label>
               <input
-                type="email"
+                type="number"
                 className="form-control webevent"
                 id="exampleInputPhone1"
                 name="phonenum"
@@ -180,8 +185,17 @@ const BusinessSolutionForm = () => {
                 type="email"
                 className="form-control webevent"
                 id="exampleInputEmail1"
+                name="companyname"
+                value={values.companyname}
+                onChange={handleChange}
                 aria-describedby="emailHelp"
               />
+
+              <div>
+                {errors.companyname && (
+                  <p className="text-danger">{errors.companyname}</p>
+                )}
+              </div>
             </div>
 
             <div className="mb-4">
@@ -191,14 +205,17 @@ const BusinessSolutionForm = () => {
               <select
                 className="form-select webevent"
                 aria-label="Default select example"
-                name="jobtitle"
+                name="companysize"
                 value={values.companysize}
                 onChange={handleChange}
               >
-                <option defaultValue={"selected"}>Over 100</option>
-                <option value="1">50 - 100</option>
-                <option value="2">20 - 50</option>
-                <option value="3">0 - 20</option>
+                <option defaultValue={"selected"}>
+                  Please Select Your Company SIze
+                </option>
+                <option value="1">over 100</option>
+                <option value="2">50 - 100</option>
+                <option value="3">20 - 50</option>
+                <option value="4">0 - 20</option>
               </select>
 
               <div>
@@ -224,6 +241,32 @@ const BusinessSolutionForm = () => {
               <div>
                 {errors.jobtitle && (
                   <p className="text-danger">{errors.jobtitle}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="company" className="form-label">
+                Industry
+              </label>
+              <select
+                className="form-select webevent"
+                aria-label="Default select example"
+                name="industry"
+                value={values.industry}
+                onChange={handleChange}
+              >
+                <option defaultValue={"selected"}>
+                  Please Select Your Preferred Industry
+                </option>
+                <option value="1">Software and Data</option>
+                <option value="2">Blockchain and AI</option>
+                <option value="3">Logistics</option>
+              </select>
+
+              <div>
+                {errors.industry && (
+                  <p className="text-danger">{errors.industry}</p>
                 )}
               </div>
             </div>
@@ -276,13 +319,12 @@ const BusinessSolutionForm = () => {
           </form>
         )}
       </div>
-
       {show && <SuccessfulFormSubmitMsg />}
-
+      {/* d-md-none d-sm-block */}
       {/* mobile view */}
       <div>
         {!show && (
-          <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block form__width">
+          <form className="mx-auto border p-5 bg-white shadow d-md-none d-sm-block">
             <div className="mb-4">
               <label htmlFor="fullname" className="form-label">
                 Full Name
@@ -308,7 +350,7 @@ const BusinessSolutionForm = () => {
                 Phone Number
               </label>
               <input
-                type="email"
+                type="number"
                 className="form-control webevent"
                 id="exampleInputPhone1"
                 name="phonenum"
@@ -346,43 +388,6 @@ const BusinessSolutionForm = () => {
               </div>
             </div>
 
-            {/* <div className="mb-4">
-              <label htmlFor="company" className="form-label">
-                Country
-              </label>
-              <select
-                className="form-select webevent"
-                aria-label="Default select example"
-              >
-                <option defaultValue={"selected"}>Nigeria</option>
-                <option value="1">America</option>
-                <option value="2">UK</option>
-                <option value="3">Three</option>
-              </select>
-            </div> */}
-
-            {/* <div className="mb-4">
-              <label htmlFor="jobtitle" className="form-label">
-                Job Title
-              </label>
-              <input
-                type="text"
-                className="form-control webevent"
-                id="jobtitle"
-              />
-            </div> */}
-
-            {/* <div className="mb-4">
-              <label htmlFor="country" className="form-label">
-                Country
-              </label>
-              <input
-                type="text"
-                className="form-control webevent"
-                id="country"
-              />
-            </div> */}
-
             <div className="mb-4">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Company Name
@@ -391,10 +396,10 @@ const BusinessSolutionForm = () => {
                 type="email"
                 className="form-control webevent"
                 id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                name="email"
-                value={values.email}
+                name="companyname"
+                value={values.companyname}
                 onChange={handleChange}
+                aria-describedby="emailHelp"
               />
 
               <div>
@@ -405,27 +410,28 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="employment_status" className="form-label">
-                Employment Status
+              <label htmlFor="company" className="form-label">
+                Company Size
               </label>
               <select
                 className="form-select webevent"
                 aria-label="Default select example"
-                name="employmentstatus"
-                value={values.employmentstatus}
+                name="companysize"
+                value={values.companysize}
                 onChange={handleChange}
               >
                 <option defaultValue={"selected"}>
-                  Please Select your Employment Status
+                  Please Select Your Company SIze
                 </option>
-                <option value="1">Employed</option>
-                <option value="2">Self Employed</option>
-                <option value="3">Unemployed</option>
+                <option value="1">over 100</option>
+                <option value="2">50 - 100</option>
+                <option value="3">20 - 50</option>
+                <option value="4">0 - 20</option>
               </select>
 
               <div>
-                {errors.employmentstatus && (
-                  <p className="text-danger">{errors.employmentstatus}</p>
+                {errors.companysize && (
+                  <p className="text-danger">{errors.companysize}</p>
                 )}
               </div>
             </div>
@@ -442,9 +448,36 @@ const BusinessSolutionForm = () => {
                 value={values.jobtitle}
                 onChange={handleChange}
               />
+
               <div>
                 {errors.jobtitle && (
                   <p className="text-danger">{errors.jobtitle}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="company" className="form-label">
+                Industry
+              </label>
+              <select
+                className="form-select webevent"
+                aria-label="Default select example"
+                name="industry"
+                value={values.industry}
+                onChange={handleChange}
+              >
+                <option defaultValue={"selected"}>
+                  Please Select Your Preferred Industry
+                </option>
+                <option value="1">Software and Data</option>
+                <option value="2">Blockchain and AI</option>
+                <option value="3">Logistics</option>
+              </select>
+
+              <div>
+                {errors.industry && (
+                  <p className="text-danger">{errors.industry}</p>
                 )}
               </div>
             </div>
@@ -461,8 +494,8 @@ const BusinessSolutionForm = () => {
                 onChange={handleChange}
               >
                 {/* <option defaultValue={"selected"}>
-                  Please Select your Preferred Solution
-                </option> */}
+              Please Select your Preferred Solution
+            </option> */}
                 <option value="1">Please Select your Preferred Solution</option>
                 <option value="2">
                   Blockchain Business Model Strategy Workshops for Businesses
