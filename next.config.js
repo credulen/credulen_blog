@@ -1,24 +1,32 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-	images: {
-		domains: ["localhost"],
-	},
+// const nextConfig = {
+//   reactStrictMode: true,
+//   images: {
+//     // domains: ["res.cloudinary.com"],
+//     loader: "cloudinary",
+//     path: "https://res.cloudinary.com/dge5x9t8i/image/upload",
+//   },
 
-	// images: {
-	// 	remotePatterns: [
-	// 		{
-	// 			protocol: "http",
-	// 			hostname: "localhost",
-	// 		},
-	// 	],
-	// },
+const imageConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dge5x9t8i/**",
+      },
+    ],
+  },
 };
-const path = require("path");
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
+module.exports = imageConfig;
+// };
+// const path = require("path");
 
-module.exports = {
-	sassOptions: {
-		includePaths: [path.join(__dirname, "styles")],
-	},
-};
+// module.exports = {
+//   sassOptions: {
+//     includePaths: [path.join(__dirname, "styles")],
+//   },
+// };

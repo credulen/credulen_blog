@@ -12,17 +12,21 @@ export const HighlightCard = (props) => {
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
+  // console.log(props.attributes.image.data.attributes); // coming up as null
   return (
     <div className="card mb-3">
-      <img
+      <Image
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+        src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
         // attributes.formats.thumbnail.url
+        // className="card-img-top d-none d-md-block d-sm-none"
         className="card-img-top"
-        width={200}
-        height={400}
+        // fill={true}
+        width={400}
+        height={300}
         alt="Picture of the author"
       />
+
       <div className="card-body nav_bg">
         <h5 className="card-title text-white">{props?.attributes?.title}</h5>
         <p className="card-text text-white">
