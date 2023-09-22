@@ -14,14 +14,15 @@ export const HighlightCard = (props) => {
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
   // console.log(props.attributes.image.data.attributes); // coming up as null
   return (
-    <div className="card mb-3 image-container">
+    // <div className="card mb-3 image-container">
+    <div className="card mb-3 img-fluid">
       <Image
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
         src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
         // attributes.formats.thumbnail.url
         // className="card-img-top d-none d-md-block d-sm-none"
         className="card-img-top"
-        // fill={true}
+        // fill
         width={400}
         height={300}
         alt="Picture of the author"
@@ -55,9 +56,10 @@ export const ArticleCard = (props) => {
     <div className="card mt-3 h-100">
       <img
         src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
-        className="card-img-top"
-        width={200}
-        height={250}
+        className="card-img-top img-fluid"
+        fill
+        // width={200}
+        // height={250}
         alt="Picture of the author"
       />
       <div className="card-body nav_bg">

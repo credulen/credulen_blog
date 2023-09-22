@@ -117,7 +117,7 @@ const SingleArticlePage = ({ params }) => {
                 )
               }`}
               // className="card-img-top image-container"
-              className="image-container"
+              className="img-fluid"
               // width={500}
               // height={300}
               fill={true}
@@ -164,7 +164,7 @@ const SingleArticlePage = ({ params }) => {
 
             {/* <h3>Title</h3> */}
           </div>
-          <div className="text-justify mt-4">
+          <div className="text-justify mt-4 text-black">
             <p>
               {isLoading ? (
                 <IsLoading />
