@@ -54,13 +54,13 @@ const Solutions = () => {
   }
   return (
     <div className="container">
-      <h1>Solutions</h1>
-      <p>
+      <h1 className="text-dark">Solutions</h1>
+      <p className="text-dark">
         We position you or your business ahead of the curve in the wake of
         technology disruption
       </p>
 
-      <div>
+      <div className="pt-3">
         <Link href="#indiSolution" className="btn btn-success me-3">
           Individuals
         </Link>
@@ -78,7 +78,7 @@ const Solutions = () => {
       <div id=""></div>
       <div id=""></div>
       <div className="mt-5">
-        <h2 className="mb-4">Individuals</h2>
+        <h2 className="mb-4 text-dark">Individual Solution</h2>
         <div className="row gy-4">
           {individualSolutionData?.map((indsolution) => {
             return (
@@ -98,7 +98,7 @@ const Solutions = () => {
       <div id=""></div>
       <div id=""></div>
       <div className="mt-5 pt-5">
-        <h2 className="pb-2">Business/Institution</h2>
+        <h2 className="pb-2 text-dark">Business/Institution Solution</h2>
 
         <div className="row gy-4">
           {businessSolutionData?.map((bussolution) => {

@@ -110,6 +110,7 @@ const Contact = () => {
             id="exampleFormControlTextarea1"
             onChange={(e) => setUserMsg(e.target.value)}
             rows="3"
+            placeholder="please enter your message"
           ></textarea>
         </div>
 

@@ -31,7 +31,7 @@ const Conferences = () => {
   return (
     <div className="container">
       <div className="pb-5">
-        <h1 className="mb-5">Events You will Love</h1>
+        <h1 className="mb-5 text-dark">Events You will Love</h1>
         {conferenceData.length === 0 ? (
           <ComingSoonCard />
         ) : (
@@ -51,7 +51,7 @@ const Conferences = () => {
 
       {/* past events */}
       <div className="pt-5">
-        <h4 className="border-top border-bottom p-3 border-dark-subtle mb-5">
+        <h4 className="border-top border-bottom p-3 border-dark-subtle mb-5 text-dark">
           Past Events
         </h4>
 
