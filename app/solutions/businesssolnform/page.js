@@ -106,7 +106,7 @@ const BusinessSolutionForm = () => {
 
   return (
     <div className="">
-      <h6 className="text-center pb-4">
+      <h6 className="text-center pb-4 text-white">
         {/* Please Fill the Form to Use our Business Solutions  */}
         Please Fill the Form to Register Your Interest in our Business Solutions
       </h6>
@@ -115,7 +115,7 @@ const BusinessSolutionForm = () => {
         {!show && (
           <form className="w-50 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
             <div className="mb-4">
-              <label htmlFor="fullname" className="form-label">
+              <label htmlFor="fullname" className="form-label text-dark">
                 Full Name
               </label>
               <input
@@ -135,7 +135,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputPhone1" className="form-label">
+              <label
+                htmlFor="exampleInputPhone1"
+                className="form-label text-dark"
+              >
                 Phone Number
               </label>
               <input
@@ -156,7 +159,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Email address
               </label>
               <input
@@ -168,7 +174,7 @@ const BusinessSolutionForm = () => {
                 onChange={handleChange}
                 aria-describedby="emailHelp"
               />
-              <div id="emailHelp" className="form-text">
+              <div id="emailHelp" className="form-text text-dark">
                 We'll never share your email with anyone else.
               </div>
 
@@ -178,7 +184,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Company Name
               </label>
               <input
@@ -199,18 +208,18 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Company Size
               </label>
               <select
-                className="form-select webevent"
+                className="form-select webevent text-dark"
                 aria-label="Default select example"
                 name="companysize"
                 value={values.companysize}
                 onChange={handleChange}
               >
                 <option defaultValue={"selected"}>
-                  Please Select Your Company SIze
+                  Please Select Your Company Size
                 </option>
                 <option value="1">over 100</option>
                 <option value="2">50 - 100</option>
@@ -226,7 +235,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="jobtitle" className="form-label">
+              <label htmlFor="jobtitle" className="form-label text-dark">
                 Job Title
               </label>
               <input
@@ -246,7 +255,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Industry
               </label>
               <select
@@ -272,7 +281,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Select Solution
               </label>
               <select
@@ -326,7 +335,7 @@ const BusinessSolutionForm = () => {
         {!show && (
           <form className="mx-auto border p-5 bg-white shadow d-md-none d-sm-block">
             <div className="mb-4">
-              <label htmlFor="fullname" className="form-label">
+              <label htmlFor="fullname" className="form-label text-dark">
                 Full Name
               </label>
               <input
@@ -346,7 +355,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputPhone1" className="form-label">
+              <label
+                htmlFor="exampleInputPhone1"
+                className="form-label text-dark"
+              >
                 Phone Number
               </label>
               <input
@@ -367,7 +379,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Email address
               </label>
               <input
@@ -389,7 +404,10 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Company Name
               </label>
               <input
@@ -410,7 +428,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Company Size
               </label>
               <select
@@ -437,7 +455,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="jobtitle" className="form-label">
+              <label htmlFor="jobtitle" className="form-label text-dark">
                 Job Title
               </label>
               <input
@@ -457,7 +475,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Industry
               </label>
               <select
@@ -483,7 +501,7 @@ const BusinessSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Select Solution
               </label>
               <select
