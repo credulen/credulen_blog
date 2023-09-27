@@ -106,7 +106,7 @@ const BusinessSolutionForm = () => {
 
   return (
     <div className="">
-      <h6 className="text-center pb-4 text-white">
+      <h6 className="text-center pb-4 text-dark">
         {/* Please Fill the Form to Use our Business Solutions  */}
         Please Fill the Form to Register Your Interest in our Business Solutions
       </h6>

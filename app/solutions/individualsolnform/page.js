@@ -100,7 +100,7 @@ const IndividualSolutionForm = () => {
 
   return (
     <div className="">
-      <h6 className="text-center pb-4">
+      <h6 className="text-center pb-4 text-dark">
         Please Fill the Form to Register Your Interest in our Solutions for
         Individuals
       </h6>
@@ -110,7 +110,7 @@ const IndividualSolutionForm = () => {
         {!show && (
           <form className="w-50 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
             <div className="mb-4">
-              <label htmlFor="fullname" className="form-label">
+              <label htmlFor="fullname" className="form-label text-dark">
                 Full Name
               </label>
               <input
@@ -130,7 +130,10 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputPhone1" className="form-label">
+              <label
+                htmlFor="exampleInputPhone1"
+                className="form-label text-dark"
+              >
                 Phone Number
               </label>
               <input
@@ -151,7 +154,10 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Email address
               </label>
               <input
@@ -188,7 +194,10 @@ const IndividualSolutionForm = () => {
             </div> */}
 
             <div className="mb-4">
-              <label htmlFor="employment_status" className="form-label">
+              <label
+                htmlFor="employment_status"
+                className="form-label text-dark"
+              >
                 Employment Status
               </label>
               <select
@@ -214,7 +223,7 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="jobtitle" className="form-label">
+              <label htmlFor="jobtitle" className="form-label text-dark">
                 Job Title
               </label>
               <input
@@ -233,7 +242,7 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Select Solution
               </label>
               <select
@@ -278,7 +287,7 @@ const IndividualSolutionForm = () => {
         {!show && (
           <form className="mx-auto border p-5 bg-white shadow  d-md-none d-sm-block form__width">
             <div className="mb-4">
-              <label htmlFor="fullname" className="form-label">
+              <label htmlFor="fullname" className="form-label text-dark">
                 Full Name
               </label>
               <input
@@ -298,7 +307,10 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputPhone1" className="form-label">
+              <label
+                htmlFor="exampleInputPhone1"
+                className="form-label text-dark"
+              >
                 Phone Number
               </label>
               <input
@@ -319,7 +331,10 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-dark"
+              >
                 Email address
               </label>
               <input
@@ -356,7 +371,10 @@ const IndividualSolutionForm = () => {
             </div> */}
 
             <div className="mb-4">
-              <label htmlFor="employment_status" className="form-label">
+              <label
+                htmlFor="employment_status"
+                className="form-label text-dark"
+              >
                 Employment Status
               </label>
               <select
@@ -410,7 +428,7 @@ const IndividualSolutionForm = () => {
             </div> */}
 
             <div className="mb-4">
-              <label htmlFor="jobtitle" className="form-label">
+              <label htmlFor="jobtitle" className="form-label text-dark">
                 Job Title
               </label>
               <input
@@ -430,7 +448,7 @@ const IndividualSolutionForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="company" className="form-label">
+              <label htmlFor="company" className="form-label text-dark">
                 Select Solution
               </label>
               <select
