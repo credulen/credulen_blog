@@ -16,15 +16,15 @@ export const HighlightCard = (props) => {
   return (
     // <div className="card mb-3 image-container">
     <div className="card mb-3 img-fluid">
-      <Image
+      <img
         // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
         src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
         // attributes.formats.thumbnail.url
         // className="card-img-top d-none d-md-block d-sm-none"
         className="card-img-top"
-        // fill
-        width={400}
-        height={300}
+        fill={true}
+        // width={400}
+        // height={300}
         alt="Picture of the author"
       />
 

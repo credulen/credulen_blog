@@ -118,9 +118,9 @@ const SingleArticlePage = ({ params }) => {
               }`}
               // className="card-img-top image-container"
               className="img-fluid"
-              // width={500}
+              width={900}
               // height={300}
-              fill={true}
+              // fill={true}
               alt="Picture of the author"
               // alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
             />
@@ -169,9 +169,11 @@ const SingleArticlePage = ({ params }) => {
               {isLoading ? (
                 <IsLoading />
               ) : (
-                <ReactMarkdown>
-                  {singleArticleData?.attributes?.body}
-                </ReactMarkdown>
+                <p align="justify">
+                  <ReactMarkdown>
+                    {singleArticleData?.attributes?.body}
+                  </ReactMarkdown>
+                </p>
               )}
               {/* {isLoading ? (
                 <IsLoading />
