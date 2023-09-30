@@ -239,7 +239,3 @@ a {
   transform: translate3D(0, -1px, 0) scale(1.03) !important;
   color: var(--sec_color) !important;
 }
-
-/* .article-title__onclick:active {
-  color: red;
-} */

@@ -14,7 +14,7 @@ export const HighlightCard = (props) => {
   //   setActive(!active);
   // };
 
-  // console.log(props.attributes.slug);
+  // console.log(props.attributes);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
@@ -29,7 +29,7 @@ export const HighlightCard = (props) => {
       <div className="card mb-3 img-fluid article-card__onhover">
         <img
           // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
-          src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
+          src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
           // attributes.formats.thumbnail.url
           // className="card-img-top d-none d-md-block d-sm-none"
           className="card-img-top"
@@ -43,13 +43,13 @@ export const HighlightCard = (props) => {
         <div className="card-body">
           <h5
             // className="card-title text-dark article-title__onclick"
-            className="card-title text-dark"
+            className="card-title"
             // onClick={handleClick}
             // style={{ color: active ? "black" : "white" }}
           >
             {props?.attributes?.title}
           </h5>
-          <p className="card-text text-dark">
+          <p className="card-text">
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
           </p>
@@ -71,7 +71,7 @@ export const HighlightCard = (props) => {
 };
 
 export const ArticleCard = (props) => {
-  // console.log(props);
+  console.log(props);
   return (
     <Link
       // href={`/article/${props.articleId}`}
@@ -90,8 +90,8 @@ export const ArticleCard = (props) => {
         />
         <div className="card-body">
           {/* <div className="card-body nav_bg"> */}
-          <h5 className="card-title text-dark">{props?.attributes?.title}</h5>
-          <p className="card-text text-dark">
+          <h5 className="card-title">{props?.attributes?.title}</h5>
+          <p className="card-text">
             {" "}
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
