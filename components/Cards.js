@@ -8,6 +8,12 @@ import { getAllWebinarSpeakersData } from "@/data/webinarData/webinarSpeakerData
 
 // an article becomes highlighted with true or false
 export const HighlightCard = (props) => {
+  // const [active, setActive] = useState(false);
+
+  // const handleClick = () => {
+  //   setActive(!active);
+  // };
+
   // console.log(props.attributes.slug);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
@@ -20,7 +26,7 @@ export const HighlightCard = (props) => {
       href={`/articles/article/${props?.id}`}
       className=""
     >
-      <div className="card mb-3 img-fluid">
+      <div className="card mb-3 img-fluid article-card__onhover">
         <img
           // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
           src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
@@ -35,7 +41,14 @@ export const HighlightCard = (props) => {
 
         {/* <div className="card-body nav_bg"> */}
         <div className="card-body">
-          <h5 className="card-title text-dark">{props?.attributes?.title}</h5>
+          <h5
+            // className="card-title text-dark article-title__onclick"
+            className="card-title text-dark"
+            // onClick={handleClick}
+            // style={{ color: active ? "black" : "white" }}
+          >
+            {props?.attributes?.title}
+          </h5>
           <p className="card-text text-dark">
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
@@ -66,7 +79,7 @@ export const ArticleCard = (props) => {
       className=""
       passHref
     >
-      <div className="card mt-3 h-100">
+      <div className="card mt-3 h-100 article-card__onhover">
         <img
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top img-fluid"
@@ -527,81 +540,85 @@ export const RelatedArticleCard = () => {
 export const IndividualSolutionsCard = (props) => {
   // console.log(props);
   return (
-    <div className="card h-100">
-      <img
-        src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.small?.url}`}
-        className="card-img-top"
-        width={200}
-        height={250}
-        alt="Picture of the author"
-      />
-      <div className="card-body webevent">
-        <h5 className="card-title text-center">
-          {props?.attributes?.individual_solution_name}
-        </h5>
-        {/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
+    <Link href="/solutions/individualsolnform" className="">
+      <div className="card h-100 article-card__onhover">
+        <img
+          src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.small?.url}`}
+          className="card-img-top"
+          width={200}
+          height={250}
+          alt="Picture of the author"
+        />
+        <div className="card-body webevent">
+          <h5 className="card-title text-center">
+            {props?.attributes?.individual_solution_name}
+          </h5>
+          {/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small>
 				<small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
 
-        <p className="card-text pb-3">
-          {" "}
-          {props?.attributes?.individual_solution_description
-            .split(" ")
-            .splice(0, 15)
-            .join(" ")}
-        </p>
-        <Link
+          <p className="card-text pb-3">
+            {" "}
+            {props?.attributes?.individual_solution_description
+              .split(" ")
+              .splice(0, 15)
+              .join(" ")}
+          </p>
+          {/* <Link
           href="/solutions/individualsolnform"
           className="btn btn-warning text-white"
         >
           Learn More
-        </Link>
+        </Link> */}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 export const BusinessSolutionsCard = (props) => {
   // console.log(props);
   return (
-    <div className="card h-100">
-      <img
-        // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
-        src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.small?.url}`}
-        className="card-img-top"
-        width={200}
-        height={250}
-        alt="Picture of the author"
-      />
-      <div className="card-body webevent">
-        <h5 className="card-title text-center mb-4">
-          {props?.attributes?.bus_soln_name}
-        </h5>
-        {/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small> */}
-        <p className="card-text pb-3">
-          {props?.attributes?.bus_soln_description
-            .split(" ")
-            .splice(0, 15)
-            .join(" ")}
+    <Link href="/solutions/businesssolnform" className="">
+      <div className="card h-100 article-card__onhover">
+        <img
+          // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
+          src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.small?.url}`}
+          className="card-img-top"
+          width={200}
+          height={250}
+          alt="Picture of the author"
+        />
+        <div className="card-body webevent">
+          <h5 className="card-title text-center mb-4">
+            {props?.attributes?.bus_soln_name}
+          </h5>
+          {/* <small className="d-block pb-1 pt-1">Oregun, Lagos</small> */}
+          <p className="card-text pb-3">
+            {props?.attributes?.bus_soln_description
+              .split(" ")
+              .splice(0, 15)
+              .join(" ")}
 
-          {/* {console.log(props?.attributes?.business_solution_description)} */}
-        </p>
-        {/* <small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
+            {/* {console.log(props?.attributes?.business_solution_description)} */}
+          </p>
+          {/* <small className="d-block pb-3">JULY 15, 2023 | 5:00pm</small> */}
 
-        {/* <p className="card-text pb-3">
+          {/* <p className="card-text pb-3">
 					{" "}
 					{props.attributes.business_solution_description
 						.split(" ")
 						.splice(0, 15)
 						.join(" ")}
 				</p> */}
-        <Link
-          href="/solutions/businesssolnform"
-          className="btn btn-warning text-white"
-        >
-          Learn More
-        </Link>
+          {/* <Link
+            href="/solutions/businesssolnform"
+            className="btn btn-warning text-white"
+          >
+            Learn More
+          </Link> */}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
