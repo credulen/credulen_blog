@@ -15,9 +15,10 @@ const Navbars = () => {
   // const show = () => setIsOpen(true);
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top nav_bg shadow-lg py-3">
+    <nav className="navbar navbar-expand-lg sticky-top bg-white shadow-lg py-3">
+      {/* <nav className="navbar navbar-expand-lg sticky-top nav_bg shadow-lg py-3"> */}
       <div className="container-fluid container">
-        <a className="navbar-brand text-white" href="/">
+        <a className="navbar-brand text-dark" href="/">
           Credulen
         </a>
         {/* <Link className="navbar-brand text-white" href="/">
@@ -50,7 +51,7 @@ const Navbars = () => {
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             {/* <li className="nav-item"> */}
             <a
-              className="nav-link active text-white me-3"
+              className="nav-link active text-dark me-3"
               aria-current="page"
               href="/"
               // onClick={(e) => {
@@ -68,7 +69,7 @@ const Navbars = () => {
 						</li> */}
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle text-white me-3"
+                className="nav-link dropdown-toggle text-dark me-3"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -78,25 +79,25 @@ const Navbars = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/webinars">
+                  <a className="dropdown-item text-dark" href="/webinars">
                     Webinars
                   </a>
                 </li>
 
                 <li>
-                  <a className="dropdown-item" href="/conferences">
+                  <a className="dropdown-item text-dark" href="/conferences">
                     Conferences
                   </a>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <a href="/solutions" className="nav-link text-white me-3">
+              <a href="/solutions" className="nav-link text-dark me-3">
                 Solutions
               </a>
             </li>
             {/* <li className="nav-item"> */}
-            <a href="/contact" className="nav-link text-white">
+            <a href="/contact" className="nav-link text-dark">
               Contact Us
             </a>
             {/* </li> */}

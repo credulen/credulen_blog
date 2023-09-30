@@ -93,7 +93,8 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: var(--pry_color_light);
+  /* background-color: var(--pry_color_light); */
+  background-color: white;
 }
 
 a {

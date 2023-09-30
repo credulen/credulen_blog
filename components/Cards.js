@@ -33,9 +33,10 @@ export const HighlightCard = (props) => {
           alt="Picture of the author"
         />
 
-        <div className="card-body nav_bg">
-          <h5 className="card-title text-white">{props?.attributes?.title}</h5>
-          <p className="card-text text-white">
+        {/* <div className="card-body nav_bg"> */}
+        <div className="card-body">
+          <h5 className="card-title text-dark">{props?.attributes?.title}</h5>
+          <p className="card-text text-dark">
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
           </p>
@@ -74,9 +75,10 @@ export const ArticleCard = (props) => {
           // height={250}
           alt="Picture of the author"
         />
-        <div className="card-body nav_bg">
-          <h5 className="card-title text-white">{props?.attributes?.title}</h5>
-          <p className="card-text text-white">
+        <div className="card-body">
+          {/* <div className="card-body nav_bg"> */}
+          <h5 className="card-title text-dark">{props?.attributes?.title}</h5>
+          <p className="card-text text-dark">
             {" "}
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
