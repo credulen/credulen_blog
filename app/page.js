@@ -1,7 +1,11 @@
-import ArticlePage from "./articles/page";
+import ArticlePage from "./articlelist/page";
 
 const Home = () => {
-	return <ArticlePage />;
+  return (
+    <div className="container">
+      <ArticlePage />;
+    </div>
+  );
 };
 
 export default Home;

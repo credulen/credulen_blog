@@ -44,15 +44,16 @@ export default function ArticlePage() {
 
   // console.log(limit);
 
-  if (isLoading) {
-    return <IsLoading />;
-  }
+  // if (isLoading) {
+  //   return <IsLoading />;
+  // }
 
   return (
     <main className="container">
-      <div></div>
+      {/* <div></div> */}
       <div className="row g-5">
         <div className="col-md-8">
+          {/* <div className="container"> */}
           <div className="row">
             {articleData?.map((post) => {
               if (post.attributes.highlighted_article === true) {
@@ -64,7 +65,9 @@ export default function ArticlePage() {
               }
             })}
           </div>
+          {/* </div> */}
 
+          {/* <div className="container"> */}
           <div className="row mt-5 gy-4">
             {articleData?.map((post) => {
               // console.log(post.attributes);
@@ -77,9 +80,10 @@ export default function ArticlePage() {
               }
             })}
           </div>
+          {/* </div> */}
         </div>
 
-        <div className="col-md-4 fixed-right">
+        <div className="col-md-4">
           <div className="mb-5">
             <RecentPostCard />
           </div>

@@ -27,12 +27,10 @@ export default function RootLayout({ children }) {
 					href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></Link>
 			</Head> */}
       <body className="body">
-        <Navbars />
+        {/* <Navbars /> */}
         <div className="mt-5 pt-4">{children}</div>
 
-        <div className="mt-5 pt-4">
-          <Footer />
-        </div>
+        <div className="mt-5 pt-4">{/* <Footer /> */}</div>
       </body>
     </html>
   );

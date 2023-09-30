@@ -23,7 +23,7 @@ export const HighlightCard = (props) => {
     // <div className="card mb-3 image-container">
     <Link
       // href={`/articles/article/${props?.attributes?.slug}`}
-      href={`/articles/article/${props?.id}`}
+      href={`/articlelist/article/${props?.id}`}
       className=""
     >
       <div className="card mb-3 img-fluid article-card__onhover">
@@ -71,11 +71,11 @@ export const HighlightCard = (props) => {
 };
 
 export const ArticleCard = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <Link
       // href={`/article/${props.articleId}`}
-      href={`/articles/article/${props?.id}`}
+      href={`/articlelist/article/${props?.id}`}
       className=""
       passHref
     >
