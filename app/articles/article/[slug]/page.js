@@ -158,7 +158,7 @@ const SingleArticlePage = ({ params }) => {
           {/* <p className="text-justify mt-4">{data.attributes.body}</p> */}
 
           <div className="text-center">
-            <h3 className="text-white">
+            <h3 className="text-black">
               {isLoading ? <IsLoading /> : singleArticleData?.attributes?.title}
             </h3>
 

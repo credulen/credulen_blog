@@ -15,70 +15,83 @@ export const HighlightCard = (props) => {
   // console.log(props.attributes.image.data.attributes); // coming up as null
   return (
     // <div className="card mb-3 image-container">
-    <div className="card mb-3 img-fluid">
-      <img
-        // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
-        // attributes.formats.thumbnail.url
-        // className="card-img-top d-none d-md-block d-sm-none"
-        className="card-img-top"
-        fill={true}
-        // width={400}
-        // height={300}
-        alt="Picture of the author"
-      />
+    <Link
+      // href={`/articles/article/${props?.attributes?.slug}`}
+      href={`/articles/article/${props?.id}`}
+      className=""
+    >
+      <div className="card mb-3 img-fluid">
+        <img
+          // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
+          src={`${props?.attributes?.image?.data?.attributes?.formats?.large?.url}`}
+          // attributes.formats.thumbnail.url
+          // className="card-img-top d-none d-md-block d-sm-none"
+          className="card-img-top"
+          fill={true}
+          // width={400}
+          // height={300}
+          alt="Picture of the author"
+        />
 
-      <div className="card-body nav_bg">
-        <h5 className="card-title text-white">{props?.attributes?.title}</h5>
-        <p className="card-text text-white">
-          {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
-            "..."}
-        </p>
-        {/* <p className="card-text">
+        <div className="card-body nav_bg">
+          <h5 className="card-title text-white">{props?.attributes?.title}</h5>
+          <p className="card-text text-white">
+            {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
+              "..."}
+          </p>
+          {/* <p className="card-text">
 					<small className="text-body-secondary">Last updated 3 mins ago</small>
 				</p> */}
 
-        <Link
+          {/* <Link
           // href={`/articles/article/${props?.attributes?.slug}`}
           href={`/articles/article/${props?.id}`}
           className="btn btnc mt-3"
         >
           Read More
-        </Link>
+        </Link> */}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 export const ArticleCard = (props) => {
   // console.log(props);
   return (
-    <div className="card mt-3 h-100">
-      <img
-        src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
-        className="card-img-top img-fluid"
-        fill
-        // width={200}
-        // height={250}
-        alt="Picture of the author"
-      />
-      <div className="card-body nav_bg">
-        <h5 className="card-title text-white">{props?.attributes?.title}</h5>
-        <p className="card-text text-white">
-          {" "}
-          {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
-            "..."}
-        </p>
-        <Link
+    <Link
+      // href={`/article/${props.articleId}`}
+      href={`/articles/article/${props?.id}`}
+      className=""
+      passHref
+    >
+      <div className="card mt-3 h-100">
+        <img
+          src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+          className="card-img-top img-fluid"
+          fill
+          // width={200}
+          // height={250}
+          alt="Picture of the author"
+        />
+        <div className="card-body nav_bg">
+          <h5 className="card-title text-white">{props?.attributes?.title}</h5>
+          <p className="card-text text-white">
+            {" "}
+            {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
+              "..."}
+          </p>
+          {/* <Link
           // href={`/article/${props.articleId}`}
           href={`/articles/article/${props?.id}`}
           className="btn btn-success"
           passHref
         >
           Read More
-        </Link>
+        </Link> */}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
