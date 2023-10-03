@@ -14,7 +14,7 @@ export const HighlightCard = (props) => {
   //   setActive(!active);
   // };
 
-  // console.log(props.attributes);
+  console.log(props?.attributes?.category?.data?.attributes?.Title);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
@@ -41,6 +41,7 @@ export const HighlightCard = (props) => {
 
         {/* <div className="card-body nav_bg"> */}
         <div className="card-body">
+          <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
           <h5
             // className="card-title text-dark article-title__onclick"
             className="card-title"
@@ -90,6 +91,7 @@ export const ArticleCard = (props) => {
         />
         <div className="card-body">
           {/* <div className="card-body nav_bg"> */}
+          <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
           <h5 className="card-title">{props?.attributes?.title}</h5>
           <p className="card-text">
             {" "}

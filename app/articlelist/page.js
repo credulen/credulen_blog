@@ -9,6 +9,7 @@ import axios from "axios";
 import Link from "next/link";
 import { getAllArticleData } from "@/data/articleData/articleListData";
 import IsLoading from "@/components/IsLoading";
+import TagButtons from "@/components/TagButtons";
 
 export default function ArticlePage() {
   const [articleData, setArticleData] = useState([]);
@@ -69,6 +70,7 @@ export default function ArticlePage() {
 
           {/* <div className="container"> */}
           <div className="row mt-5 gy-4">
+            {/* <TagButtons /> */}
             {articleData?.map((post) => {
               // console.log(post.attributes);
               if (post.attributes.highlighted_article === false) {
@@ -83,6 +85,7 @@ export default function ArticlePage() {
           {/* </div> */}
         </div>
 
+        {/* <div className="col-md-4" style={{ position: "fixed", right: "1px" }}> */}
         <div className="col-md-4">
           <div className="mb-5">
             <RecentPostCard />
