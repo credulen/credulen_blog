@@ -49,19 +49,19 @@ const Navbars = () => {
         > */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-            {/* <li className="nav-item"> */}
-            <a
-              className="nav-link active text-dark me-3"
-              aria-current="page"
-              href="/"
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   setIsHidden(false);
-              // }}
-            >
-              Home
-            </a>
-            {/* </li> */}
+            <li className="nav-item">
+              <a
+                className="nav-link active text-dark me-3"
+                aria-current="page"
+                href="/"
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   setIsHidden(false);
+                // }}
+              >
+                Home
+              </a>
+            </li>
             {/* <li className="nav-item">
 							<a className="nav-link text-white" href="#">
 								Link
@@ -96,6 +96,7 @@ const Navbars = () => {
                 Solutions
               </a>
             </li>
+
             {/* <li className="nav-item"> */}
             <a href="/contact" className="nav-link text-dark">
               Contact Us

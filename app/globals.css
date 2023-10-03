@@ -239,3 +239,7 @@ a {
   transform: translate3D(0, -1px, 0) scale(1.03) !important;
   color: var(--sec_color) !important;
 }
+
+.article-content__onhover:hover {
+  color: var(--sec_color) !important;
+}

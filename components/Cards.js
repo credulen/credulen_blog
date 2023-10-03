@@ -14,19 +14,25 @@ export const HighlightCard = (props) => {
   //   setActive(!active);
   // };
 
-  console.log(props?.attributes?.category?.data?.attributes?.Title);
+  // console.log(props?.attributes?.category?.data?.attributes?.Title);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
   // console.log(props.attributes.image.data.attributes.url); // coming up as null
   // console.log(props.attributes.image.data.attributes); // coming up as null
   return (
     // <div className="card mb-3 image-container">
-    <Link
-      // href={`/articles/article/${props?.attributes?.slug}`}
-      href={`/articlelist/article/${props?.id}`}
-      className=""
-    >
-      <div className="card mb-3 img-fluid article-card__onhover">
+    // <Link
+    //   // href={`/articles/article/${props?.attributes?.slug}`}
+    //   href={`/articlelist/article/${props?.id}`}
+    //   className=""
+    // >
+    // <div className="card mb-3 img-fluid article-card__onhover">
+    <div className="card mb-3 img-fluid">
+      <Link
+        // href={`/articles/article/${props?.attributes?.slug}`}
+        href={`/articlelist/article/${props?.id}`}
+        className=""
+      >
         <img
           // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
@@ -38,10 +44,17 @@ export const HighlightCard = (props) => {
           // height={300}
           alt="Picture of the author"
         />
+      </Link>
 
-        {/* <div className="card-body nav_bg"> */}
-        <div className="card-body">
-          <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+      {/* <div className="card-body nav_bg"> */}
+      <div className="card-body">
+        <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+
+        <Link
+          //   // href={`/articles/article/${props?.attributes?.slug}`}
+          href={`/articlelist/article/${props?.id}`}
+          className="article-content__onhover"
+        >
           <h5
             // className="card-title text-dark article-title__onclick"
             className="card-title"
@@ -54,33 +67,40 @@ export const HighlightCard = (props) => {
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
           </p>
-          {/* <p className="card-text">
+        </Link>
+        {/* <p className="card-text">
 					<small className="text-body-secondary">Last updated 3 mins ago</small>
 				</p> */}
 
-          {/* <Link
+        {/* <Link
           // href={`/articles/article/${props?.attributes?.slug}`}
           href={`/articles/article/${props?.id}`}
           className="btn btnc mt-3"
         >
           Read More
         </Link> */}
-        </div>
       </div>
-    </Link>
+    </div>
+    // </Link>
   );
 };
 
 export const ArticleCard = (props) => {
-  // console.log(props);
+  console.log(props?.attributes?.slug);
   return (
-    <Link
-      // href={`/article/${props.articleId}`}
-      href={`/articlelist/article/${props?.id}`}
-      className=""
-      passHref
-    >
-      <div className="card mt-3 h-100 article-card__onhover">
+    // <Link
+    //   // href={`/article/${props.articleId}`}
+    //   href={`/articlelist/article/${props?.id}`}
+    //   className=""
+    //   passHref
+    // >
+    // <div className="card mt-3 h-100 article-card__onhover">
+    <div className="card mt-3 h-100">
+      <Link
+        // href={`/articles/article/${props?.attributes?.slug}`}
+        href={`/articlelist/article/${props?.id}`}
+        className=""
+      >
         <img
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top img-fluid"
@@ -89,16 +109,25 @@ export const ArticleCard = (props) => {
           // height={250}
           alt="Picture of the author"
         />
-        <div className="card-body">
-          {/* <div className="card-body nav_bg"> */}
-          <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+      </Link>
+
+      <div className="card-body">
+        {/* <div className="card-body nav_bg"> */}
+        <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+
+        <Link
+          // href={`/articles/article/${props?.attributes?.slug}`}
+          href={`/articlelist/article/${props?.id}`}
+          className="article-content__onhover"
+        >
           <h5 className="card-title">{props?.attributes?.title}</h5>
           <p className="card-text">
             {" "}
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
               "..."}
           </p>
-          {/* <Link
+        </Link>
+        {/* <Link
           // href={`/article/${props.articleId}`}
           href={`/articles/article/${props?.id}`}
           className="btn btn-success"
@@ -106,9 +135,9 @@ export const ArticleCard = (props) => {
         >
           Read More
         </Link> */}
-        </div>
       </div>
-    </Link>
+    </div>
+    // </Link>
   );
 };
 

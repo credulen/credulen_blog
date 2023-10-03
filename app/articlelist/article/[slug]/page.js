@@ -33,25 +33,6 @@ const SingleArticlePage = ({ params }) => {
 
   // const newData = fetchData(params.articleId);
 
-  // console.log(newData);
-
-  // useEffect(() => {
-  // 	const getSingleArticleData = async () => {
-  // 		let singleArticle = await axios.get(
-  // 			`http://localhost:1337/api/articles/${params.slug}/?populate=*`
-  // 		);
-
-  // 		let response = singleArticle.data.data;
-
-  // 		// return response;
-  // 		// console.log(response);
-  // 		setSingleArticleData(response);
-  // 		setIsLoading(false);
-  // 	};
-
-  // 	getSingleArticleData();
-  // }, []);
-
   const getSingleArticleData = async () => {
     const data = await axios.get(
       `https://strapi-blcj.onrender.com/api/articles/${slug}/?populate=*`
@@ -67,35 +48,6 @@ const SingleArticlePage = ({ params }) => {
     getSingleArticleData();
     setIsLoading(false);
   }, [slug]);
-
-  // useEffect(async () => {
-  //   const data = await axios.get(
-  //     `http://localhost:1337/api/articles/${slug}/?populate=*`
-  //   );
-  //   // .then((res) => res.data)
-  //   // .then((article) => article.data)
-  //   // .catch((err) => console.log(err));
-  //   setSingleArticleData(data?.data?.data);
-  //   setIsLoading(false);
-  // }, [slug]);
-
-  // console.log(singleArticleData.attributes.title);
-  // console.log(singleArticleData);
-  // console.log(authorData);
-
-  // const oneArticle = singleArticleData.map((article) => {
-  // 	console.log(article);
-  // });
-
-  // console.log(oneArticle);
-
-  // useEffect(() => {
-  // 	console.log(singleArticleData);
-  // });
-
-  // let title = singleArticleData.attributes.title;
-  // console.log(title);
-  // console.log(singleArticleData);
 
   if (isLoading) {
     return <IsLoading />;
