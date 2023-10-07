@@ -12,6 +12,7 @@ import IsLoading from "@/components/IsLoading";
 import TagButtons from "@/components/TagButtons";
 
 export default function ArticlePage() {
+  // const [articleData, setArticleData] = useState([]);
   const [articleData, setArticleData] = useState([]);
   // const [limit, setLimit] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,12 +22,29 @@ export default function ArticlePage() {
     // console.log(articles);
     setArticleData(articles);
   };
+
   useEffect(() => {
     setIsLoading(true);
     // setIsLoading(false);
     fetchData();
     setIsLoading(false);
   }, []);
+
+  // console.log(
+  //   articleData.map((e) => {
+  //     console.log(e.attributes);
+  //   })
+  // );
+
+  // filtering article categories
+  // const articleCat = [
+  //   ...new Set(
+  //     articleData.map(
+  //       (cat) => cat?.attributes?.category?.data?.attributes?.Title
+  //     )
+  //   ),
+  // ];
+  // console.log("article category", articleCat);
 
   // console.log(data);
 
@@ -45,9 +63,13 @@ export default function ArticlePage() {
 
   // console.log(limit);
 
-  // if (isLoading) {
-  //   return <IsLoading />;
-  // }
+  // const getSelectedCat = (category) => {
+  // if()
+  // };
+
+  if (isLoading) {
+    return <IsLoading />;
+  }
 
   return (
     <main className="container">
@@ -65,6 +87,10 @@ export default function ArticlePage() {
                 );
               }
             })}
+            {/* <HighlightCard
+              articleData={articleData}
+              setArticleData={setArticleData}
+            /> */}
           </div>
           {/* </div> */}
 

@@ -47,7 +47,7 @@ const SingleArticlePage = ({ params }) => {
   useEffect(() => {
     getSingleArticleData();
     setIsLoading(false);
-  }, [slug]);
+  }, []);
 
   if (isLoading) {
     return <IsLoading />;
@@ -60,14 +60,10 @@ const SingleArticlePage = ({ params }) => {
           <div>
             <img
               // src="https://res.cloudinary.com/dge5x9t8i/image/upload/v1693866578/credulen/Maya03_small_c13f592fdc.png"
-              src={`${
-                isLoading ? (
-                  <IsLoading />
-                ) : (
-                  singleArticleData?.attributes?.image?.data?.attributes
-                    ?.formats?.medium?.url
-                )
-              }`}
+              src={
+                singleArticleData?.attributes?.image?.data?.attributes?.formats
+                  ?.medium?.url
+              }
               // className="card-img-top image-container"
               className="img-fluid"
               width={900}
@@ -96,12 +92,8 @@ const SingleArticlePage = ({ params }) => {
                 </small>
 
                 <small className="text-body-secondary">
-                  {isLoading ? (
-                    <IsLoading />
-                  ) : (
-                    singleArticleData?.attributes?.users_permission_user |
-                    singleArticleData?.attributes?.createdAt
-                  )}
+                  {singleArticleData?.attributes?.users_permission_user |
+                    singleArticleData?.attributes?.createdAt}
                 </small>
               </p>
             </div>
@@ -111,22 +103,20 @@ const SingleArticlePage = ({ params }) => {
 
           <div className="text-center">
             <h3 className="text-black">
-              {isLoading ? <IsLoading /> : singleArticleData?.attributes?.title}
+              {singleArticleData?.attributes?.title}
             </h3>
 
             {/* <h3>Title</h3> */}
           </div>
           <div className="text-justify mt-4 text-black">
             <p>
-              {isLoading ? (
-                <IsLoading />
-              ) : (
+              {
                 <p align="justify">
                   <ReactMarkdown>
                     {singleArticleData?.attributes?.body}
                   </ReactMarkdown>
                 </p>
-              )}
+              }
               {/* {isLoading ? (
                 <IsLoading />
                 <ReactMarkdown source={singleArticleData?.attributes?.body} escapeHtml={false} />

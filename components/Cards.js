@@ -5,9 +5,11 @@ import Link from "next/link";
 import { getAllWebinarData } from "@/data/webinarData/webinarListData";
 import { useEffect, useState } from "react";
 import { getAllWebinarSpeakersData } from "@/data/webinarData/webinarSpeakerData";
+import ArticleCat from "@/app/articlecat/page";
 
 // an article becomes highlighted with true or false
-export const HighlightCard = (props) => {
+export const HighlightCard = (props, { articleCat }) => {
+  // console.log(articleCat);
   // const [active, setActive] = useState(false);
 
   // const handleClick = () => {
@@ -17,8 +19,8 @@ export const HighlightCard = (props) => {
   // console.log(props?.attributes?.category?.data?.attributes?.Title);
   // slug: http://localhost:1337/api/articles?fields[1]=slug
 
-  // console.log(props.attributes.image.data.attributes.url); // coming up as null
-  // console.log(props.attributes.image.data.attributes); // coming up as null
+  // console.log(props?.attributes?.category?.data?.attributes?.Title); // coming up as null
+
   return (
     // <div className="card mb-3 image-container">
     // <Link
@@ -30,7 +32,7 @@ export const HighlightCard = (props) => {
     <div className="card mb-3 img-fluid">
       <Link
         // href={`/articles/article/${props?.attributes?.slug}`}
-        href={`/articlelist/article/${props?.id}`}
+        href={`/articles/article/${props?.id}`}
         className=""
       >
         <img
@@ -39,7 +41,7 @@ export const HighlightCard = (props) => {
           // attributes.formats.thumbnail.url
           // className="card-img-top d-none d-md-block d-sm-none"
           className="card-img-top"
-          fill={true}
+          fill="true"
           // width={400}
           // height={300}
           alt="Picture of the author"
@@ -48,16 +50,21 @@ export const HighlightCard = (props) => {
 
       {/* <div className="card-body nav_bg"> */}
       <div className="card-body">
-        <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+        <Link
+          href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+          className="icon__color"
+        >
+          {props?.attributes?.category?.data?.attributes?.Title}
+        </Link>
 
         <Link
           //   // href={`/articles/article/${props?.attributes?.slug}`}
-          href={`/articlelist/article/${props?.id}`}
+          href={`/articles/article/${props?.id}`}
           className="article-content__onhover"
         >
           <h5
             // className="card-title text-dark article-title__onclick"
-            className="card-title"
+            className="card-title mt-4"
             // onClick={handleClick}
             // style={{ color: active ? "black" : "white" }}
           >
@@ -85,8 +92,110 @@ export const HighlightCard = (props) => {
   );
 };
 
+// export const HighlightCard = ({ articleData, setArticleData }) => {
+//   // console.log(articleData);
+
+//   // filtering article categories
+//   const articleCat = [
+//     ...new Set(
+//       articleData.map(
+//         (cat) => cat?.attributes?.category?.data?.attributes?.Title
+//       )
+//     ),
+//   ];
+//   // console.log("article category", articleCat);
+
+//   const filterCat = (filtcat) => {
+//     const newCat = articleData.filter(
+//       (newCats) =>
+//         newCats?.attributes?.category?.data?.attributes?.Title === filtcat
+//     );
+//     setArticleData(newCat);
+//   };
+
+//   // const singleCat = articleCat.map((cat) => {
+//   //   filterCat(cat);
+//   // });
+
+//   // console.log(filterCat());
+
+//   return (
+//     <div className="card mb-3">
+//       {articleData?.map((post) => {
+//         if (post?.attributes?.highlighted_article === true) {
+//           return (
+//             <div key={post?.id}>
+//               <Link href={`/articles/article/${post?.id}`} className="">
+//                 <img
+//                   src={`${post?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+//                   className="card-img-top"
+//                   fill
+//                   alt="Picture of the author"
+//                 />
+//               </Link>
+
+//               <div className="card-body">
+//                 {/* <Link
+//                   href={`/articlecat/singleartcat/${cat}`}
+//                   key={cat.id}
+//                   onClick={() => filterCat(cat)}
+//                 >
+//                   <ArticleCat
+//                     articleCat={articleCat}
+//                     filterCat={filterCat}
+//                     setArticleData={setArticleData}
+//                     articleData={articleData}
+//                   />
+//                 </Link> */}
+//                 {/* <Link href={`/articlecat/singleartcat/${post?.id}`}> */}
+//                 {/* {articleCat.map((cat) => {
+//                   console.log(cat);
+//                   return (
+//                     <Link
+//                       href={`/articlecat/singleartcat/${cat}`}
+//                       key={cat.id}
+//                       onClick={() => filterCat(cat)}
+//                     >
+//                       <ArticleCat
+//                         articleCat={articleCat}
+//                         filterCat={filterCat}
+//                         setArticleData={setArticleData}
+//                         articleData={articleData}
+//                       />
+//                     </Link>
+//                   );
+//                 })} */}
+//                 {/* hi */}
+//                 {/* </Link> */}
+//                 <Link
+//                   // onClick={() => singleCat}
+//                   href={`/articles/article/${post?.id}`}
+//                   className="article-content__onhover"
+//                 >
+//                   {post?.attributes?.category?.data?.attributes?.Title}
+//                 </Link>
+//                 <Link
+//                   href={`/articles/article/${post?.id}`}
+//                   className="article-content__onhover"
+//                 >
+//                   <h5 className="card-title">{post?.attributes?.title}</h5>
+//                   <p className="card-text">
+//                     {post?.attributes?.description
+//                       .split(" ")
+//                       .splice(0, 10)
+//                       .join(" ") + "..."}
+//                   </p>
+//                 </Link>
+//               </div>
+//             </div>
+//           );
+//         }
+//       })}
+//     </div>
+//   );
+// };
+
 export const ArticleCard = (props) => {
-  console.log(props?.attributes?.slug);
   return (
     // <Link
     //   // href={`/article/${props.articleId}`}
@@ -98,7 +207,7 @@ export const ArticleCard = (props) => {
     <div className="card mt-3 h-100">
       <Link
         // href={`/articles/article/${props?.attributes?.slug}`}
-        href={`/articlelist/article/${props?.id}`}
+        href={`/articles/article/${props?.id}`}
         className=""
       >
         <img
@@ -113,14 +222,25 @@ export const ArticleCard = (props) => {
 
       <div className="card-body">
         {/* <div className="card-body nav_bg"> */}
-        <p>{props?.attributes?.category?.data?.attributes?.Title}</p>
+
+        {/* <Link
+          href={`/articlecat/singleartcat/${cat}`}
+          key={cat.id}
+          onClick={() => filterCat(cat)}
+        > */}
+        <Link
+          href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+          className="icon__color"
+        >
+          {props?.attributes?.category?.data?.attributes?.Title}
+        </Link>
 
         <Link
           // href={`/articles/article/${props?.attributes?.slug}`}
-          href={`/articlelist/article/${props?.id}`}
+          href={`/articles/article/${props?.id}`}
           className="article-content__onhover"
         >
-          <h5 className="card-title">{props?.attributes?.title}</h5>
+          <h5 className="card-title mt-4">{props?.attributes?.title}</h5>
           <p className="card-text">
             {" "}
             {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
@@ -277,12 +397,12 @@ export const UpcomingWebinarSpeakers = () => {
 
             <div>
               {/* <p className="mb-0 text-dark"> */}
-              <p className="mb-0 text-dark">
+              <p className="mb-0 text-white">
                 {speaker?.attributes?.speaker_name}
               </p>
 
               {/* <small className="text-body-dark"> */}
-              <small className="text-dark">
+              <small className="text-white">
                 {speaker?.attributes?.speaker_job_description},
                 <span>{speaker?.attributes?.speaker_company}</span>
               </small>
