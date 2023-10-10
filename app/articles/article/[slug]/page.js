@@ -25,7 +25,9 @@ import ReactMarkdown from "react-markdown";
 // const SingleArticlePage = ({ articleId }) => {
 // const SingleArticlePage = ({ params }) => {
 const SingleArticlePage = ({ params }) => {
+  // const params = useParams();
   const { slug } = params;
+  // console.log(slug);
 
   const [singleArticleData, setSingleArticleData] = useState();
   const [isLoading, setIsLoading] = useState(true);

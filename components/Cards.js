@@ -397,15 +397,15 @@ export const UpcomingWebinarSpeakers = () => {
 
             <div>
               {/* <p className="mb-0 text-dark"> */}
-              <p className="mb-0 text-white">
+              <p className="mb-0 text-dark">
                 {speaker?.attributes?.speaker_name}
               </p>
 
               {/* <small className="text-body-dark"> */}
-              <small className="text-white">
+              <p className=" mb-0 text-dark">
                 {speaker?.attributes?.speaker_job_description},
-                <span>{speaker?.attributes?.speaker_company}</span>
-              </small>
+              </p>
+              <small>{speaker?.attributes?.speaker_company}</small>
             </div>
           </div>
         );

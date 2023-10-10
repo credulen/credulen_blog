@@ -5,7 +5,7 @@ import { ArticleCard, HighlightCard, RecentPostCard } from "@/components/Cards";
 import { JoinTelegram, Subscribe } from "@/components/Connections";
 // import { getAllArticles } from "../data/articleListData";strapiFetchFunctions/articlesFuncs.js
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Link from "next/link";
 import { getAllArticleData } from "@/data/articleData/articleListData";
 import IsLoading from "@/components/IsLoading";
@@ -16,6 +16,7 @@ export default function ArticlePage() {
   const [articleData, setArticleData] = useState([]);
   // const [limit, setLimit] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(true);
 
   const fetchData = async () => {
     const articles = await getAllArticleData();

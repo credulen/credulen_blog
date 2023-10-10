@@ -1,5 +1,3 @@
-import React from "react";
-
 // const IsLoading = () => {
 //   return (
 //     <div className="card nav_bg mx-auto" style={{ width: "20rem" }}>
