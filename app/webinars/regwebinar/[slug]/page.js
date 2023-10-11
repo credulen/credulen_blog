@@ -177,18 +177,22 @@ const WebinarInfoPage = ({ params }) => {
 				Joining the Train of Learners in the Age of Technology: Choosing the
 				Right Kind of Materials to Digest
 			</h1> */}
-      <h1>{singleWebinarData?.attributes?.webinar_name}</h1>
+      <h1 className="text-dark">
+        {singleWebinarData?.attributes?.webinar_name}
+      </h1>
 
       <div className="mt-4 pb-5">
         {/* <small className="">JULY 15, 2023 | 5:00pm</small> */}
-        <small className="">{webinarDate}</small>
+        <small className="text-dark">{webinarDate}</small>
       </div>
 
-      <p>{singleWebinarData?.attributes?.webinar_description}</p>
+      <p className="text-dark">
+        {singleWebinarData?.attributes?.webinar_description}
+      </p>
 
       {/* speakers */}
       <div className="pt-5 mt-5">
-        <h6 className="pb-3">Esteemed Speakers</h6>
+        <h6 className="pb-3 text-dark">Esteemed Speakers</h6>
         <div className="row">
           <div className="col-md-3">
             <UpcomingWebinarSpeakers />
@@ -197,7 +201,7 @@ const WebinarInfoPage = ({ params }) => {
       </div>
 
       <div className="pt-5 mt-5">
-        <h6 className="text-center pb-4">
+        <h6 className="text-center pb-4 text-dark">
           Please Fill the Form Below to Register for this Webinar
         </h6>
 
@@ -211,7 +215,7 @@ const WebinarInfoPage = ({ params }) => {
           {!show && (
             <form className="w-75 mx-auto border p-5 bg-white shadow d-none d-md-block d-sm-none">
               <div className="mb-4">
-                <label htmlFor="fullname" className="form-label">
+                <label htmlFor="fullname" className="form-label text-dark">
                   Full Name
                 </label>
                 <input
@@ -231,7 +235,10 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="exampleInputEmail1" className="form-label">
+                <label
+                  htmlFor="exampleInputEmail1"
+                  className="form-label text-dark"
+                >
                   Email address
                 </label>
                 <input
@@ -258,7 +265,10 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="exampleInputNum1" className="form-label">
+                <label
+                  htmlFor="exampleInputNum1"
+                  className="form-label text-dark"
+                >
                   Phone Number
                 </label>
                 <input
@@ -283,7 +293,7 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="company" className="form-label">
+                <label htmlFor="company" className="form-label text-dark">
                   Company
                 </label>
                 <input
@@ -306,7 +316,7 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="jobtitle" className="form-label">
+                <label htmlFor="jobtitle" className="form-label text-dark">
                   Job Title
                 </label>
                 <input
