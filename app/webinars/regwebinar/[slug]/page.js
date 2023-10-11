@@ -237,7 +237,7 @@ const WebinarInfoPage = ({ params }) => {
               <div className="mb-4">
                 <label
                   htmlFor="exampleInputEmail1"
-                  className="form-label text-dark"
+                  className="form-label text-success"
                 >
                   Email address
                 </label>
