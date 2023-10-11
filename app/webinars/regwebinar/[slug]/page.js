@@ -237,7 +237,7 @@ const WebinarInfoPage = ({ params }) => {
               <div className="mb-4">
                 <label
                   htmlFor="exampleInputEmail1"
-                  className="form-label text-success"
+                  className="form-label text-dark"
                 >
                   Email address
                 </label>
@@ -374,7 +374,7 @@ const WebinarInfoPage = ({ params }) => {
           {!show && (
             <form className="mx-auto border p-5 bg-white shadow d-md-none d-sm-block">
               <div className="mb-4">
-                <label htmlFor="fullname" className="form-label">
+                <label htmlFor="fullname" className="form-label text-dark">
                   Full Name
                 </label>
                 <input
@@ -396,7 +396,10 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="exampleInputEmail1" className="form-label">
+                <label
+                  htmlFor="exampleInputEmail1"
+                  className="form-label text-dark"
+                >
                   Email address
                 </label>
                 <input
@@ -423,7 +426,10 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="exampleInputNum1" className="form-label">
+                <label
+                  htmlFor="exampleInputNum1"
+                  className="form-label text-dark"
+                >
                   Phone Number
                 </label>
                 <input
@@ -448,7 +454,7 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="company" className="form-label">
+                <label htmlFor="company" className="form-label text-dark">
                   Company
                 </label>
                 <input
@@ -471,7 +477,7 @@ const WebinarInfoPage = ({ params }) => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="jobtitle" className="form-label">
+                <label htmlFor="jobtitle" className="form-label text-dark">
                   Job Title
                 </label>
                 <input
