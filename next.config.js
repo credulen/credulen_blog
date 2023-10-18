@@ -18,6 +18,16 @@ const imageConfig = {
       },
     ],
   },
+
+  webpack: (config) => {
+    // ignore formidable warnings
+    config.ignoreWarnings = [
+      // { module: /node_modules\/formidable\/src\/Formidable\.js/ },
+      { file: /app\/layout\.tsx/ },
+    ];
+
+    return config;
+  },
 };
 
 // module.exports = nextConfig;

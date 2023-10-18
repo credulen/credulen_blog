@@ -2,10 +2,10 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { getAllWebinarData } from "@/data/webinarData/webinarListData";
+import { getAllWebinarData } from "../data/webinarData/webinarListData";
 import { useEffect, useState } from "react";
-import { getAllWebinarSpeakersData } from "@/data/webinarData/webinarSpeakerData";
-import ArticleCat from "@/app/articlecat/page";
+import { getAllWebinarSpeakersData } from "../data/webinarData/webinarSpeakerData";
+// import ArticleCat from "@/app/articlecat/page";
 
 // an article becomes highlighted with true or false
 export const HighlightCard = (props, { articleCat }) => {
