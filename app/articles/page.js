@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import qs from "qs";
 // import ArticleList from "@/components/ArticleList";
 import {
   ArticleCard,
@@ -64,38 +65,54 @@ export default function ArticlePage({ searchParams }) {
   // console.log(data);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async ({ start = 0, limit = 6 } = {}) => {
+      const query = qs.stringify({
+        populate: {
+          // image: { fields: ["url"] },
+          image: { populate: "*" },
+          category: { populate: "*" },
+          users_permissions_user: { populate: "*" },
+          // authorsBio: {
+          //   populate: "*",
+          // },
+        },
+        pagination: {
+          start,
+          limit,
+        },
+      });
       const data = await axios.get(
-        `https://strapi-blcj.onrender.com/api/articles?populate=*&pagination[start]=0&pagination[limit]=5`
+        `https://strapi-blcj.onrender.com/api/articles?${query}`
         // `http://localhost:1337/api/articles?_limit=3`
       );
-      // let response = data.data.data;
-      let response = data.data.meta;
+      // console.log(data);
+      let response = data.data.data;
+      // let response = data.data.meta;
       setLimit(response);
       // console.log(response);
     };
 
-    fetchData();
+    fetchData({ start: 1, limit: 2 });
   }, []);
 
-  // console.log(limit);
+  console.log(limit);
 
   // const getSelectedCat = (category) => {
   // if()
   // };
 
   // pagination
-  const page = params["page"] ?? "1";
-  const per_page = params["per_page"] ?? "5";
-  // const page = searchParams["page"] ?? "1";
-  // console.log(page);
-  // console.log(per_page);
-  // const per_page = searchParams["per_page"] ?? "5";
+  // const page = params["page"] ?? "1";
+  // const per_page = params["per_page"] ?? "5";
+  // // const page = searchParams["page"] ?? "1";
+  // // console.log(page);
+  // // console.log(per_page);
+  // // const per_page = searchParams["per_page"] ?? "5";
 
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
+  // const start = (Number(page) - 1) * Number(per_page);
+  // const end = start + Number(per_page);
 
-  const entries = articleData.slice(start, end);
+  // const entries = articleData.slice(start, end);
   // console.log(entries);
 
   if (isLoading) {
@@ -128,7 +145,7 @@ export default function ArticlePage({ searchParams }) {
           {/* <div className="container"> */}
           <div className="row mt-5 gy-4">
             {/* <TagButtons /> */}
-            {entries?.map((post) => {
+            {articleData?.map((post) => {
               // console.log(post.attributes);
               if (post.attributes.highlighted_article === false) {
                 return (
@@ -142,17 +159,17 @@ export default function ArticlePage({ searchParams }) {
           {/* </div> */}
           {/* <Pagination pageCount={Math.ceil(articleData.length / perPage)} currentPage={currentPage}/> */}
 
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <PaginationComp
               hasNextPage={end < articleData.length}
               hasPrevPage={start > 0}
             />
-            {console.log(start, end, articleData.length)}
+            {console.log(start, end, articleData.length)} */}
 
-            {/* <button onClick={() => router.push(`/articles?page=${page + 1}`)}>
+          {/* <button onClick={() => router.push(`/articles?page=${page + 1}`)}>
               Next
             </button> */}
-          </div>
+          {/* </div> */}
         </div>
 
         {/* <div className="col-md-4" style={{ position: "fixed", right: "1px" }}> */}
