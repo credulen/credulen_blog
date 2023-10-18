@@ -14,9 +14,10 @@ import Link from "next/link";
 import { getAllArticleData } from "../../data/articleData/articleListData";
 import IsLoading from "../../components/IsLoading";
 import TagButtons from "../../components/TagButtons";
+import PaginationComp from "../../components/Pagination";
 import { useParams, useRouter } from "next/navigation";
 
-export default function ArticlePage() {
+export default function ArticlePage({ searchParams }) {
   // const [articleData, setArticleData] = useState([]);
   const [articleData, setArticleData] = useState([]);
   const [limit, setLimit] = useState(5);
@@ -84,14 +85,18 @@ export default function ArticlePage() {
   // };
 
   // pagination
-  const page = params["start"] ?? "1";
-  const per_page = params["limit"] ?? "5";
+  const page = params["page"] ?? "1";
+  const per_page = params["per_page"] ?? "5";
+  // const page = searchParams["page"] ?? "1";
+  // console.log(page);
+  // console.log(per_page);
+  // const per_page = searchParams["per_page"] ?? "5";
 
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
 
   const entries = articleData.slice(start, end);
-  console.log(entries);
+  // console.log(entries);
 
   if (isLoading) {
     return <IsLoading />;
@@ -138,11 +143,15 @@ export default function ArticlePage() {
           {/* <Pagination pageCount={Math.ceil(articleData.length / perPage)} currentPage={currentPage}/> */}
 
           <div className="pt-4">
-            {/* <Pagination /> */}
+            <PaginationComp
+              hasNextPage={end < articleData.length}
+              hasPrevPage={start > 0}
+            />
+            {console.log(start, end, articleData.length)}
 
-            <button onClick={() => router.push(`/articles?page=${page + 1}`)}>
+            {/* <button onClick={() => router.push(`/articles?page=${page + 1}`)}>
               Next
-            </button>
+            </button> */}
           </div>
         </div>
 

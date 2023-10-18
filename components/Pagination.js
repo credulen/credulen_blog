@@ -1,13 +1,16 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-const Pagination = ({ hasNextPage, hasPrevPage }) => {
+const PaginationComp = ({ hasNextPage, hasPrevPage }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const paramsValue = useParams();
 
-  const page = searchParams.get("page") ?? "1";
-  const per_page = searchParams.get("per_page") ?? "5";
+  const page = searchParams.get("start") ?? "1";
+  const per_page = searchParams.get("limit") ?? "5";
+  // const page = paramsValue["start"] ?? "1";
+  // const per_page = paramsValue["limit"] ?? "5";
 
   return (
     <nav aria-label="Page navigation example">
@@ -16,7 +19,8 @@ const Pagination = ({ hasNextPage, hasPrevPage }) => {
           className="page-item"
           disable={!hasPrevPage}
           onClick={() => {
-            router.push(`/?page=${Number(page) - 1}&per_page=${per_page}`);
+            // router.push(`/?page=${Number(page) - 1}&per_page=${per_page}`);
+            router.push(`/?start=${Number(page) - 1}&limit=${per_page}`);
           }}
         >
           <a className="page-link" href="#">
@@ -46,4 +50,4 @@ const Pagination = ({ hasNextPage, hasPrevPage }) => {
   );
 };
 
-export default Pagination;
+export default PaginationComp;
