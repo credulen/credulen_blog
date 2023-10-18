@@ -9,7 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Subscribe } from "./Connections";
-import logo from "../public/logo/5.png";
+import logo from "../../public/logo/5.png";
 
 const Footer = () => {
   return (

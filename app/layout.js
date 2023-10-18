@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap-icons/font";
 import { useEffect } from "react";
 import "./globals.css";
-import Navbars from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbars from "./components/Navbar";
+import Footer from "./components/Footer";
 import Head from "next/head";
 import Link from "next/link";
 

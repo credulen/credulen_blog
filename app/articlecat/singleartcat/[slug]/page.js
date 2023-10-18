@@ -1,18 +1,19 @@
 "use client";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "../../../components/IsLoading";
 import { useEffect, useState } from "react";
-import { ArticleCard } from "@/components/Cards";
+import { ArticleCard } from "../../../components/Cards";
 import {
   getArtificialIntelligenceCatData,
   getBlockchainEduCatData,
   getBlockchainTrendsCatData,
-} from "@/data/articleData/articleCatData";
-import { getAllArticleData } from "@/data/articleData/articleListData";
+} from "../../../../data/articleData/articleCatData";
+import { getAllArticleData } from "../../../../data/articleData/articleListData";
 import { useParams, useSearchParams } from "next/navigation";
+import axios from "axios";
 
 // const SingleArticleCat = ({ params }) => {
-const SingleArticleCat = () => {
-  // const { slug } = params;
+const SingleArticleCat = ({ params }) => {
+  const { slug } = params;
 
   const [singleCatData, setSingleCatData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,40 +21,40 @@ const SingleArticleCat = () => {
   const [filteredArticles, setFilteredArticles] = useState([]);
 
   // blockchain trends
-  const fetchBlockchainTrendsCatData = async () => {
-    const articleCat = await getBlockchainTrendsCatData();
-    setSingleCatData(articleCat);
-  };
+  // const fetchBlockchainTrendsCatData = async () => {
+  //   const articleCat = await getBlockchainTrendsCatData();
+  //   setSingleCatData(articleCat);
+  // };
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchBlockchainTrendsCatData();
-    setIsLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   fetchBlockchainTrendsCatData();
+  //   setIsLoading(false);
+  // }, []);
 
-  // blockchain education;
-  const fetchBlockchainEduCatData = async () => {
-    const articleCat = await getBlockchainEduCatData();
-    setSingleCatData(articleCat);
-  };
+  // // blockchain education;
+  // const fetchBlockchainEduCatData = async () => {
+  //   const articleCat = await getBlockchainEduCatData();
+  //   setSingleCatData(articleCat);
+  // };
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchBlockchainEduCatData();
-    setIsLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   fetchBlockchainEduCatData();
+  //   setIsLoading(false);
+  // }, []);
 
-  // blockchain education;
-  const fetchAICatData = async () => {
-    const articleCat = await getArtificialIntelligenceCatData();
-    setSingleCatData(articleCat);
-  };
+  // // blockchain education;
+  // const fetchAICatData = async () => {
+  //   const articleCat = await getArtificialIntelligenceCatData();
+  //   setSingleCatData(articleCat);
+  // };
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchAICatData();
-    setIsLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   fetchAICatData();
+  //   setIsLoading(false);
+  // }, []);
 
   // const fetchData = async () => {
   //   const articles = await getAllArticleData();
@@ -116,8 +117,8 @@ const SingleArticleCat = () => {
   // 2;
   useEffect(() => {
     // Simulate fetching data from an API
-    const getSingleArticleData = async ({ slug }) => {
-      console.log(slug);
+    const getSingleArticleData = async () => {
+      // console.log(slug);
       try {
         const data = await axios.get(
           `https://strapi-blcj.onrender.com/api/articles?filters[category][slug]=${slug}&populate=*`
@@ -126,7 +127,7 @@ const SingleArticleCat = () => {
         // .then((article) => article.data)
         // .catch((err) => console.log(err));
 
-        setSingleArticleData(data?.data?.data);
+        setSingleCatData(data?.data?.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -136,8 +137,8 @@ const SingleArticleCat = () => {
   }, []);
 
   const searchParams = useSearchParams();
-  const selectedCat = searchParams.get("category");
-  // console.log(selectedCat);
+  const selectedCat = searchParams.get(params);
+  console.log(selectedCat);
 
   useEffect(() => {
     // Filter articles based on the selected category

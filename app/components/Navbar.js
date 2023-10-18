@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-// import logo from "../..//logo/5.png";
-import logo from "../public/logo/5.png";
+// import logo from "../public/logo/5.png";
+import logo from "../../public/logo/5.png";
 import { SubscribeNavbar } from "./Connections";
 import { useState } from "react";
 
