@@ -62,7 +62,7 @@ const Profile = () => {
     const nextPost = meta?.pagination.start + meta?.pagination.limit;
 
     fetchData(nextPost, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
-    console.log(process.env.NEXT_PUBLIC_PAGE_LIMIT);
+    // console.log(process.env.NEXT_PUBLIC_PAGE_LIMIT);
   };
 
   useEffect(() => {

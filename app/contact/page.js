@@ -83,7 +83,7 @@ const Contact = () => {
         </h5>
         <div className="mb-3">
           <label
-            for="exampleFormControlInput1"
+            htmlFor="exampleFormControlInput1"
             className="form-label text-white"
           >
             Email address
@@ -100,7 +100,7 @@ const Contact = () => {
 
         <div className="mb-3">
           <label
-            for="exampleFormControlTextarea1"
+            htmlFor="exampleFormControlTextarea1"
             className="form-label text-white"
           >
             Message
@@ -128,7 +128,7 @@ const Contact = () => {
         </h6>
         <div className="mb-3">
           <label
-            for="exampleFormControlInput1"
+            htmlFor="exampleFormControlInput1"
             className="form-label text-white"
           >
             Email address
@@ -145,7 +145,7 @@ const Contact = () => {
 
         <div className="mb-3">
           <label
-            for="exampleFormControlTextarea1"
+            htmlFor="exampleFormControlTextarea1"
             className="form-label text-white"
           >
             Message

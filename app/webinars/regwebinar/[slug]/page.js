@@ -8,13 +8,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { UpcomingWebinarSpeakers } from "@/components/Cards";
-import IsLoading from "@/components/IsLoading";
+import { UpcomingWebinarSpeakers } from "../../../../components/Cards";
+import IsLoading from "../../../../components/IsLoading";
 
 import Swal from "sweetalert2";
 import webinarFormValidation from "./webinarFormValidation";
 import { useRouter } from "next/navigation";
-import SuccessfulFormSubmitMsg from "@/components/SuccessFormMsg";
+import SuccessfulFormSubmitMsg from "../../../../components/SuccessFormMsg";
 
 // import {
 // 	ConferenceSpeakerCard,

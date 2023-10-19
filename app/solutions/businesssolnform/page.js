@@ -1,5 +1,5 @@
 "use client";
-import SuccessfulFormSubmitMsg from "@/components/SuccessFormMsg";
+import SuccessfulFormSubmitMsg from "../../../components/SuccessFormMsg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 

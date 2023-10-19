@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   OndemandWebinarCard,
   UpcomingWebinarCard,
-} from "../../components/components/Cards";
+} from "../../components/Cards";
 import { getAllWebinarData } from "../../data/webinarData/webinarListData";
 import IsLoading from "../../components/IsLoading";
 

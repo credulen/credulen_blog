@@ -3,15 +3,15 @@ import {
   BusinessSolutionsCard,
   IndividualSolutionsCard,
   SolutionsCard,
-} from "@/components/Cards";
+} from "../../components/Cards";
 // import solutionsData from "../../data/solutionpagedata.json";
 import Link from "next/link";
 import {
   getAllBusinessSolutionData,
   getAllIndividualSolutionData,
-} from "@/data/solutionData/solutionListData";
+} from "../../data/solutionData/solutionListData";
 import { useEffect, useState } from "react";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "../../components/IsLoading";
 
 const Solutions = () => {
   const [individualSolutionData, setIndividualSolutionData] = useState([]);

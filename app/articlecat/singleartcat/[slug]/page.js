@@ -1,13 +1,13 @@
 "use client";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "../../../../components/IsLoading";
 import { useEffect, useState } from "react";
-import { ArticleCard } from "@/components/Cards";
+import { ArticleCard } from "../../../../components/Cards";
 import {
   getArtificialIntelligenceCatData,
   getBlockchainEduCatData,
   getBlockchainTrendsCatData,
-} from "@/data/articleData/articleCatData";
-import { getAllArticleData } from "@/data/articleData/articleListData";
+} from "../../../../data/articleData/articleCatData";
+import { getAllArticleData } from "../../../../data/articleData/articleListData";
 import { useParams, useSearchParams } from "next/navigation";
 
 // const SingleArticleCat = ({ params }) => {

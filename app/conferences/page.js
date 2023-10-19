@@ -4,10 +4,10 @@ import {
   ComingSoonCard,
   ConferenceCard,
   PastEventsCard,
-} from "@/components/Cards";
+} from "../../components/Cards";
 import React from "react";
-import { getAllConferenceData } from "@/data/conferenceData/conferenceListData";
-import IsLoading from "@/components/IsLoading";
+import { getAllConferenceData } from "../../data/conferenceData/conferenceListData";
+import IsLoading from "../../components/IsLoading";
 
 const Conferences = () => {
   const [conferenceData, setConferenceData] = useState([]);

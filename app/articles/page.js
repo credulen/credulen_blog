@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import qs from "qs";
 // import ArticleList from "@/components/ArticleList";
 import {
@@ -21,7 +21,8 @@ import { useParams, useRouter } from "next/navigation";
 export default function ArticlePage({ searchParams }) {
   // const [articleData, setArticleData] = useState([]);
   const [articleData, setArticleData] = useState([]);
-  const [limit, setLimit] = useState(5);
+  const [data, setData] = useState([]);
+  const [limit, setLimit] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(true);
 
@@ -69,9 +70,9 @@ export default function ArticlePage({ searchParams }) {
       const query = qs.stringify({
         populate: {
           // image: { fields: ["url"] },
+          users_permissions_user: { populate: "*" },
           image: { populate: "*" },
           category: { populate: "*" },
-          users_permissions_user: { populate: "*" },
           // authorsBio: {
           //   populate: "*",
           // },
@@ -85,6 +86,8 @@ export default function ArticlePage({ searchParams }) {
         `https://strapi-blcj.onrender.com/api/articles?${query}`
         // `http://localhost:1337/api/articles?_limit=3`
       );
+
+      // console.log(`https://strapi-blcj.onrender.com/api/articles?${query}`);
       // console.log(data);
       let response = data.data.data;
       // let response = data.data.meta;
@@ -92,10 +95,58 @@ export default function ArticlePage({ searchParams }) {
       // console.log(response);
     };
 
-    fetchData({ start: 1, limit: 2 });
+    fetchData({ start: 1, limit: 4 });
   }, []);
 
-  console.log(limit);
+  // const fetchLimitData = useCallback(async (start = 0, limit = 4) => {
+  //   setIsLoading(true);
+
+  //   try {
+  //     const query = qs.stringify({
+  //       populate: {
+  //         // image: { fields: ["url"] },
+  //         users_permissions_user: { populate: "*" },
+  //         image: { populate: "*" },
+  //         category: { populate: "*" },
+  //         // authorsBio: {
+  //         //   populate: "*",
+  //         // },
+  //       },
+  //       pagination: {
+  //         start: start,
+  //         limit: limit,
+  //       },
+  //     });
+
+  //     const data = await axios.get(
+  //       `https://strapi-blcj.onrender.com/api/articles?${query}`
+  //     );
+
+  //     const responseData = data?.data?.data;
+  //     const resData = data?.data?.meta?.pagination;
+
+  //     // console.log(responseData);
+  //     // console.log(resData);
+
+  //     if (start === 0) {
+  //       setData(responseData);
+  //     } else {
+  //       setData((prevData) => [...prevData, ...responseData]);
+  //     }
+
+  //     setLimit(resData);
+
+  //     // console.log(limit);
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchLimitData();
+  // }, []);
 
   // const getSelectedCat = (category) => {
   // if()
@@ -127,7 +178,7 @@ export default function ArticlePage({ searchParams }) {
           {/* <div className="container"> */}
           <div className="row">
             {articleData?.map((post) => {
-              if (post.attributes.highlighted_article === true) {
+              if (post?.attributes?.highlighted_article === true) {
                 return (
                   <div className="" key={post.id}>
                     <HighlightCard {...post} />
@@ -145,7 +196,7 @@ export default function ArticlePage({ searchParams }) {
           {/* <div className="container"> */}
           <div className="row mt-5 gy-4">
             {/* <TagButtons /> */}
-            {articleData?.map((post) => {
+            {limit?.map((post) => {
               // console.log(post.attributes);
               if (post.attributes.highlighted_article === false) {
                 return (
@@ -156,8 +207,12 @@ export default function ArticlePage({ searchParams }) {
               }
             })}
           </div>
+
           {/* </div> */}
-          {/* <Pagination pageCount={Math.ceil(articleData.length / perPage)} currentPage={currentPage}/> */}
+          {/* <Pagination
+            pageCount={Math.ceil(limit.length / perPage)}
+            currentPage={currentPage}
+          /> */}
 
           {/* <div className="pt-4">
             <PaginationComp
