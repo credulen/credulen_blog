@@ -66,7 +66,8 @@ export default function ArticlePage({ searchParams }) {
   // console.log(data);
 
   useEffect(() => {
-    const fetchData = async ({ start = 0, limit = 6 } = {}) => {
+    // const fetchData = async ({ start = 0, limit = 6 } = {}) => {
+    const fetchData = async () => {
       const query = qs.stringify({
         populate: {
           // image: { fields: ["url"] },
@@ -77,10 +78,10 @@ export default function ArticlePage({ searchParams }) {
           //   populate: "*",
           // },
         },
-        pagination: {
-          start,
-          limit,
-        },
+        // pagination: {
+        //   start,
+        //   limit,
+        // },
       });
       const data = await axios.get(
         `https://strapi-blcj.onrender.com/api/articles?${query}`
@@ -95,7 +96,8 @@ export default function ArticlePage({ searchParams }) {
       // console.log(response);
     };
 
-    fetchData({ start: 1, limit: 4 });
+    fetchData();
+    // fetchData({ start: 1, limit: 4 });
   }, []);
 
   // const fetchLimitData = useCallback(async (start = 0, limit = 4) => {
@@ -178,6 +180,8 @@ export default function ArticlePage({ searchParams }) {
           {/* <div className="container"> */}
           <div className="row">
             {articleData?.map((post) => {
+              // console.log(post?.attributes?.category?.data?.attributes?.slug);
+              // console.log(post?.attributes?.description);
               if (post?.attributes?.highlighted_article === true) {
                 return (
                   <div className="" key={post.id}>

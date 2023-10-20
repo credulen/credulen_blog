@@ -1,170 +1,123 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import qs from "qs";
-import axios from "axios";
 import IsLoading from "../../components/IsLoading";
-import {
-  ArticleCard,
-  HighlightCard,
-  RecentPostCard,
-} from "../../components/Cards";
-import { JoinTelegram, Subscribe } from "../../components/Connections";
+import PostList from "./PostLists";
+import axios from "axios";
 
-const Art = () => {
-  const [posts, setPosts] = useState([]);
-  const [meta, setMeta] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Articless = () => {
+  const [meta, setMeta] = useState();
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
+  const fetchData = useCallback(async (start, limit) => {
     setLoading(true);
-    const fetchData = async ({ start = 0, limit = 4 } = {}) => {
-      // const fetchData = async (start, limit) => {
-      const query = qs.stringify({
+
+    try {
+      const query = {
+        sort: { createdAt: "desc" },
         populate: {
+          // image: { fields: ["url"] },
           image: { populate: "*" },
           category: { populate: "*" },
+          users_permissions_user: { populate: "*" },
+          // authorsBio: {
+          //   populate: "*",
+          // },
         },
-
         pagination: {
-          start,
-          limit,
+          start: start,
+          limit: limit,
         },
-      });
+      };
 
       const data = await axios.get(
         `https://strapi-blcj.onrender.com/api/articles?${query}`
       );
 
-      let response = data?.data?.data;
-      let metaData = data?.data?.meta?.pagination;
-
+      let responseData = data.data.data;
+      let metaData = data.data.meta;
       //   console.log(metaData);
 
-      //   console.log(1, data);
-      //   console.log(2, response);
-
       if (start === 0) {
-        setPosts(response);
+        setData(responseData);
       } else {
-        setPosts((prevData) => [...prevData, ...response]);
+        setData((prevData) => [...prevData, ...responseData]);
       }
-      //   setPosts(response);
+
       setMeta(metaData);
-    };
-
-    console.log(meta);
-
-    fetchData();
-
-    setLoading(false);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const page = searchParams.get("start") ?? "1";
-  const per_page = searchParams.get("limit") ?? "4";
+  //   const loadPrevPosts = () => {
+  //     const nextPost = meta?.pagination.start + meta?.pagination.limit;
 
-  const startPag = (Number(page) - 1) * Number(per_page);
-  const endPag = startPag + Number(per_page);
-
-  const entries = posts.slice(startPag, endPag);
-  //   console.log(entries);
-
-  const hasPrevPage = () => {
-    let prevSet = endPag < posts.length;
-  };
-
-  const hasNextPage = () => {
-    let nextSet = startPag > 0;
-  };
-
-  const prevPage = () => {
-    router.push(`/articlelist?page=${page - 1}`);
-  };
-
-  const nextPage = () => {
-    router.push(`/articlelist?page=${page + 1}`);
-  };
-
-  //   console.log(
-  //     3,
-  //     posts?.map((single) => {
-  //       console.log(single);
-  //     })
-  //   );
-
-  //   const pageNumClick = (start, limit) => {
-  //     router.push({
-  //       pathname: router.pathname,
-  //       query: { start: start, limit: limit },
-  //     });
+  //     fetchData(nextPost, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+  //     // console.log(process.env.NEXT_PUBLIC_PAGE_LIMIT);
   //   };
 
-  if (loading) {
-    return <IsLoading />;
-  }
+  const loadPrevPosts = () => {
+    const prevPost = meta?.pagination.start - 1;
+
+    fetchData(prevPost, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+    // console.log(process.env.NEXT_PUBLIC_PAGE_LIMIT);
+  };
+
+  const loadNewPosts = () => {
+    const nextPost = meta?.pagination.start + 1;
+
+    fetchData(nextPost, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+    // console.log(process.env.NEXT_PUBLIC_PAGE_LIMIT);
+  };
+
+  useEffect(() => {
+    fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+  }, [fetchData]);
+
+  if (isLoading) return <IsLoading />;
 
   return (
-    <main className="container">
-      <div className="row g-5">
-        <div className="col-md-8">
-          <div className="row">
-            {posts?.map((post) => {
-              //   console.log(4, post);
-              if (post?.attributes?.highlighted_article === true) {
-                return (
-                  <div className="" key={post.id}>
-                    <HighlightCard {...post} />
-                  </div>
-                );
-              }
-            })}
-          </div>
+    <div>
+      <PostList data={data}>
+        {/* {meta?.pagination.start + meta?.pagination.limit <
+                meta?.pagination.total && (
+                <div className="flex justify-center">
+                  <button
+                    type="button"
+                    className="px-6 py-3 text-sm rounded-lg hover:underline dark:bg-gray-900 dark:text-gray-400"
+                    onClick={loadMorePosts}
+                  >
+                    Load More Posts...
+                  </button>
+                </div>
+              )} */}
 
-          <div className="row mt-5 gy-4">
-            {posts?.map((post) => {
-              //   console.log(4, post);
-              if (post?.attributes?.highlighted_article === false) {
-                return (
-                  <div className="col-md-6" key={post.id}>
-                    <ArticleCard {...post} />
-                  </div>
-                );
-              }
-            })}
-          </div>
+        {/* {meta?.pagination.start + meta?.pagination.limit <
+          meta?.pagination.total && ( */}
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={loadPrevPosts}
+          >
+            prev
+          </button>
 
-          <div className="pt-5">
-            <button className="me-4 btn btn-success" onClick={prevPage}>
-              Previous
-            </button>
-            <button className="btn btn-success" onClick={nextPage}>
-              Next
-            </button>
-          </div>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={loadNewPosts}
+          >
+            next
+          </button>
         </div>
-
-        <div className="col-md-4">
-          <div className="mb-5">
-            <RecentPostCard />
-          </div>
-
-          <div>
-            <JoinTelegram />
-          </div>
-
-          <div className="mt-5">
-            <h6 className="text-dark">
-              Subscribe our newsletter to get update
-            </h6>
-            <Subscribe />
-          </div>
-        </div>
-      </div>
-    </main>
+        {/* )} */}
+      </PostList>
+    </div>
   );
 };
 
-export default Art;
+export default Articless;
