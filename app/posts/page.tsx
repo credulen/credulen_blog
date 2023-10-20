@@ -60,6 +60,7 @@ const Profile = () => {
       // console.log(options);
 
       const responseData = await fetchAPI(path, urlParamsObject, options);
+      console.log(urlParamsObject);
       console.log(responseData);
 
       if (start === 0) {
