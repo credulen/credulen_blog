@@ -42,7 +42,7 @@ const Profile = () => {
       // console.log(options);
 
       const responseData = await fetchAPI(path, urlParamsObject, options);
-      // console.log(responseData);
+      // console.log(responseData.data);
 
       if (start === 0) {
         setData(responseData.data);

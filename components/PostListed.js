@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { formatDate, getStrapiMedia } from "../lib/strapiURL.utils";
 import Image from "next/image";
 import Link from "next/link";
