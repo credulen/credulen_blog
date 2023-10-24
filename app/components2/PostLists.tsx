@@ -57,7 +57,7 @@ interface Article {
   };
 }
 
-const PostList = ({
+const PostLists = ({
   data: articles,
   children,
 }: {
@@ -156,4 +156,4 @@ const PostList = ({
   );
 };
 
-export default PostList;
+export default PostLists;

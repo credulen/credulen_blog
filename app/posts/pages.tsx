@@ -3,9 +3,8 @@ import { useState, useEffect, useCallback } from "react";
 import dotenv from "dotenv";
 import { fetchAPI } from "../utils/fetch_api";
 
-import Loader from "../components2/Loader";
-import PostList from "../components2/PostList";
-import PageHeader from "../components2/PageHeader";
+import Loader from "../components2/Loaders";
+import PostLists from "../components2/PostLists";
 
 // dotenv.config();
 
@@ -92,7 +91,7 @@ const Profile = () => {
 
   return (
     <div>
-      <PostList data={data}>
+      <PostLists data={data}>
         {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
           <div className="flex justify-center">
@@ -105,7 +104,7 @@ const Profile = () => {
             </button>
           </div>
         )}
-      </PostList>
+      </PostLists>
     </div>
   );
 };
