@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import IsLoading from "../../components/IsLoading";
 import PostList from "./PostLists";
 import axios from "axios";
+import PaginationLogic from "./PostLists";
 
 const Articless = () => {
   const [meta, setMeta] = useState();
@@ -36,7 +37,7 @@ const Articless = () => {
 
       let responseData = data.data.data;
       let metaData = data.data.meta;
-      //   console.log(metaData);
+      console.log(metaData);
 
       if (start === 0) {
         setData(responseData);
@@ -51,6 +52,8 @@ const Articless = () => {
       setLoading(false);
     }
   }, []);
+
+  const pagination = meta?.pagination;
 
   //   const loadPrevPosts = () => {
   //     const nextPost = meta?.pagination.start + meta?.pagination.limit;
@@ -98,21 +101,12 @@ const Articless = () => {
         {/* {meta?.pagination.start + meta?.pagination.limit <
           meta?.pagination.total && ( */}
         <div className="flex justify-center">
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={loadPrevPosts}
-          >
-            prev
-          </button>
-
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={loadNewPosts}
-          >
-            next
-          </button>
+          <PaginationLogic
+            pagination={{ ...pagination, count: +meta.limit }}
+            onPageChange={(page) => handleChangeQueryParams({ page })}
+            currentPage={meta?.page}
+            onLimitChange={(limit) => handleChangeQueryParams({ limit })}
+          />
         </div>
         {/* )} */}
       </PostList>

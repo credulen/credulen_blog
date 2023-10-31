@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import qs from "qs";
 // import ArticleList from "@/components/ArticleList";
 import {
@@ -22,9 +22,12 @@ export default function ArticlePage({ searchParams }) {
   // const [articleData, setArticleData] = useState([]);
   const [articleData, setArticleData] = useState([]);
   const [data, setData] = useState([]);
+  const [meta, setMeta] = useState([]);
   const [limit, setLimit] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(4);
 
   const router = useRouter();
   const params = useParams();
@@ -64,41 +67,134 @@ export default function ArticlePage({ searchParams }) {
   // console.log("article category", articleCat);
 
   // console.log(data);
+  // const queryStr = qs.stringify({
+  //   populate: {
+  //     // image: { fields: ["url"] },
+  //     users_permissions_user: { populate: "*" },
+  //     image: { populate: "*" },
+  //     category: { populate: "*" },
+  //     // authorsBio: {
+  //     //   populate: "*",
+  //     // },
+  //   },
+  //   pagination: {
+  //     // start: start,
+  //     // limit: limit,
+  //     // page,
+  //     // pageSize,
+  //   },
+  // });
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    // const fetchData = async ({ start = 0, limit = 6 } = {}) => {
+    // const fetchData = async ({ page = 1, pageSize = 5 } = {}) => {
     const fetchData = async () => {
-      const query = qs.stringify({
-        populate: {
-          // image: { fields: ["url"] },
-          users_permissions_user: { populate: "*" },
-          image: { populate: "*" },
-          category: { populate: "*" },
-          // authorsBio: {
-          //   populate: "*",
-          // },
-        },
-        // pagination: {
-        //   start,
-        //   limit,
-        // },
-      });
       const data = await axios.get(
-        `https://strapi-blcj.onrender.com/api/articles?${query}`
+        // `http://localhost:1337/api/articles?${query}`
+        // `https://strapi-blcj.onrender.com/api/articles?pagination[page]=1&pagination[pageSize]=5`
         // `http://localhost:1337/api/articles?_limit=3`
+        `https://strapi-blcj.onrender.com/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=7`
+
+        // `https://strapi-blcj.onrender.com/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=3?filters[chef][restaurants][stars][$eq]=5`
       );
 
       // console.log(`https://strapi-blcj.onrender.com/api/articles?${query}`);
       // console.log(data);
-      let response = data.data.data;
-      // let response = data.data.meta;
-      setLimit(response);
-      // console.log(response);
+      let response = data.data?.data;
+      setData(response);
+
+      let responseMeta = data?.data?.meta?.pagination;
+      // console.log(responseMeta);
+      setMeta(responseMeta);
     };
 
     fetchData();
     // fetchData({ start: 1, limit: 4 });
-  }, []);
+  }, [page]);
+
+  // console.log(meta);
+
+  // const indexOfLastRecord = currentPage * recordsPerPage;
+  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+  // const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+
+  /*code that worked*/
+  // const totalCount = meta?.total;
+
+  // const nPages = Math.ceil(meta?.total / meta?.pageSize);
+  // console.log(nPages);
+  const nPages = meta?.pageCount;
+  const pageSize = meta?.pageSize;
+  const pageNum = meta?.page;
+  const totalRecords = meta?.total;
+  // console.log(totalRecords);
+  // console.log(nPages);
+
+  // const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      // setCurrentPage(currentPage - 1);
+      setPage((prevPage) => prevPage - 1);
+      // setPage((prevPage) => prevPage - 1, page);
+      // setPage(currentPage - 1);
+      // setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (page !== nPages) {
+      // setCurrentPage(currentPage + 1);
+      // setCurrentPage((prevPage) => prevPage + 1);
+      setPage((prev) => prev + 1);
+      // setPage((prev) => prev + 1, page);
+      // setPage(currentPage + 1);
+    }
+  };
+
+  const startIndex = (currentPage - 1) * meta?.pageSize;
+  const endIndex = startIndex + meta?.pageSize;
+  const currentPageData = data?.slice(startIndex, endIndex);
+  // console.log(startIndex, endIndex);
+
+  // const currentPageData = useMemo(() => {
+  //   const startIndex = (currentPage - 1) * meta?.pageSize;
+  //   const endIndex = startIndex + meta?.pageSize;
+  //   return data?.slice(startIndex, endIndex);
+  // }, [currentPage]);
+  // // console.log(startIndex, endIndex);
+  /*code that worked*/
+
+  // const currentPageDatas = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * meta?.pageSize;
+  //   const lastPageIndex = firstPageIndex + meta?.pageSize;
+  //   return data?.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
+  // console.log(startIndex, endIndex);
+
+  // const indexOfLastRecord = (currentPage - 1) * meta?.pageSize;
+  // const indexOfFirstRecord = meta?.pageSize - indexOfLastRecord;
+  // console.log(indexOfFirstRecord, indexOfLastRecord);
+  // console.log(currentPageData);
+  // console.log(meta?.total);
+
+  // let starts = meta?.start;
+  // let limits = meta?.limit;
+  // let total = meta?.total;
+  // console.log(1, start);
+  // console.log(2, limits);
+  // console.log(3, total);
+
+  // const pageNumClick = () => {
+  //   router.push({
+  //     pathname: router.pathname,
+  //     query: { start: start, limit: limits },
+  //   });
+  // };
+
+  // console.log(pageNumClick);
 
   // const fetchLimitData = useCallback(async (start = 0, limit = 4) => {
   //   setIsLoading(true);
@@ -168,6 +264,14 @@ export default function ArticlePage({ searchParams }) {
   // const entries = articleData.slice(start, end);
   // console.log(entries);
 
+  // const newData = currentPageData?.map((article) => [
+  //   article?.attributes?.title,
+  //   article?.attributes?.description,
+  //   article?.attributes?.image?.data?.attributes?.formats?.medium?.url,
+  // ]);
+
+  // console.log(newData);
+
   if (isLoading) {
     return <IsLoading />;
   }
@@ -198,9 +302,9 @@ export default function ArticlePage({ searchParams }) {
           {/* </div> */}
 
           {/* <div className="container"> */}
-          <div className="row mt-5 gy-4">
+          <div className="row mt-5 gy-4 mb-5">
             {/* <TagButtons /> */}
-            {limit?.map((post) => {
+            {currentPageData?.map((post) => {
               // console.log(post.attributes);
               if (post.attributes.highlighted_article === false) {
                 return (
@@ -210,6 +314,7 @@ export default function ArticlePage({ searchParams }) {
                 );
               }
             })}
+            {/* {currentPageData ? <ArticleCard {...newData} /> : <p>Loading</p>} */}
           </div>
 
           {/* </div> */}
@@ -228,6 +333,74 @@ export default function ArticlePage({ searchParams }) {
           {/* <button onClick={() => router.push(`/articles?page=${page + 1}`)}>
               Next
             </button> */}
+          {/* </div> */}
+
+          {/* <div className="mt-5"> */}
+          {/* <div onClick={() => pageNumClick(parseInt(meta?.start) + 1, limit)}>
+              Next page
+            </div>
+
+            <div onClick={() => pageNumClick(parseInt(meta?.start) - 1, limit)}>
+              Previous page
+            </div> */}
+          {/* {limit ? JSON.stringify(limit) : <></>} */}
+          {/* <Pagination
+              nPages={nPages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            /> */}
+
+          <nav aria-label="Page navigation example mt-5">
+            <ul
+              className="pagination d-flex align-items-center"
+              // nPages={nPages}
+              // currentPage={currentPage}
+              // setCurrentPage={setCurrentPage}
+            >
+              <li className="page-item">
+                <button
+                  className="btn btn-success"
+                  disabled={page === 1}
+                  onClick={handlePrevPage}
+                >
+                  Previous
+                </button>
+              </li>
+              {/* {
+                // map through the array of numbers and render a li for each one
+                pageNumbers.map((pgNumber) => {
+                  // if (number === currentPage) {}
+
+                  <li
+                    // className={`page-item ${
+                    //   currentPage === pgNumber ? "active" : ""
+                    // }`}
+                    className="page-item"
+                    key={pgNumber}
+                  >
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => setCurrentPage(pgNumber)}
+                    >
+                      {pgNumber}
+                    </a>
+                  </li>;
+                })
+              } */}
+              <span className="mx-3">{`Page ${page} of ${nPages}`}</span>
+              {/* {console.log(currentPage, nPages)} */}
+              <li className="page-item">
+                <button
+                  className="btn btn-success"
+                  disabled={page === nPages}
+                  onClick={handleNextPage}
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
           {/* </div> */}
         </div>
 
@@ -252,3 +425,58 @@ export default function ArticlePage({ searchParams }) {
     </main>
   );
 }
+
+// const Pagination = () => {
+//   const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+
+//   const prevPage = () => {
+//     if (currentPage !== 1) {
+//       setCurrentPage(currentPage - 1);
+//     }
+//   };
+
+//   const nextPage = () => {
+//     if (currentPage !== nPages) {
+//       setCurrentPage(currentPage + 1);
+//     }
+//   };
+
+//   return (
+//     <nav aria-label="Page navigation example">
+//       <ul className="pagination">
+//         <li className="page-item">
+//           <a className="page-link" href="#" onClick={prevPage}>
+//             Previous
+//           </a>
+//         </li>
+//         {
+//           // map through the array of numbers and render a li for each one
+//           pageNumbers.map((pgNumber) => {
+//             // if (number === currentPage) {}
+
+//             <li
+//               className={`page-item ${
+//                 currentPage === pgNumber ? "active" : ""
+//               }`}
+//               key={pgNumber}
+//             >
+//               <a
+//                 className="page-link"
+//                 href="#"
+//                 onClick={() => setCurrentPage(pgNumber)}
+//               >
+//                 {pgNumber}
+//               </a>
+//             </li>;
+//           })
+//         }
+
+//         <li className="page-item">
+//           <a className="page-link" href="#" onClick={nextPage}>
+//             Next
+//           </a>
+//         </li>
+//       </ul>
+//     </nav>
+//   );
+// };
