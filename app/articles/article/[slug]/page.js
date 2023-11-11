@@ -1,5 +1,8 @@
 "use client";
-import { RelatedArticleCard } from "../../../../components/Cards";
+import {
+  RecentPostCard,
+  RelatedArticleCard,
+} from "../../../../components/Cards";
 import { JoinTelegram, Subscribe } from "../../../../components/Connections";
 import IsLoading from "../../../../components/IsLoading";
 import { getAllArticleData } from "../../../../data/articleData/articleListData";
@@ -10,6 +13,7 @@ import { format } from "date-fns";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import qs from "qs";
 
 // const fetchData = async (articleId) => {
 // 	let singleArticle = await axios.get(
@@ -25,7 +29,15 @@ import ReactMarkdown from "react-markdown";
 // const SingleArticlePage = ({ articleId }) => {
 // const SingleArticlePage = ({ params }) => {
 const SingleArticlePage = ({ params }) => {
-  // const params = useParams();
+  const queryStr = qs.stringify({
+    populate: {
+      image: { populate: "*" },
+      category: { populate: "*" },
+      author_bio: { populate: "*" },
+    },
+    pagination: {},
+  });
+
   const { slug } = params;
   // console.log(slug);
 
@@ -37,7 +49,7 @@ const SingleArticlePage = ({ params }) => {
 
   const getSingleArticleData = async () => {
     const data = await axios.get(
-      `https://strapi-blcj.onrender.com/api/articles/${slug}/?populate=*`
+      `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
     );
     // .then((res) => res.data)
     // .then((article) => article.data)
@@ -46,6 +58,41 @@ const SingleArticlePage = ({ params }) => {
     setSingleArticleData(data?.data?.data);
   };
 
+  // console.log(singleArticleData?.attributes?.createdAt);
+
+  // console.log(
+  //   singleArticleData?.attributes?.author_bio?.data?.attributes?.author_img
+  //     ?.data?.attributes?.formats?.small?.url
+  // );
+
+  let year = new Date(singleArticleData?.attributes?.createdAt).getFullYear();
+  // let month = new Date(props.attributes.createdAt).getFullYear();
+  var arr = `${singleArticleData?.attributes?.createdAt}`.split("-");
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var month_index = parseInt(arr[1], 10) - 1;
+  let month = months[month_index];
+  // console.log(month);
+
+  let day = new Date(singleArticleData?.attributes?.createdAt).getDate();
+  let hour = new Date(singleArticleData?.attributes?.createdAt).getHours();
+  let mins = new Date(singleArticleData?.attributes?.createdAt).getMinutes();
+
+  let articleDate = `${month?.toUpperCase()} ${day}, ${year}`;
+
+  // console.log(articleDate);
   useEffect(() => {
     getSingleArticleData();
     setIsLoading(false);
@@ -79,7 +126,10 @@ const SingleArticlePage = ({ params }) => {
           <div className="d-flex align-items-center mt-3 mb-4">
             <div>
               <img
-                src="/assets/blockImg.jpg"
+                src={
+                  singleArticleData?.attributes?.author_bio?.data?.attributes
+                    ?.author_img?.data?.attributes?.formats?.small?.url
+                }
                 className="rounded-circle me-3"
                 width={40}
                 height={40}
@@ -90,13 +140,17 @@ const SingleArticlePage = ({ params }) => {
             <div>
               <p className="card-text">
                 <small className="text-body-secondary">
-                  John Doe | JULY 15, 2023
+                  {
+                    singleArticleData?.attributes?.author_bio?.data?.attributes
+                      ?.author_name
+                  }{" "}
+                  | {articleDate}
                 </small>
 
-                <small className="text-body-secondary">
+                {/* <small className="text-body-secondary">
                   {singleArticleData?.attributes?.users_permission_user |
                     singleArticleData?.attributes?.createdAt}
-                </small>
+                </small> */}
               </p>
             </div>
           </div>
@@ -111,26 +165,27 @@ const SingleArticlePage = ({ params }) => {
             {/* <h3>Title</h3> */}
           </div>
           <div className="text-justify mt-4 text-black">
-            <p>
-              {
-                <p align="justify">
-                  <ReactMarkdown>
-                    {singleArticleData?.attributes?.body}
-                  </ReactMarkdown>
-                </p>
-              }
-              {/* {isLoading ? (
+            {
+              <p align="justify">
+                <ReactMarkdown>
+                  {singleArticleData?.attributes?.body}
+                </ReactMarkdown>
+              </p>
+            }
+            {/* {isLoading ? (
                 <IsLoading />
                 <ReactMarkdown source={singleArticleData?.attributes?.body} escapeHtml={false} />
               ) : (
                 <p>dangerouslySetInnerHtml={blogPost}</p>
               )} */}
-            </p>
           </div>
           {/* end */}
         </div>
         <div className="col-md-4">
-          <RelatedArticleCard />
+          {/* <RelatedArticleCard /> */}
+          <div className="mb-5">
+            <RecentPostCard />
+          </div>
 
           <div>
             <JoinTelegram />

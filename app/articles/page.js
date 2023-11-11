@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import {
   ArticleCard,
+  CategoryCard,
   HighlightCard,
   RecentPostCard,
 } from "../../components/Cards";
@@ -11,6 +12,7 @@ import Link from "next/link";
 import { getAllArticleData } from "../../data/articleData/articleListData";
 import IsLoading from "../../components/IsLoading";
 import ReactPaginate from "react-paginate";
+import qs from "qs";
 
 export default function ArticlePage() {
   // const [articleData, setArticleData] = useState([]);
@@ -21,6 +23,7 @@ export default function ArticlePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isError, setIsError] = useState(true);
   const [page, setPage] = useState(1);
+  const [category, setCategory] = useState();
 
   const fetchData = async () => {
     const articles = await getAllArticleData();
@@ -57,9 +60,7 @@ export default function ArticlePage() {
   //     users_permissions_user: { populate: "*" },
   //     image: { populate: "*" },
   //     category: { populate: "*" },
-  //     // authorsBio: {
-  //     //   populate: "*",
-  //     // },
+  //     author_bio: { populate: "*" },
   //   },
   //   pagination: {
   //     // start: start,
@@ -69,13 +70,36 @@ export default function ArticlePage() {
   //   },
   // });
 
+  const queryStr = qs.stringify({
+    populate: {
+      image: { populate: "*" },
+      category: { populate: "*" },
+      author_bio: { populate: "*" },
+    },
+    pagination: {
+      // start,
+      // limit,
+    },
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios.get(
-        `https://strapi-blcj.onrender.com/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=7`
+        `https://strapi-blcj.onrender.com/api/articles?${queryStr}&pagination[page]=${page}&pagination[pageSize]=6`
 
-        // `https://strapi-blcj.onrender.com/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=3?filters[chef][restaurants][stars][$eq]=5`
+        // `http://localhost:1337/api/articles?${queryStr}&pagination[page]=${page}&pagination[pageSize]=7`
+        // `http://localhost:1337/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=7`
+
+        // `http://localhost:1337/api/articles?filters[category][Title][$eq]=BLOCKCHAIN-EDUCATION&populate=*&pagination[page]=${page}&pagination[pageSize]=7`
+
+        // `http://localhost:1337/api/articles?populate=*&filters[category][Title][$eq]=BLOCKCHAIN-EDUCATION&pagination[page]=${page}&pagination[pageSize]=7`
+
+        // `http://localhost:1337/api/articles?filters[category][Title][$eq]=${category}&populate=*&pagination[page]=${page}&pagination[pageSize]=7`
+
+        // `http://localhost:1337/api/${queryStr}`
       );
+
+      // console.log(data);
 
       let response = data.data?.data;
       setData(response);
@@ -90,17 +114,17 @@ export default function ArticlePage() {
 
   const nPages = meta?.pageCount;
 
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
+  // const handlePrevPage = () => {
+  //   if (page > 1) {
+  //     setPage((prevPage) => prevPage - 1);
+  //   }
+  // };
 
-  const handleNextPage = () => {
-    if (page !== nPages) {
-      setPage((prev) => prev + 1);
-    }
-  };
+  // const handleNextPage = () => {
+  //   if (page !== nPages) {
+  //     setPage((prev) => prev + 1);
+  //   }
+  // };
 
   const onPageClick = () => {
     if (page > 1) {
@@ -152,6 +176,19 @@ export default function ArticlePage() {
           <ReactPaginate
             previousLabel="previous"
             nextLabel="next"
+            pageCount={parseInt(nPages)}
+            onClick={onPageClick}
+            containerClassName="pagination d-flex justify-content-center pt-5"
+            previousLinkClassName="page-link bg-success text-white me-3"
+            nextLinkClassName="page-link bg-success text-white ms-3"
+            pageClassName="px-3 mx-2 btn btn-success text-success page-link"
+            activeClassName="bg-success text-white"
+            disabledLinkClassName="bg-secondary"
+          />
+
+          {/* <ReactPaginate
+            previousLabel="previous"
+            nextLabel="next"
             pageCount={nPages}
             onClick={onPageClick}
             containerClassName="pagination d-flex justify-content-center pt-5"
@@ -160,7 +197,7 @@ export default function ArticlePage() {
             pageClassName="px-3 mx-2 btn btn-primary page-link"
             activeClassName="bg-primary text-white"
             disabledLinkClassName="bg-secondary"
-          />
+          /> */}
 
           {/* <nav aria-label="Page navigation example mt-5">
             <ul className="pagination d-flex align-items-center">
@@ -194,6 +231,17 @@ export default function ArticlePage() {
           <div className="mb-5">
             <RecentPostCard />
           </div>
+
+          {/* <div className="mb-5 card">
+            {currentPageData?.map((cat) => {
+              return (
+                <div key={cat?.id}>
+                  <CategoryCard {...cat} />
+                </div>
+              );
+            })}
+            <CategoryCard />
+          </div> */}
 
           <div>
             <JoinTelegram />

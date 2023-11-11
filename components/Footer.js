@@ -13,7 +13,7 @@ import logo from "../public/logo/5.png";
 
 const Footer = () => {
   return (
-    <div className="footer_bg mt-auto">
+    <div className="footer_bg mt-auto pt-auto mb-0 pb-0">
       <div className="container py-5">
         <div className="row border_design border-bottom pb-4">
           {/* first column */}

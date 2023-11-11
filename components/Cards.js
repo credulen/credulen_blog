@@ -9,7 +9,33 @@ import { getAllWebinarSpeakersData } from "../data/webinarData/webinarSpeakerDat
 
 // an article becomes highlighted with true or false
 export const HighlightCard = (props, { articleCat }) => {
-  // console.log(articleCat);
+  let year = new Date(props?.attributes?.createdAt).getFullYear();
+  // let month = new Date(props.attributes.createdAt).getFullYear();
+  var arr = `${props?.attributes?.createdAt}`.split("-");
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var month_index = parseInt(arr[1], 10) - 1;
+  let month = months[month_index];
+  // console.log(month);
+
+  let day = new Date(props?.attributes?.createdAt).getDate();
+  let hour = new Date(props?.attributes?.createdAt).getHours();
+  let mins = new Date(props?.attributes?.createdAt).getMinutes();
+
+  let articleDate = `${day}, ${month.toUpperCase()} ${year}`;
+  // console.log(props?.attributes?.author_bio);
   // const [active, setActive] = useState(false);
 
   // const handleClick = () => {
@@ -57,6 +83,25 @@ export const HighlightCard = (props, { articleCat }) => {
           {props?.attributes?.category?.data?.attributes?.Title}
         </Link>
 
+        <div className="mt-4">
+          <div className="d-flex align-items-center">
+            <img
+              src={
+                props?.attributes?.author_bio?.data?.attributes?.author_img
+                  ?.data?.attributes?.formats?.small?.url
+              }
+              className="rounded-circle me-3"
+              width={40}
+              height={40}
+              alt="Picture of the first speaker"
+            />
+            <p className="mb-0">
+              {props?.attributes?.author_bio?.data?.attributes?.author_name}
+            </p>
+          </div>
+          {/* <p className="mt-3">{articleDate}</p> */}
+        </div>
+
         <Link
           //   // href={`/articles/article/${props?.attributes?.slug}`}
           href={`/articles/article/${props?.id}`}
@@ -86,6 +131,9 @@ export const HighlightCard = (props, { articleCat }) => {
         >
           Read More
         </Link> */}
+      </div>
+      <div className="card-footer">
+        <p className="m-2 text-center">{articleDate}</p>
       </div>
     </div>
     // </Link>
@@ -196,6 +244,37 @@ export const HighlightCard = (props, { articleCat }) => {
 // };
 
 export const ArticleCard = (props) => {
+  // console.log(
+  //   props?.attributes?.author_bio?.data?.attributes?.author_img?.data
+  //     ?.attributes?.formats?.small?.url
+  // );
+
+  let year = new Date(props?.attributes?.createdAt).getFullYear();
+  // let month = new Date(props.attributes.createdAt).getFullYear();
+  var arr = `${props?.attributes?.createdAt}`.split("-");
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var month_index = parseInt(arr[1], 10) - 1;
+  let month = months[month_index];
+  // console.log(month);
+
+  let day = new Date(props?.attributes?.createdAt).getDate();
+  let hour = new Date(props?.attributes?.createdAt).getHours();
+  let mins = new Date(props?.attributes?.createdAt).getMinutes();
+
+  let articleDate = `${day}, ${month.toUpperCase()} ${year}`;
   return (
     // <Link
     //   // href={`/article/${props.articleId}`}
@@ -228,25 +307,60 @@ export const ArticleCard = (props) => {
           key={cat.id}
           onClick={() => filterCat(cat)}
         > */}
-        <Link
-          href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
-          className="icon__color"
-        >
-          {props?.attributes?.category?.data?.attributes?.Title}
-        </Link>
+        <div>
+          <Link
+            href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+            className="icon__color"
+          >
+            {props?.attributes?.category?.data?.attributes?.Title}
+          </Link>
+        </div>
 
-        <Link
-          // href={`/articles/article/${props?.attributes?.slug}`}
-          href={`/articles/article/${props?.id}`}
-          className="article-content__onhover"
-        >
-          <h5 className="card-title mt-4">{props?.attributes?.title}</h5>
-          <p className="card-text">
-            {" "}
-            {props?.attributes?.description.split(" ").splice(0, 10).join(" ") +
-              "..."}
-          </p>
-        </Link>
+        {/* <div className="d-flex justify-content-between align-items-center mt-4">
+        
+
+          <small>
+            {props?.attributes?.author_bio?.data?.attributes?.author_name}
+          </small>
+          <small>{articleDate}</small>
+        </div> */}
+
+        <div className="mt-4">
+          <div className="d-flex align-items-center">
+            <img
+              src={
+                props?.attributes?.author_bio?.data?.attributes?.author_img
+                  ?.data?.attributes?.formats?.small?.url
+              }
+              className="rounded-circle me-3"
+              width={40}
+              height={40}
+              alt="Picture of the first speaker"
+            />
+            <p className="mb-0">
+              {props?.attributes?.author_bio?.data?.attributes?.author_name}
+            </p>
+          </div>
+          {/* <p className="mt-3">{articleDate}</p> */}
+        </div>
+
+        <div>
+          <Link
+            // href={`/articles/article/${props?.attributes?.slug}`}
+            href={`/articles/article/${props?.id}`}
+            className="article-content__onhover"
+          >
+            <h5 className="card-title mt-4">{props?.attributes?.title}</h5>
+            <p className="card-text">
+              {" "}
+              {props?.attributes?.description
+                .split(" ")
+                .splice(0, 20)
+                .join(" ") + "..."}
+            </p>
+          </Link>
+        </div>
+
         {/* <Link
           // href={`/article/${props.articleId}`}
           href={`/articles/article/${props?.id}`}
@@ -255,6 +369,28 @@ export const ArticleCard = (props) => {
         >
           Read More
         </Link> */}
+      </div>
+      {/* <div className="d-flex align-items-center card-footer">
+        <img
+          src={`${props?.attributes?.author_bio?.data?.attributes?.author_img?.data?.attributes?.formats?.small?.url}`}
+          className="rounded-circle me-3"
+          width={50}
+          height={50}
+          alt={
+            props?.attributes?.author_bio?.data?.attributes?.author_img?.data
+              ?.attributes?.formats?.small?.name
+          }
+        />
+
+        <div>
+          <span>
+            {props?.attributes?.author_bio?.data?.attributes?.author_name}
+          </span>
+        </div>
+      </div> */}
+
+      <div className="card-footer">
+        <p className="m-1 text-center">{articleDate}</p>
       </div>
     </div>
     // </Link>
@@ -298,6 +434,23 @@ export const RecentPostCard = () => {
           {/* Changing the Course of History */}
           <Link href="#" className="text-white">
             Changing the Course of History
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export const CategoryCard = (props) => {
+  return (
+    <div className="card nav_bg">
+      {/* <div className="card-header text-center text-white border-bottom border-white">
+        Categories
+      </div> */}
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item text-center nav_bg">
+          <Link href="#" className="text-white">
+            {props?.attributes?.category?.data?.attributes?.Title}
           </Link>
         </li>
       </ul>

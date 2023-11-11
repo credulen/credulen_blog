@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 					rel="stylesheet"
 					href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></Link>
 			</Head> */}
-      <body className="body d-flex flex-column vh-100">
+      <body className="body min-vh-100">
         <Navbars />
         <div className="mt-5 pt-4">{children}</div>
 
