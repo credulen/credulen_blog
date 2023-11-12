@@ -77,7 +77,7 @@ export const HighlightCard = (props, { articleCat }) => {
       {/* <div className="card-body nav_bg"> */}
       <div className="card-body">
         <Link
-          href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+          href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
           className="icon__color"
         >
           {props?.attributes?.category?.data?.attributes?.Title}
@@ -139,109 +139,6 @@ export const HighlightCard = (props, { articleCat }) => {
     // </Link>
   );
 };
-
-// export const HighlightCard = ({ articleData, setArticleData }) => {
-//   // console.log(articleData);
-
-//   // filtering article categories
-//   const articleCat = [
-//     ...new Set(
-//       articleData.map(
-//         (cat) => cat?.attributes?.category?.data?.attributes?.Title
-//       )
-//     ),
-//   ];
-//   // console.log("article category", articleCat);
-
-//   const filterCat = (filtcat) => {
-//     const newCat = articleData.filter(
-//       (newCats) =>
-//         newCats?.attributes?.category?.data?.attributes?.Title === filtcat
-//     );
-//     setArticleData(newCat);
-//   };
-
-//   // const singleCat = articleCat.map((cat) => {
-//   //   filterCat(cat);
-//   // });
-
-//   // console.log(filterCat());
-
-//   return (
-//     <div className="card mb-3">
-//       {articleData?.map((post) => {
-//         if (post?.attributes?.highlighted_article === true) {
-//           return (
-//             <div key={post?.id}>
-//               <Link href={`/articles/article/${post?.id}`} className="">
-//                 <img
-//                   src={`${post?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
-//                   className="card-img-top"
-//                   fill
-//                   alt="Picture of the author"
-//                 />
-//               </Link>
-
-//               <div className="card-body">
-//                 {/* <Link
-//                   href={`/articlecat/singleartcat/${cat}`}
-//                   key={cat.id}
-//                   onClick={() => filterCat(cat)}
-//                 >
-//                   <ArticleCat
-//                     articleCat={articleCat}
-//                     filterCat={filterCat}
-//                     setArticleData={setArticleData}
-//                     articleData={articleData}
-//                   />
-//                 </Link> */}
-//                 {/* <Link href={`/articlecat/singleartcat/${post?.id}`}> */}
-//                 {/* {articleCat.map((cat) => {
-//                   console.log(cat);
-//                   return (
-//                     <Link
-//                       href={`/articlecat/singleartcat/${cat}`}
-//                       key={cat.id}
-//                       onClick={() => filterCat(cat)}
-//                     >
-//                       <ArticleCat
-//                         articleCat={articleCat}
-//                         filterCat={filterCat}
-//                         setArticleData={setArticleData}
-//                         articleData={articleData}
-//                       />
-//                     </Link>
-//                   );
-//                 })} */}
-//                 {/* hi */}
-//                 {/* </Link> */}
-//                 <Link
-//                   // onClick={() => singleCat}
-//                   href={`/articles/article/${post?.id}`}
-//                   className="article-content__onhover"
-//                 >
-//                   {post?.attributes?.category?.data?.attributes?.Title}
-//                 </Link>
-//                 <Link
-//                   href={`/articles/article/${post?.id}`}
-//                   className="article-content__onhover"
-//                 >
-//                   <h5 className="card-title">{post?.attributes?.title}</h5>
-//                   <p className="card-text">
-//                     {post?.attributes?.description
-//                       .split(" ")
-//                       .splice(0, 10)
-//                       .join(" ") + "..."}
-//                   </p>
-//                 </Link>
-//               </div>
-//             </div>
-//           );
-//         }
-//       })}
-//     </div>
-//   );
-// };
 
 export const ArticleCard = (props) => {
   // console.log(
@@ -309,7 +206,9 @@ export const ArticleCard = (props) => {
         > */}
         <div>
           <Link
-            href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+            // href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.attributes?.slug}`}
+            href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
+            // href={`/articlecat/singleartcat/${props?.attributes?.category?.data?.id}`}
             className="icon__color"
           >
             {props?.attributes?.category?.data?.attributes?.Title}
@@ -337,9 +236,9 @@ export const ArticleCard = (props) => {
               height={40}
               alt="Picture of the first speaker"
             />
-            <p className="mb-0">
+            <small className="mb-0">
               {props?.attributes?.author_bio?.data?.attributes?.author_name}
-            </p>
+            </small>
           </div>
           {/* <p className="mt-3">{articleDate}</p> */}
         </div>
@@ -443,20 +342,35 @@ export const RecentPostCard = () => {
 
 export const CategoryCard = (props) => {
   return (
-    <div className="card nav_bg">
-      {/* <div className="card-header text-center text-white border-bottom border-white">
-        Categories
-      </div> */}
-      <ul className="list-group list-group-flush">
-        <li className="list-group-item text-center nav_bg">
-          <Link href="#" className="text-white">
-            {props?.attributes?.category?.data?.attributes?.Title}
-          </Link>
-        </li>
-      </ul>
-    </div>
+    <li className="list-group-item text-center nav_bg">
+      <Link
+        href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
+        className="text-white"
+      >
+        {props?.attributes?.category?.data?.attributes?.Title}
+      </Link>
+    </li>
   );
 };
+// export const CategoryCard = (props) => {
+//   return (
+//     <div className="card nav_bg">
+//       {/* <div className="card-header text-center text-white border-bottom border-white">
+//         Categories
+//       </div> */}
+//       <ul className="list-group list-group-flush">
+//         <li className="list-group-item text-center nav_bg">
+//           <Link
+//             href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
+//             className="text-white"
+//           >
+//             {props?.attributes?.category?.data?.attributes?.Title}
+//           </Link>
+//         </li>
+//       </ul>
+//     </div>
+//   );
+// };
 
 export const UpcomingWebinarCard = (props) => {
   // console.log(props.id);

@@ -5,7 +5,10 @@ import {
 } from "../../../../components/Cards";
 import { JoinTelegram, Subscribe } from "../../../../components/Connections";
 import IsLoading from "../../../../components/IsLoading";
-import { getAllArticleData } from "../../../../data/articleData/articleListData";
+import {
+  getAllArticleData,
+  queryStr,
+} from "../../../../data/articleData/articleListData";
 // import { getAuthorData } from "@/data/authorData";
 import { getSingleArticleData } from "../../../../data/articleData/getSingleArticle";
 import axios from "axios";
@@ -29,14 +32,14 @@ import qs from "qs";
 // const SingleArticlePage = ({ articleId }) => {
 // const SingleArticlePage = ({ params }) => {
 const SingleArticlePage = ({ params }) => {
-  const queryStr = qs.stringify({
-    populate: {
-      image: { populate: "*" },
-      category: { populate: "*" },
-      author_bio: { populate: "*" },
-    },
-    pagination: {},
-  });
+  // const queryStr = qs.stringify({
+  //   populate: {
+  //     image: { populate: "*" },
+  //     category: { populate: "*" },
+  //     author_bio: { populate: "*" },
+  //   },
+  //   pagination: {},
+  // });
 
   const { slug } = params;
   // console.log(slug);

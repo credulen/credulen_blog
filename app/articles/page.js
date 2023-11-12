@@ -9,7 +9,10 @@ import {
 import { JoinTelegram, Subscribe } from "../../components/Connections";
 import axios, { AxiosError } from "axios";
 import Link from "next/link";
-import { getAllArticleData } from "../../data/articleData/articleListData";
+import {
+  getAllArticleData,
+  queryStr,
+} from "../../data/articleData/articleListData";
 import IsLoading from "../../components/IsLoading";
 import ReactPaginate from "react-paginate";
 import qs from "qs";
@@ -42,45 +45,6 @@ export default function ArticlePage() {
       });
     setIsLoading(false);
   }, []);
-
-  // filtering article categories
-  // const articleCat = [
-  //   ...new Set(
-  //     articleData.map(
-  //       (cat) => cat?.attributes?.category?.data?.attributes?.Title
-  //     )
-  //   ),
-  // ];
-  // console.log("article category", articleCat);
-
-  // console.log(data);
-  // const queryStr = qs.stringify({
-  //   populate: {
-  //     // image: { fields: ["url"] },
-  //     users_permissions_user: { populate: "*" },
-  //     image: { populate: "*" },
-  //     category: { populate: "*" },
-  //     author_bio: { populate: "*" },
-  //   },
-  //   pagination: {
-  //     // start: start,
-  //     // limit: limit,
-  //     // page,
-  //     // pageSize,
-  //   },
-  // });
-
-  const queryStr = qs.stringify({
-    populate: {
-      image: { populate: "*" },
-      category: { populate: "*" },
-      author_bio: { populate: "*" },
-    },
-    pagination: {
-      // start,
-      // limit,
-    },
-  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,6 +102,17 @@ export default function ArticlePage() {
   // const startIndex = (page - 1) * meta?.pageSize;
   const endIndex = startIndex + meta?.pageSize;
   const currentPageData = data?.slice(startIndex, endIndex);
+
+  // const filter = (tag, arr) => arr.filter((img) => img.tag === tag);
+
+  // // or in ES5
+  // // var filter = function(tag, arr) {
+  // //    return arr.filter(function(img) {
+  // //        return img.tag === tag;
+  // //    })
+  // // };
+
+  // const filtered = filter("people", images);
 
   if (isLoading) {
     return <IsLoading />;
@@ -232,15 +207,18 @@ export default function ArticlePage() {
             <RecentPostCard />
           </div>
 
-          {/* <div className="mb-5 card">
-            {currentPageData?.map((cat) => {
-              return (
-                <div key={cat?.id}>
-                  <CategoryCard {...cat} />
-                </div>
-              );
-            })}
-            <CategoryCard />
+          {/* <div className="card nav_bg mb-5">
+            <div className="card-header text-center text-white">Categories</div>
+
+            <ul className="list-group list-group-flush">
+              {currentPageData?.map((cat) => {
+                return (
+                  <div key={cat?.id}>
+                    <CategoryCard {...cat} />
+                  </div>
+                );
+              })}
+            </ul>
           </div> */}
 
           <div>
