@@ -95,9 +95,13 @@ export const HighlightCard = (props, { articleCat }) => {
               height={40}
               alt="Picture of the first speaker"
             />
-            <p className="mb-0">
-              {props?.attributes?.author_bio?.data?.attributes?.author_name}
-            </p>
+            <div className="d-flex flex-column align-items-start">
+              {/* <div className="d-flex justify-content-between"> */}
+              <small className="mb-0">
+                {props?.attributes?.author_bio?.data?.attributes?.author_name}
+              </small>
+              <small className="text-center">{articleDate}</small>
+            </div>
           </div>
           {/* <p className="mt-3">{articleDate}</p> */}
         </div>
@@ -132,9 +136,9 @@ export const HighlightCard = (props, { articleCat }) => {
           Read More
         </Link> */}
       </div>
-      <div className="card-footer">
+      {/* <div className="card-footer">
         <p className="m-2 text-center">{articleDate}</p>
-      </div>
+      </div> */}
     </div>
     // </Link>
   );
@@ -224,6 +228,7 @@ export const ArticleCard = (props) => {
           <small>{articleDate}</small>
         </div> */}
 
+        {/* <div className="mt-4 d-flex align-items-center justify-content-between"> */}
         <div className="mt-4">
           <div className="d-flex align-items-center">
             <img
@@ -236,11 +241,16 @@ export const ArticleCard = (props) => {
               height={40}
               alt="Picture of the first speaker"
             />
-            <small className="mb-0">
-              {props?.attributes?.author_bio?.data?.attributes?.author_name}
-            </small>
+
+            <div className="d-flex flex-column align-items-start">
+              {/* <div className="d-flex justify-content-between"> */}
+              <small className="mb-0">
+                {props?.attributes?.author_bio?.data?.attributes?.author_name}
+              </small>
+              <small className="text-center">{articleDate}</small>
+            </div>
           </div>
-          {/* <p className="mt-3">{articleDate}</p> */}
+          {/* <small className="text-center">{articleDate}</small> */}
         </div>
 
         <div>
@@ -288,9 +298,9 @@ export const ArticleCard = (props) => {
         </div>
       </div> */}
 
-      <div className="card-footer">
+      {/* <div className="card-footer">
         <p className="m-1 text-center">{articleDate}</p>
-      </div>
+      </div> */}
     </div>
     // </Link>
   );

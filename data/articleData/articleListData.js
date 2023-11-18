@@ -16,6 +16,7 @@ export const queryStr = qs.stringify({
 export const getAllArticleData = async () => {
   const data = await axios.get(
     `https://strapi-blcj.onrender.com/api/articles?${queryStr}`
+    // `http://localhost:1337/api/articles?${queryStr}`
   );
 
   // console.log(data);

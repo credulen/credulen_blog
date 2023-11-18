@@ -103,16 +103,17 @@ export default function ArticlePage() {
   const endIndex = startIndex + meta?.pageSize;
   const currentPageData = data?.slice(startIndex, endIndex);
 
-  // const filter = (tag, arr) => arr.filter((img) => img.tag === tag);
-
-  // // or in ES5
-  // // var filter = function(tag, arr) {
-  // //    return arr.filter(function(img) {
-  // //        return img.tag === tag;
-  // //    })
-  // // };
-
-  // const filtered = filter("people", images);
+  // filter category
+  const filteredData = data.filter(
+    (value, index, self) =>
+      self.findIndex(
+        (v) =>
+          v?.attributes?.category?.data?.id ===
+            value?.attributes?.category?.data?.id &&
+          v?.attributes?.category?.data?.attributes?.Title ===
+            value?.attributes?.category?.data?.attributes?.Title
+      ) === index
+  );
 
   if (isLoading) {
     return <IsLoading />;
@@ -207,11 +208,11 @@ export default function ArticlePage() {
             <RecentPostCard />
           </div>
 
-          {/* <div className="card nav_bg mb-5">
+          <div className="card nav_bg mb-5">
             <div className="card-header text-center text-white">Categories</div>
 
             <ul className="list-group list-group-flush">
-              {currentPageData?.map((cat) => {
+              {filteredData?.map((cat) => {
                 return (
                   <div key={cat?.id}>
                     <CategoryCard {...cat} />
@@ -219,7 +220,7 @@ export default function ArticlePage() {
                 );
               })}
             </ul>
-          </div> */}
+          </div>
 
           <div>
             <JoinTelegram />
