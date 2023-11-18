@@ -36,13 +36,7 @@ export default function ArticlePage() {
 
   useEffect(() => {
     setIsLoading(true);
-    // setIsLoading(false);
-    fetchData()
-      .then(() => {})
-      .catch((err) => {
-        if (err.message === "Network Error")
-          setIsError("Please Check your Internet Connection and Reload");
-      });
+    fetchData();
     setIsLoading(false);
   }, []);
 

@@ -350,6 +350,21 @@ export const RecentPostCard = () => {
   );
 };
 
+export const NavCatCard = (props) => {
+  return (
+    <>
+      {/* <li className="list-group-item text-center"> */}
+      <Link
+        href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
+        className="dropdown-item text-dark"
+      >
+        {props?.attributes?.category?.data?.attributes?.Title}
+      </Link>
+      {/* </li> */}
+    </>
+  );
+};
+
 export const CategoryCard = (props) => {
   return (
     <li className="list-group-item text-center nav_bg">
@@ -362,25 +377,6 @@ export const CategoryCard = (props) => {
     </li>
   );
 };
-// export const CategoryCard = (props) => {
-//   return (
-//     <div className="card nav_bg">
-//       {/* <div className="card-header text-center text-white border-bottom border-white">
-//         Categories
-//       </div> */}
-//       <ul className="list-group list-group-flush">
-//         <li className="list-group-item text-center nav_bg">
-//           <Link
-//             href={`/articles/articlecat/${props?.attributes?.category?.data?.attributes?.slug}`}
-//             className="text-white"
-//           >
-//             {props?.attributes?.category?.data?.attributes?.Title}
-//           </Link>
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// };
 
 export const UpcomingWebinarCard = (props) => {
   // console.log(props.id);

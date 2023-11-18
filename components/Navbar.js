@@ -4,15 +4,33 @@ import Image from "next/image";
 // import logo from "../..//logo/5.png";
 import logo from "../public/logo/5.png";
 import { SubscribeNavbar } from "./Connections";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllArticleData } from "@/data/articleData/articleListData";
+import { NavCatCard } from "./Cards";
 
 const Navbars = () => {
-  // const [isHidden, setIsHidden] = useState(true);
-  // const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([]);
 
-  // const toggle = () => setIsOpen(!isOpen);
-  // const hide = () => setIsOpen(false);
-  // const show = () => setIsOpen(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      const articles = await getAllArticleData();
+      // console.log(articles);
+      setData(articles);
+    };
+
+    fetchData();
+  }, []);
+
+  const filteredData = data.filter(
+    (value, index, self) =>
+      self.findIndex(
+        (v) =>
+          v?.attributes?.category?.data?.id ===
+            value?.attributes?.category?.data?.id &&
+          v?.attributes?.category?.data?.attributes?.Title ===
+            value?.attributes?.category?.data?.attributes?.Title
+      ) === index
+  );
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top bg-white shadow-lg py-3">
@@ -97,11 +115,34 @@ const Navbars = () => {
               </a>
             </li>
 
-            {/* <li className="nav-item"> */}
-            <a href="/contact" className="nav-link text-dark">
-              Contact Us
-            </a>
-            {/* </li> */}
+            <li className="nav-item">
+              <a href="/contact" className="nav-link text-dark me-3">
+                Contact Us
+              </a>
+            </li>
+
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle text-dark me-3"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <ul className="dropdown-menu">
+                {filteredData?.map((cat) => {
+                  return (
+                    <>
+                      <li key={cat?.id}>
+                        <NavCatCard {...cat} />
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
+            </li>
           </ul>
           <div className="" role="search">
             {/* <button
