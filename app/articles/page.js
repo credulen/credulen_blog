@@ -98,7 +98,7 @@ export default function ArticlePage() {
   const currentPageData = data?.slice(startIndex, endIndex);
 
   // filter category
-  const filteredData = data.filter(
+  const filteredData = articleData.filter(
     (value, index, self) =>
       self.findIndex(
         (v) =>
