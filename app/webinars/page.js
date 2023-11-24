@@ -33,10 +33,11 @@ const Webinars = () => {
       <div>
         <h1 className="text-dark">Credulen Webinars</h1>
         <p className="text-dark">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti,
-          obcaecati ipsa impedit maxime officia necessitatibus. Corrupti nostrum
-          magni soluta accusamus officia ullam voluptas suscipit blanditiis
-          animi consequatur in, quisquam quae.
+          Elevate your expertise with Credulen Webinars! Empowering c-suite
+          leaders, senior managers, developers, and tech enthusiasts with
+          cutting-edge insights, news, and education on Big Data, AI, and
+          Blockchain. Stay ahead of the curve – join us on the innovation
+          journey!
         </p>
       </div>
 
