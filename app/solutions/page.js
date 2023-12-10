@@ -11,7 +11,7 @@ import {
   getAllIndividualSolutionData,
 } from "../../data/solutionData/solutionListData";
 import { useEffect, useState } from "react";
-import IsLoading from "../../components/IsLoading";
+import IsLoading from "../loading";
 
 const Solutions = () => {
   const [individualSolutionData, setIndividualSolutionData] = useState([]);

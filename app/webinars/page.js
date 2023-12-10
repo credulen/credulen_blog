@@ -5,7 +5,7 @@ import {
   UpcomingWebinarCard,
 } from "../../components/Cards";
 import { getAllWebinarData } from "../../data/webinarData/webinarListData";
-import IsLoading from "../../components/IsLoading";
+import IsLoading from "../loading";
 
 const Webinars = () => {
   const [webinarData, setWebinarData] = useState([]);

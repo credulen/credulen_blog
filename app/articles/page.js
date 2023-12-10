@@ -13,9 +13,33 @@ import {
   getAllArticleData,
   queryStr,
 } from "../../data/articleData/articleListData";
-import IsLoading from "../../components/IsLoading";
+import IsLoading from "../loading";
 import ReactPaginate from "react-paginate";
 import qs from "qs";
+import dynamic from "next/dynamic";
+
+// export const getStaticProps = async () => {
+//   const articles = await getAllArticleData();
+//   // return articles;
+
+//   const arts = await Promise.all(
+//     articles.map((post) => {
+//       console.log(post?.attributes?.highlighted_article);
+//       if (post?.attributes?.highlighted_article === true) {
+//         return (
+//           <div className="" key={post.id}>
+//             <HighlightCard {...post} />
+//           </div>
+//         );
+//       }
+//     })
+//   );
+
+// };
+
+// const arts = await Promise.all(getStaticProps());
+// console.log(arts);
+// console.log(getStaticProps());
 
 export default function ArticlePage() {
   // const [articleData, setArticleData] = useState([]);
@@ -35,10 +59,9 @@ export default function ArticlePage() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     fetchData();
     setIsLoading(false);
-  }, []);
+  }, [articleData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +91,7 @@ export default function ArticlePage() {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, data, meta]);
 
   const nPages = meta?.pageCount;
 

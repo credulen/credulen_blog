@@ -61,15 +61,23 @@ export const HighlightCard = (props, { articleCat }) => {
         href={`/articles/article/${props?.id}`}
         className=""
       >
-        <img
+        <Image
+          // priority={true}
           // src={`http://localhost:1337${props?.attributes?.image?.data?.attributes?.url}`}
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
+          // loading="eager"
           // attributes.formats.thumbnail.url
           // className="card-img-top d-none d-md-block d-sm-none"
           className="card-img-top"
-          fill="true"
-          // width={400}
-          // height={300}
+          // fill="true"
+          width={400}
+          height={300}
+          sizes="(max-width: 640px) 100vw, 1440px"
+          priority
+          style={{
+            objectFit: "cover",
+            height: "auto",
+          }}
           alt="Picture of the author"
         />
       </Link>
@@ -85,7 +93,7 @@ export const HighlightCard = (props, { articleCat }) => {
 
         <div className="mt-4">
           <div className="d-flex align-items-center">
-            <img
+            <Image
               src={
                 props?.attributes?.author_bio?.data?.attributes?.author_img
                   ?.data?.attributes?.formats?.small?.url
@@ -190,12 +198,16 @@ export const ArticleCard = (props) => {
         href={`/articles/article/${props?.id}`}
         className=""
       >
-        <img
+        <Image
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top img-fluid"
-          fill
-          // width={200}
-          // height={250}
+          // fill
+          width={200}
+          height={250}
+          priority
+          style={{
+            objectFit: "cover",
+          }}
           alt="Picture of the author"
         />
       </Link>
@@ -231,7 +243,7 @@ export const ArticleCard = (props) => {
         {/* <div className="mt-4 d-flex align-items-center justify-content-between"> */}
         <div className="mt-4">
           <div className="d-flex align-items-center">
-            <img
+            <Image
               src={
                 props?.attributes?.author_bio?.data?.attributes?.author_img
                   ?.data?.attributes?.formats?.small?.url
@@ -457,7 +469,7 @@ export const UpcomingWebinarSpeakers = () => {
         // }
         return (
           <div className="d-flex mb-4" key={speaker?.id}>
-            <img
+            <Image
               src={`${speaker?.attributes?.speaker_img?.data?.attributes?.formats?.small?.url}`}
               className="rounded-circle me-3"
               width={50}
@@ -766,7 +778,7 @@ export const IndividualSolutionsCard = (props) => {
   return (
     <Link href="/solutions/individualsolnform" className="">
       <div className="card h-100 article-card__onhover">
-        <img
+        <Image
           src={`${props?.attributes?.individual_solution_image?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top"
           width={200}
@@ -804,7 +816,7 @@ export const BusinessSolutionsCard = (props) => {
   return (
     <Link href="/solutions/businesssolnform" className="">
       <div className="card h-100 article-card__onhover">
-        <img
+        <Image
           // src={`${props?.attributes?.business_solution_image?.data?.attributes?.formats?.thumbnail?.url}`}
           src={`${props?.attributes?.bus_soln_img?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top"

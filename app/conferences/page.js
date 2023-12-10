@@ -7,7 +7,7 @@ import {
 } from "../../components/Cards";
 import React from "react";
 import { getAllConferenceData } from "../../data/conferenceData/conferenceListData";
-import IsLoading from "../../components/IsLoading";
+import IsLoading from "../loading";
 
 const Conferences = () => {
   const [conferenceData, setConferenceData] = useState([]);

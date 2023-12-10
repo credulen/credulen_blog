@@ -9,7 +9,8 @@ import {
 } from "@/components/Cards";
 // import ticketinfo from "../data/conferenceticketdata.json";
 import ticketinfo from "../../../../data/conferenceticketdata.json";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "@/app/loading";
+import Image from "next/image";
 
 const ConferenceInfoPage = ({ params }) => {
   const [singleConferenceData, setSingleConferenceData] = useState();
@@ -171,7 +172,7 @@ const ConferenceInfoPage = ({ params }) => {
             </div>
 
             <div className="col-md-4">
-              <img
+              <Image
                 // src="/assets/blockImg.jpg"
                 src={`http://localhost:1337${singleConferenceData?.attributes?.conference_img?.attributes?.url}`}
                 className="card-img-top"

@@ -1,5 +1,5 @@
 "use client";
-import IsLoading from "../../../../components/IsLoading";
+import IsLoading from "../../../loading";
 import { useEffect, useState } from "react";
 import { ArticleCard } from "../../../../components/Cards";
 import {
@@ -29,7 +29,7 @@ const SingleArticleCat = ({ params }) => {
     };
 
     fetchData();
-  }, [category]);
+  }, [category, data]);
 
   //   if (isLoading) {
   //     return <IsLoading />;

@@ -4,7 +4,7 @@ import {
   RelatedArticleCard,
 } from "../../../../components/Cards";
 import { JoinTelegram, Subscribe } from "../../../../components/Connections";
-import IsLoading from "../../../../components/IsLoading";
+import IsLoading from "../../../loading";
 import {
   getAllArticleData,
   queryStr,
@@ -14,18 +14,12 @@ import { getSingleArticleData } from "../../../../data/articleData/getSingleArti
 import axios from "axios";
 import { format } from "date-fns";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import qs from "qs";
-
-// const fetchData = async (articleId) => {
-// 	let singleArticle = await axios.get(
-// 		`http://localhost:1337/api/articles/${articleId}/?populate=*`
-// 	);
-
-// 	console.log(singleArticle);
-// 	// return singleArticle;
-// };
+import { marked } from "marked";
+import DOMPurify from "dompurify";
+import Image from "next/image";
 
 // fetchData();
 // const SingleArticlePage = ({ params: { articleId } }) => {
@@ -53,13 +47,26 @@ const SingleArticlePage = ({ params }) => {
   const getSingleArticleData = async () => {
     const data = await axios.get(
       `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
+      // `https://strapi-blcj.onrender.com/api/articles?${queryStr}&filters[slug]=${slug}`
     );
     // .then((res) => res.data)
     // .then((article) => article.data)
     // .catch((err) => console.log(err));
-
+    // console.log(data?.data?.data);
     setSingleArticleData(data?.data?.data);
   };
+
+  // const getSingleArticleData = useMemo(async () => {
+  //   try {
+  //     const data = await axios.get(
+  //       `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
+  //     );
+
+  //     return setSingleArticleData(data?.data?.data);
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // }, []);
 
   // console.log(singleArticleData?.attributes?.createdAt);
 
@@ -96,12 +103,18 @@ const SingleArticlePage = ({ params }) => {
   let articleDate = `${month?.toUpperCase()} ${day}, ${year}`;
 
   // console.log(articleDate);
+  // useEffect(() => {
+  //   getSingleArticleData();
+  //   setIsLoading(false);
+  // }, []);
   useEffect(() => {
     getSingleArticleData();
+    // setSingleArticleData(getSingleArticleData);
     setIsLoading(false);
-  }, []);
+  }, [singleArticleData]);
+  // }, [slug]);
 
-  if (isLoading) {
+  if (!singleArticleData) {
     return <IsLoading />;
   }
 
@@ -110,7 +123,7 @@ const SingleArticlePage = ({ params }) => {
       <div className="row">
         <div className="col-md-8">
           <div>
-            <img
+            <Image
               // src="https://res.cloudinary.com/dge5x9t8i/image/upload/v1693866578/credulen/Maya03_small_c13f592fdc.png"
               src={
                 singleArticleData?.attributes?.image?.data?.attributes?.formats
@@ -119,7 +132,7 @@ const SingleArticlePage = ({ params }) => {
               // className="card-img-top image-container"
               className="img-fluid"
               width={900}
-              // height={300}
+              height={300}
               // fill={true}
               alt="Picture of the author"
               // alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
@@ -128,7 +141,7 @@ const SingleArticlePage = ({ params }) => {
 
           <div className="d-flex align-items-center mt-3 mb-4">
             <div>
-              <img
+              <Image
                 src={
                   singleArticleData?.attributes?.author_bio?.data?.attributes
                     ?.author_img?.data?.attributes?.formats?.small?.url
@@ -168,13 +181,26 @@ const SingleArticlePage = ({ params }) => {
             {/* <h3>Title</h3> */}
           </div>
           <div className="text-justify mt-4 text-black">
-            {
+            {/* {
               <p align="justify">
                 <ReactMarkdown>
-                  {singleArticleData?.attributes?.body}
+                  <SyntaxHighlighter
+                    children={String(
+                      singleArticleData?.attributes?.body
+                    ).replace(
+                      "<a>",
+                      '<a style="text-decoration: underline; color: blue">'
+                    )}
+                    style={blue}
+                  />
                 </ReactMarkdown>
               </p>
-            }
+            } */}
+
+            {/* <p align="justify"> */}
+            <ReactMarkdown>{singleArticleData?.attributes?.body}</ReactMarkdown>
+            {/* </p> */}
+
             {/* {isLoading ? (
                 <IsLoading />
                 <ReactMarkdown source={singleArticleData?.attributes?.body} escapeHtml={false} />

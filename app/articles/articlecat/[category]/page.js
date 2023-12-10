@@ -1,5 +1,5 @@
 "use client";
-import IsLoading from "../../../../components/IsLoading";
+import IsLoading from "../../../loading";
 import { useEffect, useState } from "react";
 import { ArticleCard } from "../../../../components/Cards";
 import { queryStr } from "../../../../data/articleData/articleListData";
@@ -28,7 +28,7 @@ const SingleArticleCat = ({ params }) => {
     fetchData();
 
     setIsLoading(false);
-  }, [category]);
+  }, [category, data]);
 
   if (isLoading) {
     return <IsLoading />;
@@ -36,7 +36,7 @@ const SingleArticleCat = ({ params }) => {
 
   return (
     <div className="container">
-      <div className="row mt-5 gy-4">
+      <div className="row gy-4">
         {/* <TagButtons /> */}
         {data?.map((post) => {
           //   console.log(post);
