@@ -139,7 +139,7 @@ export default function ArticlePage() {
   return (
     <main className="container">
       <div className="row g-5">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <div className="row">
             {articleData?.map((post) => {
               // console.log(post?.attributes?.category?.data?.attributes?.slug);
@@ -158,7 +158,7 @@ export default function ArticlePage() {
             {currentPageData?.map((post) => {
               if (post.attributes.highlighted_article === false) {
                 return (
-                  <div className="col-md-6" key={post.id}>
+                  <div className="col-lg-6" key={post.id}>
                     <ArticleCard {...post} />
                   </div>
                 );
@@ -220,7 +220,7 @@ export default function ArticlePage() {
           {/* </div> */}
         </div>
 
-        <div className="col-md-4">
+        <div className="col-lg-4">
           <div className="mb-5">
             <RecentPostCard />
           </div>

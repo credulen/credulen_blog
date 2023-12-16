@@ -74,11 +74,19 @@ export const HighlightCard = (props, { articleCat }) => {
           height={300}
           sizes="(max-width: 640px) 100vw, 1440px"
           priority
+          // fill
           style={{
             objectFit: "cover",
             height: "auto",
           }}
+          rel="preload"
           alt="Picture of the author"
+          // sizes="100vw"
+          // Make the image display full width
+          // style={{
+          //   width: "100%",
+          //   height: "auto",
+          // }}
         />
       </Link>
 
@@ -201,9 +209,8 @@ export const ArticleCard = (props) => {
         <Image
           src={`${props?.attributes?.image?.data?.attributes?.formats?.small?.url}`}
           className="card-img-top img-fluid"
-          // fill
           width={200}
-          height={250}
+          height={400}
           priority
           style={{
             objectFit: "cover",

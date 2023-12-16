@@ -133,6 +133,19 @@ const SingleArticlePage = ({ params }) => {
               className="img-fluid"
               width={900}
               height={300}
+              priority
+              // fill
+              // style={{
+              //   objectFit: "cover",
+              //   height: "auto",
+              // }}
+              rel="preload"
+              sizes="100vw"
+              // Make the image display full width
+              // style={{
+              //   width: "100%",
+              //   height: "auto",
+              // }}
               // fill={true}
               alt="Picture of the author"
               // alt={`http://localhost:1337${singleArticleData?.image?.data?.attributes?.url}`}
