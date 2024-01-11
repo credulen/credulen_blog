@@ -74,6 +74,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import Providers from "./providers";
 
 // export const metadata = {
 // 	title: "Create Next App",
@@ -95,11 +96,15 @@ export default function RootLayout({ children }) {
         />
       </Head> */}
 
-      <body className="body min-vh-100">
+      <body className="body min-vh-100 body-relative">
         <Navbars />
-        <div className="mt-5 pt-4">{children}</div>
+        <div className="mt-5 pt-4 footer-margin">
+          <Providers>
+            {children}
+          </Providers>
+          </div>
 
-        <div className="mt-5 pt-4">
+        <div className=" mt-5 pt-4 " >
           <Footer />
         </div>
 
