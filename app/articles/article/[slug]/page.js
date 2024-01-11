@@ -20,6 +20,7 @@ import qs from "qs";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import Image from "next/image";
+import "react-loading-skeleton/dist/skeleton.css";
 
 // fetchData();
 // const SingleArticlePage = ({ params: { articleId } }) => {
@@ -188,7 +189,7 @@ const SingleArticlePage = ({ params }) => {
 
           <div className="text-center">
             <h3 className="text-black">
-              {singleArticleData?.attributes?.title}
+              {singleArticleData?.attributes?.title || <Skeleton count={1} />}
             </h3>
 
             {/* <h3>Title</h3> */}
@@ -211,7 +212,9 @@ const SingleArticlePage = ({ params }) => {
             } */}
 
             {/* <p align="justify"> */}
-            <ReactMarkdown>{singleArticleData?.attributes?.body}</ReactMarkdown>
+            <ReactMarkdown>
+              {singleArticleData?.attributes?.body || <Skeleton count={10} />}
+            </ReactMarkdown>
             {/* </p> */}
 
             {/* {isLoading ? (

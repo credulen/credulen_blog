@@ -63,6 +63,8 @@ export default function ArticlePage() {
     setIsLoading(false);
   }, [articleData]);
 
+  // console.log(articleData);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios.get(
@@ -93,7 +95,10 @@ export default function ArticlePage() {
     fetchData();
   }, [page, data, meta]);
 
-  const nPages = meta?.pageCount;
+  // console.log(meta);
+
+  // const nPages = Math.ceil(meta?.pageCount);
+  const nPages = Math.ceil(meta?.total / meta?.pageSize);
 
   // const handlePrevPage = () => {
   //   if (page > 1) {
