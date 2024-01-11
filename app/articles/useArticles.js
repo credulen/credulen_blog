@@ -43,7 +43,6 @@ const [page, setPageNo] = useState(1);
         refetchOnReconnect: false,
         initialData: undefined,
         retry: false,
-        enabled: !!page,
         refetchInterval:30 * 1000,
         onError: (error) => {
           handleError(error)

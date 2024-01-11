@@ -7,7 +7,6 @@ import {
 } from "../../components/Cards";
 import { JoinTelegram, Subscribe } from "../../components/Connections";
 import IsLoading from "../loading";
-import ReactPaginate from "react-paginate";
 import { useArticle } from "@/app/articles/useArticles";
 
 export default function ArticlePage() {

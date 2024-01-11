@@ -95,13 +95,14 @@ export default function RootLayout({ children }) {
           crossorigin="anonymous"
         />
       </Head> */}
-
+   
       <body className="body min-vh-100 body-relative">
+               <Providers>
         <Navbars />
         <div className="mt-5 pt-4 footer-margin">
-          <Providers>
+
             {children}
-          </Providers>
+  
           </div>
 
         <div className=" mt-5 pt-4 " >
@@ -112,8 +113,9 @@ export default function RootLayout({ children }) {
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
           crossorigin="anonymous"
-        ></Script> */}
+        ></Script> */}       </Providers>
       </body>
+       
     </html>
   );
 }

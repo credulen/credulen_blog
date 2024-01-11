@@ -7,21 +7,12 @@ import { SubscribeNavbar } from "./Connections";
 import { useEffect, useState } from "react";
 import { getAllArticleData } from "@/data/articleData/articleListData";
 import { NavCatCard } from "./Cards";
+import { useArticle } from "@/app/articles/useArticles";
 
 const Navbars = () => {
-  const [data, setData] = useState([]);
+  const { allArticles} = useArticle();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const articles = await getAllArticleData();
-      // console.log(articles);
-      setData(articles);
-    };
-
-    fetchData();
-  }, []);
-
-  const filteredData = data.filter(
+  const filteredData = allArticles?.data?.data?.data?.filter(
     (value, index, self) =>
       self.findIndex(
         (v) =>
@@ -132,10 +123,10 @@ const Navbars = () => {
                 Categories
               </a>
               <ul className="dropdown-menu">
-                {filteredData?.map((cat) => {
+                {filteredData?.map((cat,idx) => {
                   return (
                     <>
-                      <li key={cat?.id}>
+                      <li key={idx}>
                         <NavCatCard {...cat} />
                       </li>
                     </>
