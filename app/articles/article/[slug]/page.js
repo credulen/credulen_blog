@@ -1,26 +1,17 @@
 "use client";
 import {
   RecentPostCard,
-  RelatedArticleCard,
+  // RelatedArticleCard,
 } from "../../../../components/Cards";
 import { JoinTelegram, Subscribe } from "../../../../components/Connections";
 import IsLoading from "../../../loading";
 import {
-  getAllArticleData,
+  // getAllArticleData,
   queryStr,
 } from "../../../../data/articleData/articleListData";
-// import { getAuthorData } from "@/data/authorData";
-import { getSingleArticleData } from "../../../../data/articleData/getSingleArticle";
 import axios from "axios";
-import { format } from "date-fns";
-import { useParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import qs from "qs";
-import { marked } from "marked";
-import DOMPurify from "dompurify";
 import Image from "next/image";
-import "react-loading-skeleton/dist/skeleton.css";
 import { useQuery } from "@tanstack/react-query";
 
 const SingleArticlePage = ({ params }) => {
@@ -44,25 +35,10 @@ const SingleArticlePage = ({ params }) => {
     },
   });
 
-  // const [singleArticleData, setSingleArticleData] = useState();
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [authorData, setAuthorData] = useState([]);
-
-  // const getSingleArticleData = async () => {
-  //   const data = await axios.get(
-  //     `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
-
-  //   );
-
-  //   setSingleArticleData(data?.data?.data);
-  // };
-
-  // let year = new Date(singleArticleData?.attributes?.createdAt).getFullYear();
   let year = new Date(
     singleArticle?.data?.data?.data?.attributes?.createdAt
   ).getFullYear();
 
-  // var arr = `${singleArticleData?.attributes?.createdAt}`.split("-");
   var arr = `${singleArticle?.data?.data?.data?.attributes?.createdAt}`.split(
     "-"
   );
@@ -101,17 +77,6 @@ const SingleArticlePage = ({ params }) => {
   ).getMinutes();
 
   let articleDate = `${month?.toUpperCase()} ${day}, ${year}`;
-
-  // useEffect(() => {
-  //   getSingleArticleData();
-  //   // setSingleArticleData(getSingleArticleData);
-  //   setIsLoading(false);
-  // }, [singleArticleData]);
-  // // }, [slug]);
-
-  // if (!singleArticleData) {
-  //   return <IsLoading />;
-  // }
 
   if (singleArticle.isLoading) {
     return <IsLoading />;
@@ -191,44 +156,16 @@ const SingleArticlePage = ({ params }) => {
 
           <div className="text-center">
             <h3 className="text-black">
-              {singleArticle?.data?.data?.data?.attributes?.title || (
-                <Skeleton count={1} />
-              )}
+              {singleArticle?.data?.data?.data?.attributes?.title}
             </h3>
 
             {/* <h3>Title</h3> */}
           </div>
           <div className="text-justify mt-4 text-black">
-            {/* {
-              <p align="justify">
-                <ReactMarkdown>
-                  <SyntaxHighlighter
-                    children={String(
-                      singleArticleData?.attributes?.body
-                    ).replace(
-                      "<a>",
-                      '<a style="text-decoration: underline; color: blue">'
-                    )}
-                    style={blue}
-                  />
-                </ReactMarkdown>
-              </p>
-            } */}
-
             {/* <p align="justify"> */}
             <ReactMarkdown>
-              {singleArticle?.data?.data?.data?.attributes?.body || (
-                <Skeleton count={10} />
-              )}
+              {singleArticle?.data?.data?.data?.attributes?.body}
             </ReactMarkdown>
-            {/* </p> */}
-
-            {/* {isLoading ? (
-                <IsLoading />
-                <ReactMarkdown source={singleArticleData?.attributes?.body} escapeHtml={false} />
-              ) : (
-                <p>dangerouslySetInnerHtml={blogPost}</p>
-              )} */}
           </div>
           {/* end */}
         </div>
