@@ -252,3 +252,17 @@ a {
 /* .footer--pin {
   margin-top: auto;
 } */
+
+.footer-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.body-relative {
+  position: relative;
+}
+
+.footer-margin {
+  margin-bottom: 300px;
+}

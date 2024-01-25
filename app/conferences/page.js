@@ -8,11 +8,16 @@ import {
 import React from "react";
 import { getAllConferenceData } from "../../data/conferenceData/conferenceListData";
 import IsLoading from "../loading";
+// import { useConferenceData } from "./useConferenceData";
 
 const Conferences = () => {
   const [conferenceData, setConferenceData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [limit, setLimit] = useState(3);
+
+  // const { getAllConferenceData } = useConferenceData;
+
+  // console.log(getAllConferenceData);
 
   const fetchData = async () => {
     const conferences = await getAllConferenceData();
@@ -28,19 +33,24 @@ const Conferences = () => {
     return <IsLoading />;
   }
 
+  // if (getAllConferenceData.isLoading) {
+  //   return <IsLoading />;
+  // }
+
   return (
     <div className="container">
       <div className="pb-5">
         <h1 className="mb-5 text-dark">Events You will Love</h1>
-        {conferenceData.length === 0 ? (
+        {/* {getAllConferenceData?.data?.data?.data?.length === 0 ? ( */}
+        {conferenceData?.length === 0 ? (
           <ComingSoonCard />
         ) : (
-          conferenceData?.map((conference) => {
+          getAllConferenceData?.data?.data?.data?.map((conference) => {
             //   console.log(conference.attributes.is_upcoming_conference.length);
             // console.log(conference);
-            if (conference.attributes.is_upcoming_conference === true) {
+            if (conference?.attributes.is_upcoming_conference === true) {
               return (
-                <div className="mb-5 pb-3" key={conference.id}>
+                <div className="mb-5 pb-3" key={conference?.id}>
                   <ConferenceCard {...conference} />
                 </div>
               );
@@ -57,11 +67,16 @@ const Conferences = () => {
 
         <div className="container">
           <div className="row g-2">
-            {conferenceData.length === 0 ? (
+            {/* {getAllConferenceData?.data?.data?.data?.length === 0 ? ( */}
+            {conferenceData?.length === 0 ? (
               <ComingSoonCard />
             ) : (
+              // getAllConferenceData?.data?.data?.data?.map((conference) => {
               conferenceData?.map((conference) => {
-                if (conference.attributes.is_upcoming_conference === false) {
+                if (
+                  // conference?.data?.data?.data?.attributes
+                  conference?.attributes?.is_upcoming_conference === false
+                ) {
                   return (
                     <div className="col-md-4" key={conference.id}>
                       <PastEventsCard {...conference} />
@@ -70,15 +85,6 @@ const Conferences = () => {
                 }
               })
             )}
-            {/* <div className="col-md-4">
-							<PastEventsCard />
-						</div>
-						<div className="col-md-4">
-							<PastEventsCard />
-						</div>
-						<div className="col-md-4">
-							<PastEventsCard />
-						</div> */}
           </div>
         </div>
       </div>

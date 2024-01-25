@@ -21,64 +21,51 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import Image from "next/image";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useQuery } from "@tanstack/react-query";
 
-// fetchData();
-// const SingleArticlePage = ({ params: { articleId } }) => {
-// const SingleArticlePage = ({ articleId }) => {
-// const SingleArticlePage = ({ params }) => {
 const SingleArticlePage = ({ params }) => {
-  // const queryStr = qs.stringify({
-  //   populate: {
-  //     image: { populate: "*" },
-  //     category: { populate: "*" },
-  //     author_bio: { populate: "*" },
-  //   },
-  //   pagination: {},
-  // });
-
   const { slug } = params;
   // console.log(slug);
 
-  const [singleArticleData, setSingleArticleData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [authorData, setAuthorData] = useState([]);
+  const singleArticle = useQuery({
+    queryKey: ["singleArticle"],
+    queryFn: () =>
+      axios.get(
+        `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
+      ),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    initialData: undefined,
+    retry: false,
+    refetchInterval: 30 * 1000,
+    onError: (error) => {
+      handleError(error);
+    },
+  });
 
-  // const newData = fetchData(params.articleId);
+  // const [singleArticleData, setSingleArticleData] = useState();
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [authorData, setAuthorData] = useState([]);
 
-  const getSingleArticleData = async () => {
-    const data = await axios.get(
-      `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
-      // `https://strapi-blcj.onrender.com/api/articles?${queryStr}&filters[slug]=${slug}`
-    );
-    // .then((res) => res.data)
-    // .then((article) => article.data)
-    // .catch((err) => console.log(err));
-    // console.log(data?.data?.data);
-    setSingleArticleData(data?.data?.data);
-  };
+  // const getSingleArticleData = async () => {
+  //   const data = await axios.get(
+  //     `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
 
-  // const getSingleArticleData = useMemo(async () => {
-  //   try {
-  //     const data = await axios.get(
-  //       `https://strapi-blcj.onrender.com/api/articles/${slug}/?${queryStr}`
-  //     );
+  //   );
 
-  //     return setSingleArticleData(data?.data?.data);
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // }, []);
+  //   setSingleArticleData(data?.data?.data);
+  // };
 
-  // console.log(singleArticleData?.attributes?.createdAt);
+  // let year = new Date(singleArticleData?.attributes?.createdAt).getFullYear();
+  let year = new Date(
+    singleArticle?.data?.data?.data?.attributes?.createdAt
+  ).getFullYear();
 
-  // console.log(
-  //   singleArticleData?.attributes?.author_bio?.data?.attributes?.author_img
-  //     ?.data?.attributes?.formats?.small?.url
-  // );
-
-  let year = new Date(singleArticleData?.attributes?.createdAt).getFullYear();
-  // let month = new Date(props.attributes.createdAt).getFullYear();
-  var arr = `${singleArticleData?.attributes?.createdAt}`.split("-");
+  // var arr = `${singleArticleData?.attributes?.createdAt}`.split("-");
+  var arr = `${singleArticle?.data?.data?.data?.attributes?.createdAt}`.split(
+    "-"
+  );
   var months = [
     "January",
     "February",
@@ -97,26 +84,41 @@ const SingleArticlePage = ({ params }) => {
   let month = months[month_index];
   // console.log(month);
 
-  let day = new Date(singleArticleData?.attributes?.createdAt).getDate();
-  let hour = new Date(singleArticleData?.attributes?.createdAt).getHours();
-  let mins = new Date(singleArticleData?.attributes?.createdAt).getMinutes();
+  // let day = new Date(singleArticleData?.attributes?.createdAt).getDate();
+  // let hour = new Date(singleArticleData?.attributes?.createdAt).getHours();
+  // let mins = new Date(singleArticleData?.attributes?.createdAt).getMinutes();
+
+  // let articleDate = `${month?.toUpperCase()} ${day}, ${year}`;
+
+  let day = new Date(
+    singleArticle?.data?.data?.data?.attributes?.createdAt
+  ).getDate();
+  let hour = new Date(
+    singleArticle?.data?.data?.data?.attributes?.createdAt
+  ).getHours();
+  let mins = new Date(
+    singleArticle?.data?.data?.data?.attributes?.createdAt
+  ).getMinutes();
 
   let articleDate = `${month?.toUpperCase()} ${day}, ${year}`;
 
-  // console.log(articleDate);
   // useEffect(() => {
   //   getSingleArticleData();
+  //   // setSingleArticleData(getSingleArticleData);
   //   setIsLoading(false);
-  // }, []);
-  useEffect(() => {
-    getSingleArticleData();
-    // setSingleArticleData(getSingleArticleData);
-    setIsLoading(false);
-  }, [singleArticleData]);
-  // }, [slug]);
+  // }, [singleArticleData]);
+  // // }, [slug]);
 
-  if (!singleArticleData) {
+  // if (!singleArticleData) {
+  //   return <IsLoading />;
+  // }
+
+  if (singleArticle.isLoading) {
     return <IsLoading />;
+  }
+
+  if (singleArticle.isError) {
+    return <div>{singleArticle?.error?.message}</div>;
   }
 
   return (
@@ -125,10 +127,9 @@ const SingleArticlePage = ({ params }) => {
         <div className="col-md-8">
           <div>
             <Image
-              // src="https://res.cloudinary.com/dge5x9t8i/image/upload/v1693866578/credulen/Maya03_small_c13f592fdc.png"
               src={
-                singleArticleData?.attributes?.image?.data?.attributes?.formats
-                  ?.medium?.url
+                singleArticle?.data?.data?.data?.attributes?.image?.data
+                  ?.attributes?.formats?.medium?.url
               }
               // className="card-img-top image-container"
               className="img-fluid"
@@ -157,8 +158,9 @@ const SingleArticlePage = ({ params }) => {
             <div>
               <Image
                 src={
-                  singleArticleData?.attributes?.author_bio?.data?.attributes
-                    ?.author_img?.data?.attributes?.formats?.small?.url
+                  singleArticle?.data?.data?.data?.attributes?.author_bio?.data
+                    ?.attributes?.author_img?.data?.attributes?.formats?.small
+                    ?.url
                 }
                 className="rounded-circle me-3"
                 width={40}
@@ -171,8 +173,8 @@ const SingleArticlePage = ({ params }) => {
               <p className="card-text">
                 <small className="text-body-secondary">
                   {
-                    singleArticleData?.attributes?.author_bio?.data?.attributes
-                      ?.author_name
+                    singleArticle?.data?.data?.data?.attributes?.author_bio
+                      ?.data?.attributes?.author_name
                   }{" "}
                   | {articleDate}
                 </small>
@@ -189,7 +191,9 @@ const SingleArticlePage = ({ params }) => {
 
           <div className="text-center">
             <h3 className="text-black">
-              {singleArticleData?.attributes?.title || <Skeleton count={1} />}
+              {singleArticle?.data?.data?.data?.attributes?.title || (
+                <Skeleton count={1} />
+              )}
             </h3>
 
             {/* <h3>Title</h3> */}
@@ -213,7 +217,9 @@ const SingleArticlePage = ({ params }) => {
 
             {/* <p align="justify"> */}
             <ReactMarkdown>
-              {singleArticleData?.attributes?.body || <Skeleton count={10} />}
+              {singleArticle?.data?.data?.data?.attributes?.body || (
+                <Skeleton count={10} />
+              )}
             </ReactMarkdown>
             {/* </p> */}
 

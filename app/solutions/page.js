@@ -12,6 +12,7 @@ import {
 } from "../../data/solutionData/solutionListData";
 import { useEffect, useState } from "react";
 import IsLoading from "../loading";
+import { useSolutionData } from "./useSolutionData";
 
 const Solutions = () => {
   const [individualSolutionData, setIndividualSolutionData] = useState([]);
@@ -21,37 +22,41 @@ const Solutions = () => {
   // const [limit, setLimit] = useState(3);
 
   // individual solution
-  const fetchIndividualData = async () => {
-    const solutions = await getAllIndividualSolutionData();
-    // console.log(solutions);
-    setIndividualSolutionData(solutions);
-  };
-  useEffect(() => {
-    setIsLoading(false);
-    fetchIndividualData();
-  }, []);
+  // const fetchIndividualData = async () => {
+  //   const solutions = await getAllIndividualSolutionData();
+  //   // console.log(solutions);
+  //   setIndividualSolutionData(solutions);
+  // };
+  // useEffect(() => {
+  //   setIsLoading(false);
+  //   fetchIndividualData();
+  // }, []);
 
-  // console.log(
-  // 	individualSolutionData.map((data) => {
-  // 		console.log(data.attributes);
-  // 	})
-  // );
+  const { getAllIndSolutionData, getAllBusSolutionData } = useSolutionData();
 
   // business solution
-  const fetchBusinessData = async () => {
-    const solutions = await getAllBusinessSolutionData();
-    // console.log(webinars);
-    setBusinessSolutionData(solutions);
-  };
+  // const fetchBusinessData = async () => {
+  //   const solutions = await getAllBusinessSolutionData();
+  //   setBusinessSolutionData(solutions);
+  // };
 
-  useEffect(() => {
-    fetchBusinessData();
-    setIsLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   fetchBusinessData();
+  //   setIsLoading(false);
+  // }, []);
 
-  if (isLoading) {
+  // if (isLoading) {
+  //   return <IsLoading />;
+  // }
+
+  if (getAllIndSolutionData.isLoading || getAllBusSolutionData.isLoading) {
     return <IsLoading />;
   }
+
+  if (getAllIndSolutionData.isError || getAllBusSolutionData.isError) {
+    return <div>{getAllBusSolutionData?.error?.message}</div>;
+  }
+
   return (
     <div className="container">
       <h1 className="text-dark">Solutions</h1>
@@ -80,7 +85,7 @@ const Solutions = () => {
       <div className="mt-5">
         <h2 className="mb-4 text-dark">Individual Solution</h2>
         <div className="row gy-4">
-          {individualSolutionData?.map((indsolution) => {
+          {getAllIndSolutionData?.data?.data?.data?.map((indsolution) => {
             return (
               <div className="col-md-4" key={indsolution.id}>
                 <IndividualSolutionsCard {...indsolution} />
@@ -101,7 +106,7 @@ const Solutions = () => {
         <h2 className="pb-2 text-dark">Business/Institution Solution</h2>
 
         <div className="row gy-4">
-          {businessSolutionData?.map((bussolution) => {
+          {getAllBusSolutionData?.data?.data?.data?.map((bussolution) => {
             return (
               <div className="col-md-4" key={bussolution.id}>
                 <BusinessSolutionsCard {...bussolution} />

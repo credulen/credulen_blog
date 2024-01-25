@@ -33,6 +33,7 @@ const intialValues = {
 };
 
 const WebinarInfoPage = ({ params }) => {
+  const { slug } = params;
   const [singleWebinarData, setSingleWebinarData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [values, setValues] = useState(intialValues);
@@ -42,9 +43,7 @@ const WebinarInfoPage = ({ params }) => {
 
   const getSingleWebinarData = async () => {
     const singleWebinar = await axios
-      .get(
-        `https://strapi-blcj.onrender.com/api/webinars/${params.slug}/?populate=*`
-      )
+      .get(`https://strapi-blcj.onrender.com/api/webinars/${slug}/?populate=*`)
       .then((res) => res.data)
       .then((webinar) => webinar.data)
       .catch((err) => console.log(err));

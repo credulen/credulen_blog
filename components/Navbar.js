@@ -7,21 +7,26 @@ import { SubscribeNavbar } from "./Connections";
 import { useEffect, useState } from "react";
 import { getAllArticleData } from "@/data/articleData/articleListData";
 import { NavCatCard } from "./Cards";
+import { useArticle } from "@/app/articles/useArticlesData";
 
 const Navbars = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const [artFilter, setArtFilter] = useState([]);
+  const { allArticles } = useArticle();
+  // console.log(allArticles);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const articles = await getAllArticleData();
-      // console.log(articles);
-      setData(articles);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const articles = await getAllArticleData();
+  //     // console.log(articles);
+  //     setData(articles);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  const filteredData = data.filter(
+  // const filteredData = data.filter(
+  const filteredData = allArticles?.data?.data?.data?.filter(
     (value, index, self) =>
       self.findIndex(
         (v) =>
@@ -31,6 +36,8 @@ const Navbars = () => {
             value?.attributes?.category?.data?.attributes?.Title
       ) === index
   );
+
+  // console.log(filteredData);
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top bg-white shadow-lg py-3">
@@ -131,6 +138,7 @@ const Navbars = () => {
               >
                 Categories
               </a>
+              {/* <ul className="dropdown-menu" onClick={() => artFilter}> */}
               <ul className="dropdown-menu">
                 {filteredData?.map((cat) => {
                   return (
